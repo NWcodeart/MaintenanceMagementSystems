@@ -23,6 +23,20 @@ namespace MaintenanceMagementSystems.MVC.Controllers
             return View();
         }
 
+        [HttpPost]
+        public IActionResult Index(LoginInfo loginInfo)
+        {
+            if (loginInfo.Username.ToLower() == "admin" && loginInfo.Password.ToLower() == "admin")
+            {
+                return RedirectToAction("Privacy");
+            }
+            else
+            {
+                TempData["message"] = "Incorrect Username or Password";
+                return View(loginInfo);
+            }
+        }
+
         public IActionResult Privacy()
         {
             return View();
