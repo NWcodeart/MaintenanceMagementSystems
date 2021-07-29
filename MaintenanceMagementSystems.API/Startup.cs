@@ -1,3 +1,4 @@
+using MaintenanceMagementSystems.API.Filters;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -32,6 +33,10 @@ namespace MaintenanceMagementSystems.API
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "MaintenanceMagementSystems.API", Version = "v1" });
             });
+
+            services.AddScoped<AuthorizeFilter>();
+            services.AddScoped<ActionFilter>();
+            services.AddScoped<ExceptionFilter>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

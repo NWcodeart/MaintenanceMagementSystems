@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using MaintenanceMagementSystems.API.Filters;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -7,6 +8,14 @@ using System.Threading.Tasks;
 
 namespace MaintenanceMagementSystems.API.Controllers
 {
+
+    [ServiceFilter(typeof(AuthorizeFilter))]
+    [ServiceFilter(typeof(ActionFilter))]
+    [ServiceFilter(typeof(ExceptionFilter))]
+
+    //-----------------------------------------------------------------------------------------------------------------
+
+
     [ApiController]
     [Route("[controller]")]
     public class WeatherForecastController : ControllerBase
@@ -26,6 +35,7 @@ namespace MaintenanceMagementSystems.API.Controllers
         [HttpGet]
         public IEnumerable<WeatherForecast> Get()
         {
+
             var rng = new Random();
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast
             {
