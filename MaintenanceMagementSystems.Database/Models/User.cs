@@ -1,10 +1,7 @@
-﻿using System;
+﻿using MaintenanceManagementSystem.Database.Lookup;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MaintenanceManagementSystem.Database.Models
 {
@@ -29,25 +26,40 @@ namespace MaintenanceManagementSystem.Database.Models
         [RegularExpression(@"^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$", ErrorMessage = "Please Enter valid Password")]
         public string Password { get; set; }
 
+        //UserRole section
         [ForeignKey("Id")]
         [Required]
         public int UserRoleId { get; set; }
 
+        public UserRole userRole { get; set; }
+
+
+        //user location section
         [ForeignKey("Id")]
-        public int FloorId { get; set; }
+        public int? FloorId { get; set; }
 
+        public Floor floor { get; set; }
+
+        //JobType section
         [ForeignKey("Id")]
-        [Required]
-        public int BuildingId { get; set; }
+        public int? JobTypeId { get; set; }
+
+        public JobType jobType { get; set; }
 
 
-
+        //Maintenance type section
         [ForeignKey("Id")]
-        public int JobTitleId { get; set; }
-       
-       
-        [ForeignKey("Id")]
-        public int MaintenanceTypeId { get; set; }
+        public int? MaintenanceTypeId { get; set; }
 
+        public MaintenanceType maintenanceType { get; set; }
+
+        //Ticket relations 
+        #nullable enable
+        public ICollection<Ticket>? BackOfficeTickets { get; set; }
+        
+        [ForeignKey("Id")]
+        public int? BeneficiaryTicketId { get; set; }
+
+        public Ticket? BeneficiaryTicket { get; set; }
     }
 }

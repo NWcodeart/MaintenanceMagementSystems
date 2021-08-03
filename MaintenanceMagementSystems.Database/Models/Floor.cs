@@ -11,7 +11,6 @@ namespace MaintenanceManagementSystem.Database.Models
     public class Floor
     {
         [Key]
-        [Required]
         public int Id { get; set; }
 
         [Key]
@@ -21,5 +20,9 @@ namespace MaintenanceManagementSystem.Database.Models
         [ForeignKey("Id")]
         [Required]
         public int BuildingId { get; set; }
+        public Building building { get; set; }
+
+        public ICollection<Ticket> tickets { get; set; }
+        public ICollection<User> users { get; set; }
     }
 }
