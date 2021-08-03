@@ -9,8 +9,4 @@
     <ProjectReference Include="..\MaintenanceMagementSystems.Entity\MaintenanceManagementSystem.Entity.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Repositories\" />
-  </ItemGroup>
-
 </Project>
