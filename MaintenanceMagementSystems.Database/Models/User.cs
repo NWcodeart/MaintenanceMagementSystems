@@ -1,4 +1,5 @@
 ﻿using MaintenanceManagementSystem.Database.Lookup;
+using MaintenanceManagementSystem.Database.ManyToMany;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -55,7 +56,9 @@ namespace MaintenanceManagementSystem.Database.Models
 
         //Ticket relations 
         #nullable enable
-        public ICollection<Ticket>? BackOfficeTickets { get; set; }
+        public ICollection<BackOfficesTickets>? BackOfficeTickets { get; set; }
+
+        public ICollection<Ticket>? TicketsRejected { get; set; }
         
         [ForeignKey("Id")]
         public int? BeneficiaryTicketId { get; set; }

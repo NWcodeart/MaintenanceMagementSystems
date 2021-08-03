@@ -1,4 +1,5 @@
 ﻿using MaintenanceManagementSystem.Database.Lookup;
+using MaintenanceManagementSystem.Database.ManyToMany;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -13,11 +14,13 @@ namespace MaintenanceManagementSystem.Database.Models
         public MaintenanceSysContext(DbContextOptions<MaintenanceSysContext> options) : base(options)
         {
         }
-
+        //Models
         public DbSet<Building> Buildings { get; set; }
         public DbSet<Floor> Floors { get; set; }
         public DbSet<Ticket> Tickets { get; set; }
         public DbSet<User> Users { get; set; }
+
+        //lookup tables
         public DbSet<CancelationReason> CancelationReasons { get; set; }
         public DbSet<City> Cities { get; set; }
         public DbSet<Country> Countries { get; set; }
@@ -25,5 +28,103 @@ namespace MaintenanceManagementSystem.Database.Models
         public DbSet<MaintenanceType> MaintenanceTypes { get; set; }
         public DbSet<Status> Statuses { get; set; }
         public DbSet<UserRole> UserRoles { get; set; }
+
+        //fluent api
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            //Beneficiary has one Ticket while the ticket has one Beneficiary
+            modelBuilder.Entity<Ticket>()
+                .HasOne<User>(u => u.BeneficiaryUser)
+                .WithOne(Tb => Tb.BeneficiaryTicket)
+                .HasForeignKey<User>(Tb => Tb.BeneficiaryTicketId)
+                .HasForeignKey<Ticket>(u => u.BeneficiaryID);
+
+            //BackOffice has multiple ticket and every ticket connect with multi BackOffice
+            modelBuilder.Entity<BackOfficesTickets>()
+                .HasKey(bft => new { bft.BackOfficeId, bft.TicketId });
+
+            modelBuilder.Entity<BackOfficesTickets>()
+                .HasOne<Ticket>(t => t.ticket)
+                .WithMany(t => t.backOfficesTickets)
+                .HasForeignKey(t => t.TicketId);
+
+            modelBuilder.Entity<BackOfficesTickets>()
+                .HasOne<User>(u => u.user)
+                .WithMany(u => u.BackOfficeTickets)
+                .HasForeignKey(u => u.BackOfficeId);
+
+            //the ticket has one ststus but a status has multiple tickets 
+            modelBuilder.Entity<Ticket>()
+                .HasOne<Status>(s => s.status)
+                .WithMany(t => t.ticket)
+                .HasForeignKey(s => s.StatusID);
+
+            //every ticket should has one maintenance type while th once maintenance type has multiple tickets
+            modelBuilder.Entity<Ticket>()
+                .HasOne<MaintenanceType>(m => m.maintenanceType)
+                .WithMany(t => t.tickets)
+                .HasForeignKey(m => m.MaintenanceTypeID);
+
+            //ticket has once floor while floor has multiple tickets
+            modelBuilder.Entity<Ticket>()
+                .HasOne<Floor>(f => f.floor)
+                .WithMany(t => t.tickets)
+                .HasForeignKey(f => f.FloorId);
+
+            //ticket has clacelled reason while calncelled reason has multiple tickets
+            modelBuilder.Entity<Ticket>()
+                .HasOne<CancelationReason>(c => c.cancelationReason)
+                .WithMany(t => t.tickets)
+                .HasForeignKey(c => c.CancellationReasonID);
+
+            //ticket can be rejected once time with user and this user can reject multi tickets
+            modelBuilder.Entity<Ticket>()
+                .HasOne<User>(u => u.UserRejected)
+                .WithMany(t => t.TicketsRejected)
+                .HasForeignKey(u => u.RejectedBy);
+
+            //user has one role while every role assign to multi user
+            modelBuilder.Entity<User>()
+                .HasOne<UserRole>(ur => ur.userRole)
+                .WithMany(u => u.users)
+                .HasForeignKey(ur => ur.UserRoleId);
+
+            //User should has one location while location (from floor table) can has multiple user
+            modelBuilder.Entity<User>()
+                .HasOne<Floor>(f => f.floor)
+                .WithMany(u => u.users)
+                .HasForeignKey(f => f.FloorId);
+
+            //user can has one jobtype while jobtype has multiple user
+            modelBuilder.Entity<User>()
+                .HasOne<JobType>(jt => jt.jobType)
+                .WithMany(u => u.users)
+                .HasForeignKey(jt => jt.JobTypeId);
+
+            //user maybe work in manintenance type and every maintenance type has multiple worker
+            modelBuilder.Entity<User>()
+                .HasOne<MaintenanceType>(mt => mt.maintenanceType)
+                .WithMany(u => u.users)
+                .HasForeignKey(mt => mt.MaintenanceTypeId);
+
+            //floor should be in one bulding while the bulding has multi floors 
+            modelBuilder.Entity<Floor>()
+                .HasOne<Building>(b => b.building)
+                .WithMany(f => f.floors)
+                .HasForeignKey(b => b.BuildingId);
+
+            //bulding should has city for address while one city can has multi buildings
+            modelBuilder.Entity<Building>()
+                .HasOne<City>(c => c.city)
+                .WithMany(b => b.buildings)
+                .HasForeignKey(c => c.CityId);
+
+            //bulding should has country for address while one country can has multi buildings
+            modelBuilder.Entity<Building>()
+                .HasOne<Country>(c => c.country)
+                .WithMany(b => b.buildings)
+                .HasForeignKey(c => c.CountryId);
+        }
     }
 }

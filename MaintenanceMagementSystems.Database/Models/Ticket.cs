@@ -1,5 +1,7 @@
 ﻿using MaintenanceManagementSystem.Database.Lookup;
+using MaintenanceManagementSystem.Database.ManyToMany;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace MaintenanceManagementSystem.Database.Models
@@ -16,10 +18,14 @@ namespace MaintenanceManagementSystem.Database.Models
 
         public User BeneficiaryUser { get; set; }
 
+        //BackOffice section relation
+        #nullable enable
+        public ICollection<BackOfficesTickets>? backOfficesTickets { get; set; }
+
         //status section
         [Required]
         public int StatusID { get; set; }
-
+        #nullable disable
         public Status status { get; set; }
 
         [Required]
@@ -50,7 +56,7 @@ namespace MaintenanceManagementSystem.Database.Models
 
         //Ticket location floor section
         [Display(Name = "Floor Number")]
-        public int? FloorNumber { get; set; }
+        public int? FloorId { get; set; }
 
         public Floor floor { get; set; }
 
