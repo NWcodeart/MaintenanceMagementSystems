@@ -1,8 +1,13 @@
-﻿namespace MaintenanceManagementSystem.Database
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace MaintenanceManagementSystem.Database
 {
-    class JobType
+    public class JobType
     {
+        [Key]
         public int Id  { get; set; }
+        
+        [Required]
         public string JobTypeName { get; set; }
     }
 }

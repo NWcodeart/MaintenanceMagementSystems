@@ -1,8 +1,13 @@
-﻿namespace MaintenanceManagementSystem.Database.Lookup
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace MaintenanceManagementSystem.Database.Lookup
 {
-    class UserRole
+    public class UserRole
     {
+        [Key]
         public int Id { get; set; }
+        
+        [Required]
         public string Role { get; set; }
     }
 }

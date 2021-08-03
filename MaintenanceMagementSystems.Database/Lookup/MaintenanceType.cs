@@ -1,8 +1,16 @@
-﻿namespace MaintenanceManagementSystem.Database.Lookup
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace MaintenanceManagementSystem.Database.Lookup
 {
-    class MaintenanceType
+    public class MaintenanceType
     {
+        [Key]
         public int Id { get; set; }
-        public string MaintenanceTypeName { get; set; }
+        
+        [Required]
+        public string MaintenanceTypeNameAr { get; set; }
+        
+        [Required]
+        public string MaintenanceTypeNameEn { get; set; }
     }
 }

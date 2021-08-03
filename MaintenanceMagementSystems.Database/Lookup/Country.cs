@@ -1,8 +1,16 @@
-﻿namespace MaintenanceManagementSystem.Database.Lookup
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace MaintenanceManagementSystem.Database.Lookup
 {
-    class Country
+    public class Country
     {
+        [Key]
         public int Id { get; set; }
-        public string CountryName { get; set; }
+        
+        [Required]
+        public string CountryNameAr { get; set; }
+        
+        [Required]
+        public string CountryNameEn { get; set; }
     }
 }
