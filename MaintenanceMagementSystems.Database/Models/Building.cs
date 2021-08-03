@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MaintenanceManagementSystem.Database.Lookup;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -11,24 +12,29 @@ namespace MaintenanceManagementSystem.Database.Models
     public class Building
     {
         [Key]
-        [Required]
         public int Id { get; set; }
 
         [Required]
         public char Number { get; set; }
 
         [Required]
-        public bool IsOwned { get; set; }
+        public bool IsOwned { get; set; } 
 
         [Required]
         [ForeignKey("Id")]
         public int CountryId { get; set; }
+        public Country country { get; set; }
 
         [Required]
         [ForeignKey("Id")]
         public int CityId { get; set; }
+        public City city { get; set; }
+
+        #nullable enable
+        public string? Street { get; set; }
 
         [Required]
-        public string Street { get; set; }
+        #nullable disable
+        public ICollection<Floor> floors { get; set; }
     }
 }

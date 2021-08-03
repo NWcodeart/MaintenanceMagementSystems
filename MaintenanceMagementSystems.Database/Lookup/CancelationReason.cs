@@ -1,4 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using MaintenanceManagementSystem.Database.Models;
+using System.Collections;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace MaintenanceManagementSystem.Database.Lookup
 {
@@ -12,5 +15,7 @@ namespace MaintenanceManagementSystem.Database.Lookup
 
         [Required]
         public string ReasonTypeEn { get; set; }
+
+        public ICollection<Ticket> tickets { get; set; }
     }
 }

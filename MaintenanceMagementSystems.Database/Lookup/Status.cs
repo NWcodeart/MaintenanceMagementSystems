@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using MaintenanceManagementSystem.Database.Models;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace MaintenanceManagementSystem.Database.Lookup
 {
@@ -13,5 +15,7 @@ namespace MaintenanceManagementSystem.Database.Lookup
         [Required]
         [RegularExpression(@"^[[:alpha:]\s]+$", ErrorMessage = "Accepted characters are alphabets and spaces only")] //Alpha and spaces
         public string StatusTypeEn { get; set; }
+
+        public ICollection<Ticket> ticket { get; set; }
     }
 }
