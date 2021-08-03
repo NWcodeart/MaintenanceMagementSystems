@@ -8,6 +8,10 @@ namespace MaintenanceManagementSystem.Database
         public int Id  { get; set; }
         
         [Required]
-        public string JobTypeName { get; set; }
+        public string JobTypeNameAr { get; set; }
+
+        [Required]
+        [RegularExpression(@"^[[:alpha:]\s]+$", ErrorMessage = "Accepted characters are alphabets and spaces only")] //Alpha and spaces
+        public string JobTypeNameEn { get; set; }
     }
 }
