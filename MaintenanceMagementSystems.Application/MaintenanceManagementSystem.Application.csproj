@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Interfaces\" />
+    <ProjectReference Include="..\MaintenanceMagementSystems.Database\MaintenanceManagementSystem.Database.csproj" />
   </ItemGroup>
 
 </Project>
