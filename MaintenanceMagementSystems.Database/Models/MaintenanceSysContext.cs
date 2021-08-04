@@ -1,8 +1,11 @@
 ﻿using MaintenanceManagementSystem.Database.Lookup;
 using MaintenanceManagementSystem.Database.ManyToMany;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Design;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,6 +17,15 @@ namespace MaintenanceManagementSystem.Database.Models
         public MaintenanceSysContext(DbContextOptions<MaintenanceSysContext> options) : base(options)
         {
         }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured)
+            {
+                optionsBuilder.UseSqlServer("DbConnection");
+            }
+        }
+
         //Models
         public DbSet<Building> Buildings { get; set; }
         public DbSet<Floor> Floors { get; set; }
@@ -125,6 +137,9 @@ namespace MaintenanceManagementSystem.Database.Models
                 .HasOne<Country>(c => c.country)
                 .WithMany(b => b.buildings)
                 .HasForeignKey(c => c.CountryId);
+
         }
     }
+
+    
 }
