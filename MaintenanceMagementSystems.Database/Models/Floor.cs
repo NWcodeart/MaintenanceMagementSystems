@@ -13,12 +13,11 @@ namespace MaintenanceManagementSystem.Database.Models
         [Key]
         public int Id { get; set; }
 
-        [Key]
         [Required]
         public char Number { get; set; }
 
-        [ForeignKey("Id")]
         [Required]
+        [ForeignKey("Id")]
         public int BuildingId { get; set; }
         public Building building { get; set; }
 
