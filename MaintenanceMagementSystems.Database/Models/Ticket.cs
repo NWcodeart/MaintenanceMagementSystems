@@ -14,7 +14,7 @@ namespace MaintenanceManagementSystem.Database.Models
 
         //Beneficiary section
         [Display(Name = "Beneficiary ID")]
-        [ForeignKey("Student")]
+        [ForeignKey("BeneficiaryUser")]
         public int BeneficiaryID { get; set; }
 
         public User BeneficiaryUser { get; set; }

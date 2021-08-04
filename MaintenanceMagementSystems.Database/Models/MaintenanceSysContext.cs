@@ -45,11 +45,13 @@ namespace MaintenanceManagementSystem.Database.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            
             //Beneficiary has one Ticket while the ticket has one Beneficiary
             modelBuilder.Entity<Ticket>()
                 .HasOne<User>(t => t.BeneficiaryUser)
                 .WithMany()
-                .HasForeignKey(u => u.BeneficiaryID);
+                .HasForeignKey(u => u.BeneficiaryID)
+                .OnDelete(DeleteBehavior.SetNull);
 
 
             //BackOffice has multiple ticket and every ticket connect with multi BackOffice
