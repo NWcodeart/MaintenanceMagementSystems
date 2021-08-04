@@ -12,14 +12,13 @@ namespace MaintenanceManagementSystem.Database.Models
         public int Id { get; set; }
 
         //Beneficiary section
-        [Required]
+        #nullable enable
         [Display(Name = "Beneficiary ID")]
-        public int BeneficiaryID { get; set; }
+        public int? BeneficiaryID { get; set; }
 
-        public User BeneficiaryUser { get; set; }
+        public User? BeneficiaryUser { get; set; }
 
         //BackOffice section relation
-        #nullable enable
         public ICollection<BackOfficesTickets>? backOfficesTickets { get; set; }
 
         //status section

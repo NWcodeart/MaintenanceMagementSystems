@@ -27,6 +27,8 @@ namespace MaintenanceManagementSystem.Database.Models
         [RegularExpression(@"^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$", ErrorMessage = "Please Enter valid Password")]
         public string Password { get; set; }
 
+        public bool ForgetPassword { get; set; }
+
         //UserRole section
         [ForeignKey("Id")]
         [Required]

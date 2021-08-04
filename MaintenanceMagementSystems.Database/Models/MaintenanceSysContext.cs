@@ -52,6 +52,7 @@ namespace MaintenanceManagementSystem.Database.Models
                 .HasForeignKey<User>(Tb => Tb.BeneficiaryTicketId)
                 .HasForeignKey<Ticket>(u => u.BeneficiaryID);
 
+
             //BackOffice has multiple ticket and every ticket connect with multi BackOffice
             modelBuilder.Entity<BackOfficesTickets>()
                 .HasKey(bft => new { bft.BackOfficeId, bft.TicketId });
