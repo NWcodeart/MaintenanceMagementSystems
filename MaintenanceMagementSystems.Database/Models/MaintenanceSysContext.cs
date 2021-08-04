@@ -141,5 +141,25 @@ namespace MaintenanceManagementSystem.Database.Models
         }
     }
 
-    
+
+    public class SwcContextFactory : IDesignTimeDbContextFactory<MaintenanceSysContext>
+    {
+        public SwcContextFactory()
+        {
+        }
+
+        private IConfiguration Configuration => new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory())
+            .AddJsonFile("appsettings.json")
+            .Build();
+
+        public MaintenanceSysContext CreateDbContext(string[] args)
+        {
+
+            var builder = new DbContextOptionsBuilder<MaintenanceSysContext>();
+            builder.UseSqlServer(Configuration.GetConnectionString("DbConnection"));
+
+            return new MaintenanceSysContext(builder.Options);
+        }
+    }
+
 }
