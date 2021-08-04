@@ -46,7 +46,7 @@ namespace MaintenanceManagementSystem.Database.Models
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             
-            //Beneficiary has one Ticket while the ticket has one Beneficiary
+            //Beneficiary has multiple Ticket while the ticket has one Beneficiary
             modelBuilder.Entity<Ticket>()
                 .HasOne<User>(t => t.BeneficiaryUser)
                 .WithMany( u => u.BeneficiaryTickets)
