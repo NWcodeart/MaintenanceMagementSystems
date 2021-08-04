@@ -47,10 +47,9 @@ namespace MaintenanceManagementSystem.Database.Models
         {
             //Beneficiary has one Ticket while the ticket has one Beneficiary
             modelBuilder.Entity<Ticket>()
-                .HasOne<User>(u => u.BeneficiaryUser)
-                .WithOne(Tb => Tb.BeneficiaryTicket)
-                .HasForeignKey<User>(Tb => Tb.BeneficiaryTicketId)
-                .HasForeignKey<Ticket>(u => u.BeneficiaryID);
+                .HasOne<User>(t => t.BeneficiaryUser)
+                .WithMany()
+                .HasForeignKey(u => u.BeneficiaryID);
 
 
             //BackOffice has multiple ticket and every ticket connect with multi BackOffice

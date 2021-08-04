@@ -57,14 +57,12 @@ namespace MaintenanceManagementSystem.Database.Models
         public MaintenanceType maintenanceType { get; set; }
 
         //Ticket relations 
+        public Ticket BeneficiaryTicket { get; set; }
+
         #nullable enable
         public ICollection<BackOfficesTickets>? BackOfficeTickets { get; set; }
 
         public ICollection<Ticket>? TicketsRejected { get; set; }
         
-        [ForeignKey("Id")]
-        public int? BeneficiaryTicketId { get; set; }
-
-        public Ticket? BeneficiaryTicket { get; set; }
     }
 }

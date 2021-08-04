@@ -3,6 +3,7 @@ using MaintenanceManagementSystem.Database.ManyToMany;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MaintenanceManagementSystem.Database.Models
 {
@@ -12,13 +13,14 @@ namespace MaintenanceManagementSystem.Database.Models
         public int Id { get; set; }
 
         //Beneficiary section
-        #nullable enable
         [Display(Name = "Beneficiary ID")]
-        public int? BeneficiaryID { get; set; }
+        [ForeignKey("Student")]
+        public int BeneficiaryID { get; set; }
 
-        public User? BeneficiaryUser { get; set; }
+        public User BeneficiaryUser { get; set; }
 
         //BackOffice section relation
+        #nullable enable
         public ICollection<BackOfficesTickets>? backOfficesTickets { get; set; }
 
         //status section
