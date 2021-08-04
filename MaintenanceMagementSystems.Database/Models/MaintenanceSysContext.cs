@@ -49,7 +49,7 @@ namespace MaintenanceManagementSystem.Database.Models
             //Beneficiary has one Ticket while the ticket has one Beneficiary
             modelBuilder.Entity<Ticket>()
                 .HasOne<User>(t => t.BeneficiaryUser)
-                .WithMany()
+                .WithMany( u => u.BeneficiaryTickets)
                 .HasForeignKey(u => u.BeneficiaryID)
                 .OnDelete(DeleteBehavior.SetNull);
 

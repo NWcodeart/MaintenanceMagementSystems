@@ -57,7 +57,7 @@ namespace MaintenanceManagementSystem.Database.Models
         public MaintenanceType maintenanceType { get; set; }
 
         //Ticket relations 
-        public Ticket BeneficiaryTicket { get; set; }
+        public ICollection<Ticket> BeneficiaryTickets { get; set; }
 
         #nullable enable
         public ICollection<BackOfficesTickets>? BackOfficeTickets { get; set; }
