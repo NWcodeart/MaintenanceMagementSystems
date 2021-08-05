@@ -31,6 +31,8 @@ namespace MaintenanceMagementSystems.MVC
 
             services.AddScoped<IBeneficiary, Beneficiary>();
 
+            services.AddHttpContextAccessor();
+
             services.AddDbContext<MaintenanceSysContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
         }

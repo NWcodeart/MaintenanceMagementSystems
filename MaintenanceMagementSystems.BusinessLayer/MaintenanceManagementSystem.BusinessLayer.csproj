@@ -5,12 +5,22 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Managers\" />
+    <Compile Remove="Managers\**" />
+    <EmbeddedResource Remove="Managers\**" />
+    <None Remove="Managers\**" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="BCrypt.Net-Next" Version="4.0.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration.FileExtensions" Version="5.0.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="5.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MaintenanceMagementSystems.Application\MaintenanceManagementSystem.Application.csproj" />
+    <ProjectReference Include="..\MaintenanceMagementSystems.Database\MaintenanceManagementSystem.Database.csproj" />
+    <ProjectReference Include="..\MaintenanceMagementSystems.Entity\MaintenanceManagementSystem.Entity.csproj" />
   </ItemGroup>
 
 </Project>

@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\MaintenanceMagementSystems.Application\MaintenanceManagementSystem.Application.csproj" />
+    <ProjectReference Include="..\MaintenanceMagementSystems.BusinessLayer\MaintenanceManagementSystem.BusinessLayer.csproj" />
     <ProjectReference Include="..\MaintenanceMagementSystems.Database\MaintenanceManagementSystem.Database.csproj" />
   </ItemGroup>
 
