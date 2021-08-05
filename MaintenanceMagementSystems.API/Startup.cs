@@ -12,6 +12,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using Newtonsoft.Json.Serialization;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -38,10 +39,16 @@ namespace MaintenanceMagementSystems.API
             services.AddScoped<IBeneficiary, Beneficiary>();
             services.AddScoped<IBeneficiaryEntry, BeneficiaryEntry>();
 
+            services.AddHttpContextAccessor();
+
             services.AddDbContext<MaintenanceSysContext>(options =>
             {
                 options.UseSqlServer(configuration.GetConnectionString("DbConnection"));
 
+            });
+
+            services.AddControllers().AddNewtonsoftJson(options => {
+                options.SerializerSettings.ContractResolver = new DefaultContractResolver();
             });
 
             services.AddControllers();
