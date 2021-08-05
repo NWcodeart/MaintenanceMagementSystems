@@ -36,7 +36,7 @@ namespace MaintenanceManagementSystem.API.Controllers
         {
             if (_beneficiaryEntryRepo.CheckExistence(user.Email))
             {
-                return BadRequest("Username already exists");
+                return BadRequest("You are already registered");
             }
             else
             {
@@ -50,7 +50,7 @@ namespace MaintenanceManagementSystem.API.Controllers
         [Route("Login")]
         public IActionResult Login(Login login)
         {
-            IActionResult response = Unauthorized();
+            IActionResult response = Unauthorized("Incorrect username or password");
 
             var user = _beneficiaryEntryRepo.AuthenticateUser(login);
 
@@ -79,7 +79,7 @@ namespace MaintenanceManagementSystem.API.Controllers
             var token = new JwtSecurityToken(_config["Jwt:Issuer"],
               _config["Jwt:Issuer"],
               claims,
-              expires: DateTime.Now.AddMinutes(120),
+              expires: DateTime.Now.AddDays(1),
               signingCredentials: credentials);
 
             return new JwtSecurityTokenHandler().WriteToken(token);
