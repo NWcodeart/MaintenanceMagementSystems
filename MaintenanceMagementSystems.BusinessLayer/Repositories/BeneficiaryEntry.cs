@@ -30,8 +30,6 @@ namespace MaintenanceManagementSystem.BusinessLayer.Repositories
                 {
                     var user = _maintenanceSysContext.Users.FirstOrDefault(l => l.Email == Login.Username);
 
-                    Login.Password = BCrypt.Net.BCrypt.HashPassword(Login.Password, BCrypt.Net.BCrypt.GenerateSalt(user.Id));
-
                     if (user != null && BCrypt.Net.BCrypt.Verify(Login.Password, user.Password))
                     {
                         return user;
@@ -125,7 +123,7 @@ namespace MaintenanceManagementSystem.BusinessLayer.Repositories
                         Phone = user.Phone
                     };
 
-                    newUser.Password = BCrypt.Net.BCrypt.HashPassword(user.Password, BCrypt.Net.BCrypt.GenerateSalt(newUser.Id));
+                    newUser.Password = BCrypt.Net.BCrypt.HashPassword(user.Password);
 
                     _maintenanceSysContext.Users.Add(newUser);
                     _maintenanceSysContext.SaveChanges();
