@@ -1,4 +1,6 @@
 using MaintenanceMagementSystems.API.Filters;
+using MaintenanceManagementSystem.Application.Interfaces;
+using MaintenanceManagementSystem.BusinessLayer.Repositories;
 using MaintenanceManagementSystem.Database.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -33,6 +35,9 @@ namespace MaintenanceMagementSystems.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddScoped<IBeneficiary, Beneficiary>();
+            services.AddScoped<IBeneficiaryEntry, BeneficiaryEntry>();
+
             services.AddDbContext<MaintenanceSysContext>(options =>
             {
                 options.UseSqlServer(configuration.GetConnectionString("DbConnection"));

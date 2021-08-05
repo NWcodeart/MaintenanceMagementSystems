@@ -31,7 +31,7 @@ namespace MaintenanceManagementSystem.API.Controllers
         
         [HttpPost]
         [Route("SubmitRequest")]
-        public IActionResult SubmitRequest(Ticket ticket)
+        public IActionResult SubmitRequest(TicketRequest ticket)
         {
             if (!ModelState.IsValid)
             {

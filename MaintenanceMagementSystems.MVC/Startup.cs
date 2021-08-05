@@ -1,5 +1,5 @@
 using MaintenanceManagementSystem.Application.Interfaces;
-using MaintenanceManagementSystem.Application.Repositories;
+using MaintenanceManagementSystem.BusinessLayer.Repositories;
 using MaintenanceManagementSystem.Database.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;

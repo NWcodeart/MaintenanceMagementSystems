@@ -1,4 +1,5 @@
-﻿using MaintenanceManagementSystem.Database.Models;
+﻿using MaintenanceManagementSystem.Application.Interfaces;
+using MaintenanceManagementSystem.Database.Models;
 using MaintenanceManagementSystem.Entity.ModelsDto;
 using Microsoft.AspNetCore.Http;
 using System;
@@ -10,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace MaintenanceManagementSystem.BusinessLayer.Repositories
 {
-    public class BeneficiaryEntry
+    public class BeneficiaryEntry : IBeneficiaryEntry
     {
         private MaintenanceSysContext _maintenanceSysContext;
         private readonly IHttpContextAccessor _httpContextAccessor;

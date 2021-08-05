@@ -20,7 +20,7 @@ namespace MaintenanceManagementSystem.Application.Interfaces
         /*
          he can submit a maintenance request ticket though the beneficiary portal.
          */
-        public void SubmitTicket(int beneficiaryID, Ticket ticket);
+        public void SubmitTicket(int beneficiaryID, TicketRequest ticket);
 
         /*
          Only the beneficiary can confirm that the maintenance has been completed 

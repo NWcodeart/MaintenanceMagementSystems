@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MaintenanceManagementSystem.Application.Repositories
+namespace MaintenanceManagementSystem.BusinessLayer.Repositories
 {
     public class Beneficiary : IBeneficiary
     {
@@ -82,13 +82,24 @@ namespace MaintenanceManagementSystem.Application.Repositories
             }
         }
 
-        public void SubmitTicket(int beneficiaryID, Ticket ticket)
+        public void SubmitTicket(int beneficiaryID, TicketRequest ticket)
         {
             try
             {
                 using (_maintenanceSysContext)
                 {
-                    _maintenanceSysContext.Add(ticket);
+                    var newTicket = new Ticket()
+                    {
+                        BeneficiaryID = beneficiaryID,
+                        StatusID = 1,
+                        ApprovalState = 0,
+                        Description = ticket.Description,
+                        FloorId = ticket.FloorId,
+                        MaintenanceTypeID = ticket.MaintenanceTypeID,
+                        Date = ticket.Date,
+                        Picture = ticket.Picture
+                    };
+                    _maintenanceSysContext.Add(newTicket);
                     _maintenanceSysContext.SaveChanges();
                 }
             }
