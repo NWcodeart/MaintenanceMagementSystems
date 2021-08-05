@@ -31,5 +31,7 @@ namespace MaintenanceManagementSystem.Database.Models
         [Required]
         #nullable disable
         public ICollection<Floor> floors { get; set; }
+
+ 
     }
 }
