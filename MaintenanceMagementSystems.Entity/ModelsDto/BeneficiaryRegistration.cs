@@ -10,7 +10,7 @@ namespace MaintenanceManagementSystem.Entity.ModelsDto
     public class BeneficiaryRegistration
     {
         [Required]
-        [RegularExpression(@"^[[:alpha:]\s]+$", ErrorMessage = "Accepted characters are alphabets and spaces only")] //Alpha and spaces
+        [RegularExpression(@"^[a-zA-z\s]+$", ErrorMessage = "Accepted characters are alphabets and spaces only")] //Alpha and spaces
         public string Name { get; set; }
 
         [Required]
@@ -18,11 +18,11 @@ namespace MaintenanceManagementSystem.Entity.ModelsDto
         public string Email { get; set; }
 
         [Required]
-        [RegularExpression(@" ^[0-9]*$", ErrorMessage = "Please Enter valid phone number")]
+        [RegularExpression(@"^[0-9]*$", ErrorMessage = "Please Enter valid phone number")]
         public string Phone { get; set; }
 
         [Required]
-        [RegularExpression(@"^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$", ErrorMessage = "Please Enter valid Password")]
+        [RegularExpression(@"^(?=.*[0-9])(?=.*[A-Z])(?=.*[@$!%*?&_-])([a-zA-Z0-9@$!%*?&_-]{8,})$", ErrorMessage = "Please Enter valid Password")]
         public string Password { get; set; }
     }
 }
