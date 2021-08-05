@@ -55,11 +55,16 @@ namespace MaintenanceManagementSystem.Database.Models
         [Required]
         public string Description { get; set; }
 
+        //comment section
+        #nullable enable
+        [RegularExpression(@"^[[:alpha:]\s]+$", ErrorMessage = "Accepted characters are alphabets and spaces only")] //Alpha and spaces
+        public string? BuildingManagerComment { get; set; }
+
         //Ticket location floor section
         [Display(Name = "Floor Number")]
         public int? FloorId { get; set; }
 
-        public Floor floor { get; set; }
+        public Floor? floor { get; set; }
 
 
         //Canceled section 
@@ -83,5 +88,15 @@ namespace MaintenanceManagementSystem.Database.Models
         [Display(Name = "Rejection Reason")]
         public string? RejectionReason { get; set; }
 
+        //audit trail
+        public int CreatedBy { get; set; }
+
+        public DateTime CreatedTime { get; set; }
+
+        public int UpdatedBy { get; set; }
+
+        public DateTime UpdatedTime { get; set; }
+
+        public bool IsDeleted{ get; set; }
     }
 }

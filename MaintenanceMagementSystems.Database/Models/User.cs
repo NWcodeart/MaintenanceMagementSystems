@@ -28,7 +28,7 @@ namespace MaintenanceManagementSystem.Database.Models
         [RegularExpression(@"^(?=.*[0-9])(?=.*[A-Z])(?=.*[@$!%*?&_-])([a-zA-Z0-9@$!%*?&_-]{8,})$", ErrorMessage = "Please Enter valid Password")]
         public string Password { get; set; }
 
-        public bool ForgetPassword { get; set; }
+        public bool IsForgetPassword { get; set; } = false;
 
         //UserRole section
         [ForeignKey("Id")]
@@ -57,13 +57,15 @@ namespace MaintenanceManagementSystem.Database.Models
 
         public MaintenanceType maintenanceType { get; set; }
 
-        //Ticket relations 
-        public ICollection<Ticket> BeneficiaryTickets { get; set; }
 
         #nullable enable
+        //Ticket relations 
+        public ICollection<Ticket>? BeneficiaryTickets { get; set; }
         public ICollection<BackOfficesTickets>? BackOfficeTickets { get; set; }
 
         public ICollection<Ticket>? TicketsRejected { get; set; }
-        
+
+        public bool IsDeleted { get; set; } = false;
+
     }
 }

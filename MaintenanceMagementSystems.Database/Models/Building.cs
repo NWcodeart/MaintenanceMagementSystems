@@ -22,11 +22,6 @@ namespace MaintenanceManagementSystem.Database.Models
 
         [Required]
         [ForeignKey("Id")]
-        public int CountryId { get; set; }
-        public Country country { get; set; }
-
-        [Required]
-        [ForeignKey("Id")]
         public int CityId { get; set; }
         public City city { get; set; }
 
