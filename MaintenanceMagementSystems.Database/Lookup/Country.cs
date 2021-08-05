@@ -14,7 +14,7 @@ namespace MaintenanceManagementSystem.Database.Lookup
         
         [Required]
         public string CountryNameEn { get; set; }
-        public ICollection<Building> buildings { get; set; }
+        public ICollection<City> Cities { get; set; }
 
     }
 }

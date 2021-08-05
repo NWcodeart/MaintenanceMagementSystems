@@ -16,5 +16,10 @@ namespace MaintenanceManagementSystem.Database.Lookup
         public string CityNameEn { get; set; }
 
         public ICollection<Building> buildings { get; set; }
+
+        //country 
+        public int CountryId { get; set; }
+        public Country country { get; set; }
+
     }
 }

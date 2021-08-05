@@ -74,7 +74,12 @@ namespace MaintenanceManagementSystem.Database.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("CountryId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("CountryId");
 
                     b.ToTable("Cities");
                 });
@@ -180,9 +185,6 @@ namespace MaintenanceManagementSystem.Database.Migrations
                     b.Property<int>("CityId")
                         .HasColumnType("int");
 
-                    b.Property<int>("CountryId")
-                        .HasColumnType("int");
-
                     b.Property<bool>("IsOwned")
                         .HasColumnType("bit");
 
@@ -196,8 +198,6 @@ namespace MaintenanceManagementSystem.Database.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("CityId");
-
-                    b.HasIndex("CountryId");
 
                     b.ToTable("Buildings");
                 });
@@ -236,8 +236,17 @@ namespace MaintenanceManagementSystem.Database.Migrations
                     b.Property<int>("BeneficiaryID")
                         .HasColumnType("int");
 
+                    b.Property<string>("BuildingManagerComment")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int?>("CancellationReasonID")
                         .HasColumnType("int");
+
+                    b.Property<int>("CreatedBy")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedTime")
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
@@ -250,6 +259,9 @@ namespace MaintenanceManagementSystem.Database.Migrations
                         .HasColumnType("int");
 
                     b.Property<bool>("IsCancelled")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
                     b.Property<int>("MaintenanceTypeID")
@@ -266,6 +278,12 @@ namespace MaintenanceManagementSystem.Database.Migrations
 
                     b.Property<int>("StatusID")
                         .HasColumnType("int");
+
+                    b.Property<int>("UpdatedBy")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("UpdatedTime")
+                        .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
@@ -298,7 +316,10 @@ namespace MaintenanceManagementSystem.Database.Migrations
                     b.Property<int?>("FloorId")
                         .HasColumnType("int");
 
-                    b.Property<bool>("ForgetPassword")
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsForgetPassword")
                         .HasColumnType("bit");
 
                     b.Property<int?>("JobTypeId")
@@ -335,6 +356,17 @@ namespace MaintenanceManagementSystem.Database.Migrations
                     b.ToTable("Users");
                 });
 
+            modelBuilder.Entity("MaintenanceManagementSystem.Database.Lookup.City", b =>
+                {
+                    b.HasOne("MaintenanceManagementSystem.Database.Lookup.Country", "country")
+                        .WithMany("Cities")
+                        .HasForeignKey("CountryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("country");
+                });
+
             modelBuilder.Entity("MaintenanceManagementSystem.Database.ManyToMany.BackOfficesTickets", b =>
                 {
                     b.HasOne("MaintenanceManagementSystem.Database.Models.User", "user")
@@ -362,15 +394,7 @@ namespace MaintenanceManagementSystem.Database.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("MaintenanceManagementSystem.Database.Lookup.Country", "country")
-                        .WithMany("buildings")
-                        .HasForeignKey("CountryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("city");
-
-                    b.Navigation("country");
                 });
 
             modelBuilder.Entity("MaintenanceManagementSystem.Database.Models.Floor", b =>
@@ -389,7 +413,7 @@ namespace MaintenanceManagementSystem.Database.Migrations
                     b.HasOne("MaintenanceManagementSystem.Database.Models.User", "BeneficiaryUser")
                         .WithMany("BeneficiaryTickets")
                         .HasForeignKey("BeneficiaryID")
-                        .OnDelete(DeleteBehavior.SetNull)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("MaintenanceManagementSystem.Database.Lookup.CancelationReason", "cancelationReason")
@@ -475,7 +499,7 @@ namespace MaintenanceManagementSystem.Database.Migrations
 
             modelBuilder.Entity("MaintenanceManagementSystem.Database.Lookup.Country", b =>
                 {
-                    b.Navigation("buildings");
+                    b.Navigation("Cities");
                 });
 
             modelBuilder.Entity("MaintenanceManagementSystem.Database.Lookup.MaintenanceType", b =>

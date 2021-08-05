@@ -45,13 +45,13 @@ namespace MaintenanceManagementSystem.Database.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            
+
             //Beneficiary has multiple Ticket while the ticket has one Beneficiary
-            modelBuilder.Entity<Ticket>()
-                .HasOne<User>(t => t.BeneficiaryUser)
-                .WithMany( u => u.BeneficiaryTickets)
-                .HasForeignKey(u => u.BeneficiaryID)
-                .OnDelete(DeleteBehavior.SetNull);
+            modelBuilder.Entity<User>()
+                .HasMany<Ticket>(t => t.BeneficiaryTickets)
+                .WithOne(u => u.BeneficiaryUser)
+                .HasForeignKey(t => t.BeneficiaryID)
+                .OnDelete(DeleteBehavior.Restrict);
 
 
             //BackOffice has multiple ticket and every ticket connect with multi BackOffice
@@ -126,20 +126,19 @@ namespace MaintenanceManagementSystem.Database.Models
             modelBuilder.Entity<Floor>()
                 .HasOne<Building>(b => b.building)
                 .WithMany(f => f.floors)
-                .HasForeignKey(b => b.BuildingId);
+                .HasForeignKey(b => b.BuildingId).IsRequired();
 
             //bulding should has city for address while one city can has multi buildings
             modelBuilder.Entity<Building>()
                 .HasOne<City>(c => c.city)
                 .WithMany(b => b.buildings)
-                .HasForeignKey(c => c.CityId);
+                .HasForeignKey(c => c.CityId).IsRequired();
 
-            //bulding should has country for address while one country can has multi buildings
-            modelBuilder.Entity<Building>()
-                .HasOne<Country>(c => c.country)
-                .WithMany(b => b.buildings)
-                .HasForeignKey(c => c.CountryId);
-
+            //City has one Country while country has multi cities
+            modelBuilder.Entity<City>()
+               .HasOne<Country>(c => c.country)
+               .WithMany(cun => cun.Cities)
+               .HasForeignKey(c => c.CountryId).IsRequired();
         }
     }
 

@@ -80,7 +80,7 @@ namespace MaintenanceManagementSystem.BusinessLayer.Repositories
                     User user = _maintenanceSysContext.Users.FirstOrDefault(u => u.Email == email);
                     if (user != null)
                     {
-                        user.ForgetPassword = true;
+                        user.IsForgetPassword = true;
                         _maintenanceSysContext.SaveChanges();
                         return true;
                     }
