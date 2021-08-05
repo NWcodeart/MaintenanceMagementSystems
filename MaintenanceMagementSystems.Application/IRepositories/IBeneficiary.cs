@@ -10,42 +10,33 @@ namespace MaintenanceManagementSystem.Application.Interfaces
 {
     public interface IBeneficiary
     {
-        public void Register(BeneficiaryRegistration user);
+        /*
+         beneficiary can only access tickets opened by him.
+        */
+        public List<Ticket> ListAllTickets(int beneficiaryID);
 
-        public bool CheckExistence(string email); //for regesriation
-
-        public User AuthenticateUser(Login Login);
-
-        public int GetUserId();
-
-        public string GetUserRole();
-
-        public bool ForgetPassword(string email);
-
-        public void ChangeLanguage(); //?????????????????
-
-        //beneficiary can only access tickets opened by him.
+        public List<Ticket> ListTicketsHistory(int beneficiaryID);
 
         /*
          he can submit a maintenance request ticket though the beneficiary portal.
          */
-        public void SubmitRequest(int beneficiaryID, Ticket ticket);
+        public void SubmitTicket(int beneficiaryID, Ticket ticket);
 
         /*
          Only the beneficiary can confirm that the maintenance has been completed 
          */
-        public bool ConfirmRequest(int beneficiaryID, int requestID);
+        public bool ConfirmTicket(int beneficiaryID, int requestID);
 
         /*
          he can cancel the maintenance request before it reaches the maintenance 
          manager after that it cannot be closed. also he should provide reason of 
          cancellation
          */
-        public bool CancelRequest(int beneficiaryID, int requestID); 
+        public bool CancelTicket(int beneficiaryID, int requestID); 
 
         /*
          must sign of the repair order after the work has been made
          */
-        public Ticket GetRequest(int beneficiaryID, int requestID);
+        public Ticket GetTicket(int beneficiaryID, int requestID);
     }
 }
