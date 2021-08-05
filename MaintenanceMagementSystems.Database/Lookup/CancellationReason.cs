@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace MaintenanceManagementSystem.Database.Lookup
 {
-    public class CancelationReason
+    public class CancellationReason
     {
         [Key]
         public int Id { get; set; }
