@@ -37,7 +37,5 @@ namespace MaintenanceManagementSystem.Application.Interfaces
         //system admin can update building 
         public void UpdateBuilding(Building UpdatedBuilding);
 
-
-
     }
 }
