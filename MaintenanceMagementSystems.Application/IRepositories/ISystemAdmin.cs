@@ -24,14 +24,14 @@ namespace MaintenanceManagementSystem.Application.Interfaces
         /*
          System admin can reset user’s passwords.
          */
-        public void ResetUserPassword(User user); 
+        public void ResetUserPassword(int UserId, string NewPasssword); 
 
         /*
          System admin must set up the all the lookup data fields, these data fields are : 
          ( Company Buildings, Maintenance Classification, calcellation reason) 
         */
         public void AddBuilding(Building buildingAdded);
-        public void AddMaintenanceType(MaintenanceType maintenanceTypeAdded);
+        public void AddMaintenanceType(string TypeAr, string TypeEn);
         public void AddCancellationReason(CancellationReason cancellationReasonAdded);
 
         //system admin can update building 

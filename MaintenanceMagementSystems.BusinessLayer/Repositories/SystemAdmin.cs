@@ -11,7 +11,12 @@ namespace MaintenanceManagementSystem.BusinessLayer.Repositories
 {
     class SystemAdmin : ISystemAdmin
     {
-        private MaintenanceSysContext _maintenanceSysContext;
+        private readonly MaintenanceSysContext _maintenanceSysContext;
+
+        public SystemAdmin(MaintenanceSysContext maintenanceSysContext)
+        {
+            _maintenanceSysContext = maintenanceSysContext;
+        }
 
         //bulding section
         public void AddBuilding(Building buildingAdded)
@@ -42,7 +47,6 @@ namespace MaintenanceManagementSystem.BusinessLayer.Repositories
         {
             try
             {
-                var allBuilding = _maintenanceSysContext.Buildings;
                 using (_maintenanceSysContext)
                 {
                     Building BuildingToUpdate = _maintenanceSysContext.Buildings
@@ -65,18 +69,75 @@ namespace MaintenanceManagementSystem.BusinessLayer.Repositories
         //dropdown List
         public void AddCancellationReason(CancellationReason cancellationReasonAdded)
         {
-            throw new NotImplementedException();
+            try
+            {
+                using (_maintenanceSysContext)
+                {
+                    _maintenanceSysContext.CancelationReasons.Add(cancellationReasonAdded);
+                    _maintenanceSysContext.SaveChanges();
+                }
+            } catch (Exception) 
+            {
+                throw;
+            }
+        }
+        public void AddCancellationReason(string reasonAr, string reasonEn)
+        {
+            var vewReason = new CancellationReason() { ReasonTypeAr = reasonAr, ReasonTypeEn = reasonEn };
+            try
+            {
+                using (_maintenanceSysContext)
+                {
+                    _maintenanceSysContext.CancelationReasons.Add(vewReason);
+                    _maintenanceSysContext.SaveChanges();
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
-        public void AddMaintenanceType(MaintenanceType maintenanceTypeAdded)
+        public void AddMaintenanceType(string TypeAr , string TypeEn)
         {
-            throw new NotImplementedException();
+            var newType = new MaintenanceType() { MaintenanceTypeNameAr = TypeAr, MaintenanceTypeNameEn = TypeEn };
+            try
+            {
+                using (_maintenanceSysContext)
+                {
+                    _maintenanceSysContext.MaintenanceTypes.Add(newType);
+                    _maintenanceSysContext.SaveChanges();
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         //user Section
-        public void DeleteUser(int userID)
+        public void DeleteUser(int userDeleted)
         {
-            throw new NotImplementedException();
+            User UserToDelete = _maintenanceSysContext.Users
+                            .Where(b => b.Id == userDeleted)
+                            .FirstOrDefault();
+
+            try
+            {
+                if (UserToDelete != null)
+                {
+                    UserToDelete.IsDeleted = true;
+
+                    _maintenanceSysContext.Update(UserToDelete);
+                    _maintenanceSysContext.SaveChanges();
+                }
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            
         }
 
         public void RegisterNewEmployee(User newEmployee)
@@ -113,14 +174,44 @@ namespace MaintenanceManagementSystem.BusinessLayer.Repositories
             }
         }
 
-        public void ResetUserPassword(User user)
+        public void ResetUserPassword(int UserId, string NewPasssword)
         {
-            throw new NotImplementedException();
+            try
+            {
+                User UserPassToUpdate = _maintenanceSysContext.Users.Single(u => u.Id == UserId);
+                UserPassToUpdate.Password = BCrypt.Net.BCrypt.HashPassword(NewPasssword);
+                _maintenanceSysContext.Users.Update(UserPassToUpdate);
+                _maintenanceSysContext.SaveChanges();
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
         }
 
         public void UpdateUser(User UpdatedUser)
         {
-            throw new NotImplementedException();
+            try
+            {
+                using (_maintenanceSysContext)
+                {
+                    User UserToUpdate = _maintenanceSysContext.Users
+                            .Where(b => b.Id == UpdatedUser.Id)
+                            .FirstOrDefault();
+                    if (UserToUpdate != null)
+                    {
+                        _maintenanceSysContext.Entry(UserToUpdate).CurrentValues.SetValues(UpdatedUser);
+                    }
+                    _maintenanceSysContext.SaveChanges();
+
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
     }
 }
