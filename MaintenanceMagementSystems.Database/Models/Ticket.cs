@@ -75,7 +75,7 @@ namespace MaintenanceManagementSystem.Database.Models
         #nullable enable
         public int? CancellationReasonID { get; set; }
 
-        public CancelationReason? cancelationReason { get; set; }
+        public CancellationReason? cancelationReason { get; set; }
 
 
         //Rejection section

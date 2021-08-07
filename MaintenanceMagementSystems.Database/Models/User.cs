@@ -44,6 +44,8 @@ namespace MaintenanceManagementSystem.Database.Models
 
         public Floor floor { get; set; }
 
+        public Building building { get; set; }
+
         //JobType section
         [ForeignKey("Id")]
         public int? JobTypeId { get; set; }

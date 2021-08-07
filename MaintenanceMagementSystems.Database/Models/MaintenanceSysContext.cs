@@ -33,7 +33,7 @@ namespace MaintenanceManagementSystem.Database.Models
         public DbSet<User> Users { get; set; }
 
         //lookup tables
-        public DbSet<CancelationReason> CancelationReasons { get; set; }
+        public DbSet<CancellationReason> CancelationReasons { get; set; }
         public DbSet<City> Cities { get; set; }
         public DbSet<Country> Countries { get; set; }
         public DbSet<JobType> JobTypes { get; set; }
@@ -88,7 +88,7 @@ namespace MaintenanceManagementSystem.Database.Models
 
             //ticket has clacelled reason while calncelled reason has multiple tickets
             modelBuilder.Entity<Ticket>()
-                .HasOne<CancelationReason>(c => c.cancelationReason)
+                .HasOne<CancellationReason>(c => c.cancelationReason)
                 .WithMany(t => t.tickets)
                 .HasForeignKey(c => c.CancellationReasonID);
 
@@ -133,6 +133,13 @@ namespace MaintenanceManagementSystem.Database.Models
                 .HasOne<City>(c => c.city)
                 .WithMany(b => b.buildings)
                 .HasForeignKey(c => c.CityId).IsRequired();
+
+            //the bulding has one BuildingManager and also BuildingManager manager on one building
+            modelBuilder.Entity<Building>()
+                .HasOne<User>(u => u.UserbuildingManager)
+                .WithMany()
+                .HasForeignKey(u => u.BuildingManagerId)
+                .IsRequired();
 
             //City has one Country while country has multi cities
             modelBuilder.Entity<City>()
