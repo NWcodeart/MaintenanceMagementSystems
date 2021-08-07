@@ -1,4 +1,5 @@
 ﻿using MaintenanceManagementSystem.Application.Interfaces;
+using MaintenanceManagementSystem.Database.Lookup;
 using MaintenanceManagementSystem.Database.Models;
 using MaintenanceManagementSystem.Entity.ModelsDto;
 using Microsoft.AspNetCore.Http;
@@ -13,7 +14,7 @@ namespace MaintenanceManagementSystem.BusinessLayer.Repositories
 {
     public class BeneficiaryEntry : IBeneficiaryEntry
     {
-        private MaintenanceSysContext _maintenanceSysContext;
+        private readonly MaintenanceSysContext _maintenanceSysContext;
         private readonly IHttpContextAccessor _httpContextAccessor;
 
         public BeneficiaryEntry(MaintenanceSysContext maintenanceSysContext, IHttpContextAccessor httpContextAccessor)
@@ -133,6 +134,44 @@ namespace MaintenanceManagementSystem.BusinessLayer.Repositories
             {
                 throw;
             }
+        }
+
+        public string GetUserRoleFromDB(int userRoleID = 0)
+        {
+           
+            try
+            {
+                string RoleOfUser = "Undefined Role";
+
+                if (userRoleID != 0)
+                {
+                    UserRole userRole = new UserRole();
+                    userRole = _maintenanceSysContext.UserRoles.Single(u => u.Id == userRoleID);
+                        
+                    RoleOfUser = userRole.Role;
+
+                    return RoleOfUser;
+                }
+                else
+                {
+                    return RoleOfUser;
+                }
+         
+            }
+            catch (Exception)
+            {
+                return "Function Match Error";
+            }
+        }
+
+        public List<char> ListBuildings()
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<char> ListFloors()
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -22,6 +22,7 @@ namespace MaintenanceManagementSystem.Entity.ModelsDto
         public string Phone { get; set; }
 
         [Required]
+        [DataType(DataType.Password)]
         [RegularExpression(@"^(?=.*[0-9])(?=.*[A-Z])(?=.*[@$!%*?&_-])([a-zA-Z0-9@$!%*?&_-]{8,})$", ErrorMessage = "Please Enter valid Password")]
         public string Password { get; set; }
     }

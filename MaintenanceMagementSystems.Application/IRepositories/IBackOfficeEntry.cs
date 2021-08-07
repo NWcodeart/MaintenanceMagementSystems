@@ -20,5 +20,6 @@ namespace MaintenanceManagementSystem.Application.Interfaces
          1st login to the back-office portal
          */
         public bool ChangePassword(ChangePassword passwords);
+
     }
 }

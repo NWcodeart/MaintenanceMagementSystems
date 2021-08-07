@@ -68,11 +68,12 @@ namespace MaintenanceManagementSystem.API.Controllers
         {
             var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:Key"]));
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
+            var roleString = _beneficiaryEntryRepo.GetUserRoleFromDB(User.UserRoleId);
 
             var claims = new List<Claim>
             {
                 new Claim(JwtRegisteredClaimNames.Email, User.Email),
-                new Claim(ClaimTypes.Role, User.userRole.Role),
+                new Claim(ClaimTypes.Role, roleString),
                 new Claim(ClaimTypes.Sid, User.Id.ToString())
             };
 

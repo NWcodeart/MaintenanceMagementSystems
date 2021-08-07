@@ -32,5 +32,15 @@ namespace MaintenanceManagementSystem.Application.Interfaces
          The portal can be displayed in Arabic and English user can choose one of them
          */
         public void ChangeLanguage(); //To be reviewed
+
+        public string GetUserRoleFromDB(int userRoleID); //To be used to get role claim
+
+        /*
+         the two methods over there are for view purpose, so when beneficiary register to the system,
+         he can choose his building and floor from a drop-down list
+         */
+        public List<char> ListBuildings();
+
+        public List<char> ListFloors();
     }
 }
