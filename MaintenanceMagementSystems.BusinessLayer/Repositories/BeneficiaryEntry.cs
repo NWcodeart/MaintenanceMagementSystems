@@ -9,6 +9,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Mvc;
 
 namespace MaintenanceManagementSystem.BusinessLayer.Repositories
 {
@@ -97,17 +98,37 @@ namespace MaintenanceManagementSystem.BusinessLayer.Repositories
 
         public int GetUserId()
         {
-            ClaimsPrincipal currentUser = _httpContextAccessor.HttpContext.User;
-            var stringClaimValue = currentUser.FindFirst(ClaimTypes.Sid).Value;
-            var IdNumber = Convert.ToInt32(stringClaimValue);
-            return IdNumber;
+            try
+            {
+                using (_maintenanceSysContext)
+                {
+                    ClaimsPrincipal currentUser = _httpContextAccessor.HttpContext.User;
+                    var stringClaimValue = currentUser.FindFirst(ClaimTypes.Sid).Value;
+                    var IdNumber = Convert.ToInt32(stringClaimValue);
+                    return IdNumber;
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         public string GetUserRole()
         {
-            ClaimsPrincipal currentUser = _httpContextAccessor.HttpContext.User;
-            var stringClaimValue = currentUser.FindFirst(ClaimTypes.Role).Value;
-            return stringClaimValue;
+            try
+            {
+                using (_maintenanceSysContext)
+                {
+                    ClaimsPrincipal currentUser = _httpContextAccessor.HttpContext.User;
+                    var stringClaimValue = currentUser.FindFirst(ClaimTypes.Role).Value;
+                    return stringClaimValue;
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         public void Register(BeneficiaryRegistration user)
@@ -164,14 +185,45 @@ namespace MaintenanceManagementSystem.BusinessLayer.Repositories
             }
         }
 
-        public List<char> ListBuildings()
+        public List<Building> ListBuildings()
         {
-            throw new NotImplementedException();
+            try
+            {
+                return _maintenanceSysContext.Buildings.ToList();
+            }
+            catch (Exception)
+            {
+                var newList = new List<Building>();
+                var newBuilding = new Building()
+                {
+                    Id = 0,
+                    Number = '0',
+                    CityId = 0,
+                    IsOwned = false,
+                    Street = "none"
+                };
+                newList.Add(newBuilding);
+                return newList;
+            }
         }
 
-        public List<char> ListFloors()
+        public List<Floor> ListFloors()
         {
-            throw new NotImplementedException();
+            try
+            {
+                return _maintenanceSysContext.Floors.ToList();
+            }
+            catch (Exception)
+            {
+                var newList = new List<Floor>();
+                var newFloor = new Floor()
+                {
+                    Id = 0,
+                    Number = '0'
+                };
+                newList.Add(newFloor);
+                return newList;
+            }
         }
     }
 }

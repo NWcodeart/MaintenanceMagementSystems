@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Mvc;
 
 namespace MaintenanceManagementSystem.Application.Interfaces
 {
@@ -39,8 +40,8 @@ namespace MaintenanceManagementSystem.Application.Interfaces
          the two methods over there are for view purpose, so when beneficiary register to the system,
          he can choose his building and floor from a drop-down list
          */
-        public List<char> ListBuildings();
+        public List<Building> ListBuildings();
 
-        public List<char> ListFloors();
+        public List<Floor> ListFloors();
     }
 }
