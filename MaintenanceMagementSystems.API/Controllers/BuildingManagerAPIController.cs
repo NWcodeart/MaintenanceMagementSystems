@@ -11,10 +11,10 @@ namespace MaintenanceManagementSystem.API.Controllers
 {
     [ApiController]
     //[Route("api/BuildingManager")]
-    public class BuildingManagerController : ControllerBase
+    public class BuildingManagerAPIController : ControllerBase
     {
         private readonly IBuildingManager _buildingManager;
-        public BuildingManagerController(IBuildingManager buildingManager)
+        public BuildingManagerAPIController(IBuildingManager buildingManager)
         {
             _buildingManager = buildingManager;
         }
@@ -57,7 +57,7 @@ namespace MaintenanceManagementSystem.API.Controllers
         // [ActionName("ViewTickets/{id}")]
         [HttpGet]
         [Route("[action]")]
-        [Route("api/BuildingManager/ViewTickets/{id}")]
+        [Route("api/BuildingManagerAPI/ViewTickets/{id}")]
         public IActionResult  ViewTickets(int managerID)
         {
             var tickets = _buildingManager.ViewTickets(managerID);

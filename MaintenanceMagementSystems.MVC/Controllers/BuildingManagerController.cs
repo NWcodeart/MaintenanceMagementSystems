@@ -48,7 +48,7 @@ namespace MaintenanceManagementSystem.MVC.Controllers
             List<Ticket> ticketList = new List<Ticket>();
             using (HttpClient client = new HttpClient())
             {
-                var httpResponse = await client.GetAsync($"https://localhost:44324/api/BuildingManager/ViewTickets/{managerID}");
+                var httpResponse = await client.GetAsync($"https://localhost:44324/api/BuildingManagerAPI/ViewTickets/{managerID}");
                 if (httpResponse.IsSuccessStatusCode)
                 {
                     ticketList = await httpResponse.Content.ReadFromJsonAsync<List<Ticket>>();
