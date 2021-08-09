@@ -1,7 +1,9 @@
+using LinqToDB;
 using MaintenanceMagementSystems.API.Filters;
 using MaintenanceManagementSystem.Application.Interfaces;
 using MaintenanceManagementSystem.BusinessLayer.Repositories;
 using MaintenanceManagementSystem.Database.Models;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -11,11 +13,13 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Newtonsoft.Json.Serialization;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace MaintenanceMagementSystems.API
@@ -35,7 +39,7 @@ namespace MaintenanceMagementSystems.API
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
-        {
+        { 
             services.AddScoped<IBeneficiary, Beneficiary>();
             services.AddScoped<IBeneficiaryEntry, BeneficiaryEntry>();
             services.AddScoped<IBuildingManager, BuildingManager>();
@@ -47,11 +51,34 @@ namespace MaintenanceMagementSystems.API
 
             });
 
+            services.AddAuthentication(options =>
+            {
+                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            })
+            .AddJwtBearer(jwt =>
+            {
+                var key = Encoding.ASCII.GetBytes(configuration["JWT:Key"]);
+                jwt.SaveToken = true;
+                jwt.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(key),
+                    ValidateIssuer = true,
+                    ValidateAudience = true,
+                    ValidateLifetime = true,
+                    RequireExpirationTime = false
+                };
+                
+            });
+
             services.AddControllers().AddNewtonsoftJson(options => {
                 options.SerializerSettings.ContractResolver = new DefaultContractResolver();
             });
 
             services.AddControllers();
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "MaintenanceMagementSystems.API", Version = "v1" });
@@ -76,6 +103,7 @@ namespace MaintenanceMagementSystems.API
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

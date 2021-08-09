@@ -1,4 +1,5 @@
 ﻿using MaintenanceManagementSystem.Application.Interfaces;
+using MaintenanceManagementSystem.Database.Lookup;
 using MaintenanceManagementSystem.Database.Models;
 using MaintenanceManagementSystem.Entity.ModelsDto;
 using Microsoft.AspNetCore.Http;
@@ -8,12 +9,13 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Mvc;
 
 namespace MaintenanceManagementSystem.BusinessLayer.Repositories
 {
     public class BeneficiaryEntry : IBeneficiaryEntry
     {
-        private MaintenanceSysContext _maintenanceSysContext;
+        private readonly MaintenanceSysContext _maintenanceSysContext;
         private readonly IHttpContextAccessor _httpContextAccessor;
 
         public BeneficiaryEntry(MaintenanceSysContext maintenanceSysContext, IHttpContextAccessor httpContextAccessor)
@@ -96,17 +98,37 @@ namespace MaintenanceManagementSystem.BusinessLayer.Repositories
 
         public int GetUserId()
         {
-            ClaimsPrincipal currentUser = _httpContextAccessor.HttpContext.User;
-            var stringClaimValue = currentUser.FindFirst(ClaimTypes.Sid).Value;
-            var IdNumber = Convert.ToInt32(stringClaimValue);
-            return IdNumber;
+            try
+            {
+                using (_maintenanceSysContext)
+                {
+                    ClaimsPrincipal currentUser = _httpContextAccessor.HttpContext.User;
+                    var stringClaimValue = currentUser.FindFirst(ClaimTypes.Sid).Value;
+                    var IdNumber = Convert.ToInt32(stringClaimValue);
+                    return IdNumber;
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         public string GetUserRole()
         {
-            ClaimsPrincipal currentUser = _httpContextAccessor.HttpContext.User;
-            var stringClaimValue = currentUser.FindFirst(ClaimTypes.Role).Value;
-            return stringClaimValue;
+            try
+            {
+                using (_maintenanceSysContext)
+                {
+                    ClaimsPrincipal currentUser = _httpContextAccessor.HttpContext.User;
+                    var stringClaimValue = currentUser.FindFirst(ClaimTypes.Role).Value;
+                    return stringClaimValue;
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         public void Register(BeneficiaryRegistration user)
@@ -132,6 +154,75 @@ namespace MaintenanceManagementSystem.BusinessLayer.Repositories
             catch (Exception)
             {
                 throw;
+            }
+        }
+
+        public string GetUserRoleFromDB(int userRoleID = 0)
+        {
+           
+            try
+            {
+                string RoleOfUser = "Undefined Role";
+
+                if (userRoleID != 0)
+                {
+                    UserRole userRole = new UserRole();
+                    userRole = _maintenanceSysContext.UserRoles.Single(u => u.Id == userRoleID);
+                        
+                    RoleOfUser = userRole.Role;
+
+                    return RoleOfUser;
+                }
+                else
+                {
+                    return RoleOfUser;
+                }
+         
+            }
+            catch (Exception)
+            {
+                return "Function Match Error";
+            }
+        }
+
+        public List<Building> ListBuildings()
+        {
+            try
+            {
+                return _maintenanceSysContext.Buildings.ToList();
+            }
+            catch (Exception)
+            {
+                var newList = new List<Building>();
+                var newBuilding = new Building()
+                {
+                    Id = 0,
+                    Number = '0',
+                    CityId = 0,
+                    IsOwned = false,
+                    Street = "none"
+                };
+                newList.Add(newBuilding);
+                return newList;
+            }
+        }
+
+        public List<Floor> ListFloors()
+        {
+            try
+            {
+                return _maintenanceSysContext.Floors.ToList();
+            }
+            catch (Exception)
+            {
+                var newList = new List<Floor>();
+                var newFloor = new Floor()
+                {
+                    Id = 0,
+                    Number = '0'
+                };
+                newList.Add(newFloor);
+                return newList;
             }
         }
     }

@@ -68,12 +68,15 @@ namespace MaintenanceManagementSystem.API.Controllers
         {
             var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:Key"]));
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
+            var roleString = _beneficiaryEntryRepo.GetUserRoleFromDB(User.UserRoleId);
 
             var claims = new List<Claim>
             {
                 new Claim(JwtRegisteredClaimNames.Email, User.Email),
-                new Claim(ClaimTypes.Role, User.userRole.Role),
-                new Claim(ClaimTypes.Sid, User.Id.ToString())
+                new Claim(ClaimTypes.Role, roleString),
+                new Claim(ClaimTypes.Sid, User.Id.ToString()),
+                new Claim("FloorID", User.FloorId.ToString()),
+                new Claim("JobTypeID", User.JobTypeId.ToString())
             };
 
             var token = new JwtSecurityToken(_config["Jwt:Issuer"],
@@ -106,6 +109,32 @@ namespace MaintenanceManagementSystem.API.Controllers
             {
                 return Ok("New password will be sent to you soon");
             }
+        }
+
+        [Authorize(Roles = "Beneficiary")]
+        [HttpGet]
+        [Route("ListBuildings")]
+        public IActionResult ListBuildings()
+        {
+            if (_beneficiaryEntryRepo.ListBuildings().Count == 0)
+            {
+                return NotFound("There are no buildings");
+            }
+
+            return Ok(_beneficiaryEntryRepo.ListBuildings());
+        }
+
+        [Authorize(Roles = "Beneficiary")]
+        [HttpGet]
+        [Route("ListFloors")]
+        public IActionResult ListFloors()
+        {
+            if (_beneficiaryEntryRepo.ListFloors().Count == 0)
+            {
+                return NotFound("There are no floors");
+            }
+
+            return Ok(_beneficiaryEntryRepo.ListFloors());
         }
     }
 }

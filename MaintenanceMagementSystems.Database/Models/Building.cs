@@ -31,10 +31,5 @@ namespace MaintenanceManagementSystem.Database.Models
         [Required]
         #nullable disable
         public ICollection<Floor> floors { get; set; }
-
-        public int BuildingManagerId { get; set; }
-        public User UserbuildingManager { get; set; }
-
-
     }
 }
