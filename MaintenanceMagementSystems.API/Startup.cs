@@ -42,7 +42,7 @@ namespace MaintenanceMagementSystems.API
         { 
             services.AddScoped<IBeneficiary, Beneficiary>();
             services.AddScoped<IBeneficiaryEntry, BeneficiaryEntry>();
-
+            services.AddScoped<IBuildingManager, BuildingManager>();
             services.AddHttpContextAccessor();
 
             services.AddDbContext<MaintenanceSysContext>(options =>

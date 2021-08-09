@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MaintenanceManagementSystem.Database.Migrations
 {
     [DbContext(typeof(MaintenanceSysContext))]
-    [Migration("20210805124715_fixing-Beneficiary-Relation")]
-    partial class fixingBeneficiaryRelation
+    [Migration("20210804151055_RemoveBenefciryFromTicket")]
+    partial class RemoveBenefciryFromTicket
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -76,12 +76,7 @@ namespace MaintenanceManagementSystem.Database.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("CountryId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("CountryId");
 
                     b.ToTable("Cities");
                 });
@@ -162,19 +157,19 @@ namespace MaintenanceManagementSystem.Database.Migrations
                     b.ToTable("UserRoles");
                 });
 
-            modelBuilder.Entity("MaintenanceManagementSystem.Database.ManyToMany.BackOfficesTickets", b =>
+            modelBuilder.Entity("MaintenanceManagementSystem.Database.ManyToMany.UserTickets", b =>
                 {
-                    b.Property<int>("BackOfficeId")
+                    b.Property<int>("UserId")
                         .HasColumnType("int");
 
                     b.Property<int>("TicketId")
                         .HasColumnType("int");
 
-                    b.HasKey("BackOfficeId", "TicketId");
+                    b.HasKey("UserId", "TicketId");
 
                     b.HasIndex("TicketId");
 
-                    b.ToTable("BackOfficesTickets");
+                    b.ToTable("UserTickets");
                 });
 
             modelBuilder.Entity("MaintenanceManagementSystem.Database.Models.Building", b =>
@@ -185,6 +180,9 @@ namespace MaintenanceManagementSystem.Database.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int>("CityId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CountryId")
                         .HasColumnType("int");
 
                     b.Property<bool>("IsOwned")
@@ -200,6 +198,8 @@ namespace MaintenanceManagementSystem.Database.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("CityId");
+
+                    b.HasIndex("CountryId");
 
                     b.ToTable("Buildings");
                 });
@@ -235,20 +235,8 @@ namespace MaintenanceManagementSystem.Database.Migrations
                     b.Property<int>("ApprovalState")
                         .HasColumnType("int");
 
-                    b.Property<int>("BeneficiaryID")
-                        .HasColumnType("int");
-
-                    b.Property<string>("BuildingManagerComment")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<int?>("CancellationReasonID")
                         .HasColumnType("int");
-
-                    b.Property<int>("CreatedBy")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("CreatedTime")
-                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
@@ -261,9 +249,6 @@ namespace MaintenanceManagementSystem.Database.Migrations
                         .HasColumnType("int");
 
                     b.Property<bool>("IsCancelled")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
                     b.Property<int>("MaintenanceTypeID")
@@ -281,15 +266,7 @@ namespace MaintenanceManagementSystem.Database.Migrations
                     b.Property<int>("StatusID")
                         .HasColumnType("int");
 
-                    b.Property<int>("UpdatedBy")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("UpdatedTime")
-                        .HasColumnType("datetime2");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("BeneficiaryID");
 
                     b.HasIndex("CancellationReasonID");
 
@@ -311,6 +288,9 @@ namespace MaintenanceManagementSystem.Database.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int?>("BeneficiaryTicketId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -318,10 +298,7 @@ namespace MaintenanceManagementSystem.Database.Migrations
                     b.Property<int?>("FloorId")
                         .HasColumnType("int");
 
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("IsForgetPassword")
+                    b.Property<bool>("ForgetPassword")
                         .HasColumnType("bit");
 
                     b.Property<int?>("JobTypeId")
@@ -347,6 +324,8 @@ namespace MaintenanceManagementSystem.Database.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("BeneficiaryTicketId");
+
                     b.HasIndex("FloorId");
 
                     b.HasIndex("JobTypeId");
@@ -358,28 +337,17 @@ namespace MaintenanceManagementSystem.Database.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("MaintenanceManagementSystem.Database.Lookup.City", b =>
+            modelBuilder.Entity("MaintenanceManagementSystem.Database.ManyToMany.UserTickets", b =>
                 {
-                    b.HasOne("MaintenanceManagementSystem.Database.Lookup.Country", "country")
-                        .WithMany("Cities")
-                        .HasForeignKey("CountryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("country");
-                });
-
-            modelBuilder.Entity("MaintenanceManagementSystem.Database.ManyToMany.BackOfficesTickets", b =>
-                {
-                    b.HasOne("MaintenanceManagementSystem.Database.Models.User", "user")
-                        .WithMany("BackOfficeTickets")
-                        .HasForeignKey("BackOfficeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("MaintenanceManagementSystem.Database.Models.Ticket", "ticket")
-                        .WithMany("backOfficesTickets")
+                        .WithMany("UserTickets")
                         .HasForeignKey("TicketId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("MaintenanceManagementSystem.Database.Models.User", "user")
+                        .WithMany("UserTickets")
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -396,7 +364,15 @@ namespace MaintenanceManagementSystem.Database.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("MaintenanceManagementSystem.Database.Lookup.Country", "country")
+                        .WithMany("buildings")
+                        .HasForeignKey("CountryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("city");
+
+                    b.Navigation("country");
                 });
 
             modelBuilder.Entity("MaintenanceManagementSystem.Database.Models.Floor", b =>
@@ -412,12 +388,6 @@ namespace MaintenanceManagementSystem.Database.Migrations
 
             modelBuilder.Entity("MaintenanceManagementSystem.Database.Models.Ticket", b =>
                 {
-                    b.HasOne("MaintenanceManagementSystem.Database.Models.User", "BeneficiaryUser")
-                        .WithMany("BeneficiaryTickets")
-                        .HasForeignKey("BeneficiaryID")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
                     b.HasOne("MaintenanceManagementSystem.Database.Lookup.CancelationReason", "cancelationReason")
                         .WithMany("tickets")
                         .HasForeignKey("CancellationReasonID");
@@ -442,8 +412,6 @@ namespace MaintenanceManagementSystem.Database.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("BeneficiaryUser");
-
                     b.Navigation("cancelationReason");
 
                     b.Navigation("floor");
@@ -457,6 +425,10 @@ namespace MaintenanceManagementSystem.Database.Migrations
 
             modelBuilder.Entity("MaintenanceManagementSystem.Database.Models.User", b =>
                 {
+                    b.HasOne("MaintenanceManagementSystem.Database.Models.Ticket", "BeneficiaryTicket")
+                        .WithMany()
+                        .HasForeignKey("BeneficiaryTicketId");
+
                     b.HasOne("MaintenanceManagementSystem.Database.Models.Floor", "floor")
                         .WithMany("users")
                         .HasForeignKey("FloorId");
@@ -474,6 +446,8 @@ namespace MaintenanceManagementSystem.Database.Migrations
                         .HasForeignKey("UserRoleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("BeneficiaryTicket");
 
                     b.Navigation("floor");
 
@@ -501,7 +475,7 @@ namespace MaintenanceManagementSystem.Database.Migrations
 
             modelBuilder.Entity("MaintenanceManagementSystem.Database.Lookup.Country", b =>
                 {
-                    b.Navigation("Cities");
+                    b.Navigation("buildings");
                 });
 
             modelBuilder.Entity("MaintenanceManagementSystem.Database.Lookup.MaintenanceType", b =>
@@ -535,16 +509,14 @@ namespace MaintenanceManagementSystem.Database.Migrations
 
             modelBuilder.Entity("MaintenanceManagementSystem.Database.Models.Ticket", b =>
                 {
-                    b.Navigation("backOfficesTickets");
+                    b.Navigation("UserTickets");
                 });
 
             modelBuilder.Entity("MaintenanceManagementSystem.Database.Models.User", b =>
                 {
-                    b.Navigation("BackOfficeTickets");
-
-                    b.Navigation("BeneficiaryTickets");
-
                     b.Navigation("TicketsRejected");
+
+                    b.Navigation("UserTickets");
                 });
 #pragma warning restore 612, 618
         }

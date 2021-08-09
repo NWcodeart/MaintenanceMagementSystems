@@ -1,0 +1,29 @@
+[
+
+  {
+    "outputFileName": "wwwroot/js/bundle.min.js",
+    "inputFiles": [
+      "wwwroot/js/add-comments.js"
+    ],
+
+    "minify": {
+      "enabled": true,
+      "renameLocals": true
+    }
+
+  },
+
+  {
+    "outputFileName": "wwwroot/js/viewTicketsbundle.min.js",
+    "inputFiles": [
+      "wwwroot/js/view-tickets.js"
+    ],
+
+    "minify": {
+      "enabled": true,
+      "renameLocals": true
+    }
+
+  }
+
+]

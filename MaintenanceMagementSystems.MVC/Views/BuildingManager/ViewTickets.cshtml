@@ -1,0 +1,27 @@
+﻿<h1> View Tickets </h1>
+@* = '@Url.Action("GetTickets", "BuildingManager")'*@
+@section Scripts2{
+    <script src="~/js/viewTicketsbundle.min.js"></script>
+    <body>
+        <label>Manager ID:</label>
+        <input type="number" id="managerId" name="managerId" placeholder="Id" />
+
+
+        <button type="button" id="btnView" name="btnView" data-name="ViewButton" onclick="ViewTickets()"> View Tickets </button>
+
+        <label id="Tickets"> Tickets </label>
+        <div id="EmailList"> </div>
+
+    </body>
+    <script>
+    function ViewTickets() {
+        debugger
+        var id = $('#managerId').val();
+        $.ajax({
+            url: '@Url.Action("GetTickets","BuildingManager")' + "?managerID=" + id,
+            type: 'GET',
+            success: OnSuccess
+        });
+    }
+    </script>
+}

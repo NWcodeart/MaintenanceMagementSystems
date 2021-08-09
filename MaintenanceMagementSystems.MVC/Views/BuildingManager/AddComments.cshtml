@@ -1,0 +1,40 @@
+﻿<h1> Add Comments </h1>
+@section Scripts2{
+    <script src="~/js/bundle.min.js"></script>
+    <body>
+        <label>Ticket ID to add comments:</label>
+        <input type="number" id="updateId" name="updateId" placeholder="Id" />
+
+
+        <label>comments:</label>
+        <input type="text" id="comments" name="comments" placeholder="comments" />
+
+
+
+        <button type="button" id="btnUpdate" name="btnUpdate" data-name="UpdateButton" onclick="AddComments()"> Add Comments </button>
+    </body>
+
+
+    <script>
+                function AddComments() {
+
+                    var ticket = {
+                        Id: $('#updateId').val(),
+                        BuildingManagerComment: $('#comments').val()
+
+                    }
+
+
+                    var commentStringfy = JSON.stringify(ticket);
+                    $.ajax({
+                        url: '@Url.Action("PostComments", "BuildingManager")' + "?ticket=" + commentStringfy ,
+                        type: 'POST',
+            // data: commentStringfy,
+            // contentType: 'application/json; charset=utf-8',
+            success: function (data) {
+            alert("Success");
+            }
+        });
+            }
+            </script>
+}
