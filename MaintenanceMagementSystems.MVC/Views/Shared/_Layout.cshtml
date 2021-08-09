@@ -6,8 +6,11 @@
     <title>@ViewData["Title"] - MaintenanceMagementSystems.MVC</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
+
+  
 </head>
 <body>
+
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
@@ -44,5 +47,11 @@
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
+
+    @section Scripts2 {
+        <script src="~/js/viewTicketsbundle.min.js"></script>
+        <script src="~/js/bundle.min.js"></script>
+    }
+    @RenderSection("Scripts2", required: false)
 </body>
 </html>

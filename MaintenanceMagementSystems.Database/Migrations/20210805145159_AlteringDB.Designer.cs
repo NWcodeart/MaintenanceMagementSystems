@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MaintenanceManagementSystem.Database.Migrations
 {
     [DbContext(typeof(MaintenanceSysContext))]
-    [Migration("20210805124715_fixing-Beneficiary-Relation")]
-    partial class fixingBeneficiaryRelation
+    [Migration("20210805145159_AlteringDB")]
+    partial class AlteringDB
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -184,6 +184,9 @@ namespace MaintenanceManagementSystem.Database.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int>("BuildingManagerId")
+                        .HasColumnType("int");
+
                     b.Property<int>("CityId")
                         .HasColumnType("int");
 
@@ -198,6 +201,8 @@ namespace MaintenanceManagementSystem.Database.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("BuildingManagerId");
 
                     b.HasIndex("CityId");
 
@@ -345,6 +350,9 @@ namespace MaintenanceManagementSystem.Database.Migrations
                     b.Property<int>("UserRoleId")
                         .HasColumnType("int");
 
+                    b.Property<int?>("buildingId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("FloorId");
@@ -354,6 +362,8 @@ namespace MaintenanceManagementSystem.Database.Migrations
                     b.HasIndex("MaintenanceTypeId");
 
                     b.HasIndex("UserRoleId");
+
+                    b.HasIndex("buildingId");
 
                     b.ToTable("Users");
                 });
@@ -390,6 +400,12 @@ namespace MaintenanceManagementSystem.Database.Migrations
 
             modelBuilder.Entity("MaintenanceManagementSystem.Database.Models.Building", b =>
                 {
+                    b.HasOne("MaintenanceManagementSystem.Database.Models.User", "UserbuildingManager")
+                        .WithMany()
+                        .HasForeignKey("BuildingManagerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("MaintenanceManagementSystem.Database.Lookup.City", "city")
                         .WithMany("buildings")
                         .HasForeignKey("CityId")
@@ -397,6 +413,8 @@ namespace MaintenanceManagementSystem.Database.Migrations
                         .IsRequired();
 
                     b.Navigation("city");
+
+                    b.Navigation("UserbuildingManager");
                 });
 
             modelBuilder.Entity("MaintenanceManagementSystem.Database.Models.Floor", b =>
@@ -474,6 +492,12 @@ namespace MaintenanceManagementSystem.Database.Migrations
                         .HasForeignKey("UserRoleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("MaintenanceManagementSystem.Database.Models.Building", "building")
+                        .WithMany()
+                        .HasForeignKey("buildingId");
+
+                    b.Navigation("building");
 
                     b.Navigation("floor");
 

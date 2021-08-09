@@ -12,10 +12,10 @@ namespace MaintenanceManagementSystem.Application.Interfaces
     {
 
         public Building ViewBuilding(int managerID);
-        public bool EditBuilding(int buildingID, Building Updatedbuilding);
+        public bool EditBuilding(int buildingID, BuildingDto Updatedbuilding);
         public List<Ticket> ViewTickets(int managerID);
         public List<Ticket> ViewTicketsStatus(int managerID);
         //public Ticket GetTicketFor(int requestID);
-        public bool AddComments(int ticketId, string comment); 
+        public bool AddComments(TicketDto ticket); 
     }
 }

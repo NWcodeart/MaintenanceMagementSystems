@@ -1,6 +1,8 @@
 ﻿using MaintenanceManagementSystem.Application.Interfaces;
+using MaintenanceManagementSystem.Database.Lookup;
 using MaintenanceManagementSystem.Database.ManyToMany;
 using MaintenanceManagementSystem.Database.Models;
+using MaintenanceManagementSystem.Entity.ModelsDto;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -19,16 +21,16 @@ namespace MaintenanceManagementSystem.BusinessLayer.Repositories
             _maintenanceSysContext = maintenanceSysContext;
         }
 
-        public bool AddComments(int ticketId, string comment)
+        public bool AddComments(TicketDto ticket)
         {
             try
             {
                 using (_maintenanceSysContext)
                 {                    
-                    Ticket ticket = _maintenanceSysContext.Tickets.FirstOrDefault(t => t.Id == ticketId);
+                    Ticket ticketObject = _maintenanceSysContext.Tickets.FirstOrDefault(t => t.Id == ticket.Id);
                     if (ticket != null)
                     {
-                        ticket.BuildingManagerComment = comment;
+                        ticketObject.BuildingManagerComment = ticket.BuildingManagerComment;
                         return true;
                     }
                     else
@@ -46,7 +48,7 @@ namespace MaintenanceManagementSystem.BusinessLayer.Repositories
 
         //--------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-        public bool EditBuilding(int buildingID, Building Updatedbuilding)
+        public bool EditBuilding(int buildingID, BuildingDto Updatedbuilding)
         {
             try
             {
@@ -57,7 +59,7 @@ namespace MaintenanceManagementSystem.BusinessLayer.Repositories
                     );
                     if (building != null)
                     {
-                        building.floors = Updatedbuilding.floors;
+                        building.floors = (ICollection<Floor>)Updatedbuilding.floors;
                         building.IsOwned = Updatedbuilding.IsOwned;
                         building.CityId = Updatedbuilding.CityId;
                         return true;
@@ -85,7 +87,7 @@ namespace MaintenanceManagementSystem.BusinessLayer.Repositories
                 using (_maintenanceSysContext)
                 {
 
-                    Building building = _maintenanceSysContext.Buildings.FirstOrDefault(b => b.BuildingManager == managerID);
+                    Building building = _maintenanceSysContext.Buildings.FirstOrDefault(b => b.BuildingManagerId == managerID);
                     if (building != null)
                     {
                         return building;
@@ -110,10 +112,14 @@ namespace MaintenanceManagementSystem.BusinessLayer.Repositories
             {
                 using (_maintenanceSysContext)
                 {
-                    
-                    List<Ticket> tickets = _maintenanceSysContext.Tickets.Where(u => u.Id == managerID).Include(t => t.backOfficesTickets).ToList();
-                    List<User> user = _maintenanceSysContext.Users.Where(u => u.Id == managerID).Include(t => t.BackOfficeTickets).ToList();
-       
+                    List<Ticket> tickets = null;
+                    List<int> ticketsId = _maintenanceSysContext.Tickets.SelectMany(t => t.backOfficesTickets).Where(u => u.BackOfficeId == managerID).Select(t => t.TicketId).ToList();
+                  
+                     foreach( var i in ticketsId)
+                    {
+                        tickets = _maintenanceSysContext.Tickets.Where(t => t.Id == i).ToList();
+                    }
+
                     if (tickets != null)
                     {
                         return tickets;
@@ -140,8 +146,14 @@ namespace MaintenanceManagementSystem.BusinessLayer.Repositories
             {
                 using (_maintenanceSysContext)
                 {
-                    //same the above one with adding select clause
-                        return null;                   
+                    List<Status> ticketsStatus = null;
+                    List<int> ticketsId = _maintenanceSysContext.Tickets.SelectMany(t => t.backOfficesTickets).Where(u => u.BackOfficeId == managerID).Select(t => t.TicketId).ToList();
+
+                    foreach (var i in ticketsId)
+                    {
+                        ticketsStatus = _maintenanceSysContext.Tickets.Where(t => t.Id == i).Select(t =>t.status).ToList();
+                    }
+                    return null;                   
                 }
             }
             catch (Exception)
