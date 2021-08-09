@@ -30,6 +30,8 @@ namespace MaintenanceManagementSystem.Database.Models
 
         public bool IsForgetPassword { get; set; } = false;
 
+        public bool IsRememberMe { get; set; } = false;
+
         //UserRole section
         [ForeignKey("Id")]
         [Required]

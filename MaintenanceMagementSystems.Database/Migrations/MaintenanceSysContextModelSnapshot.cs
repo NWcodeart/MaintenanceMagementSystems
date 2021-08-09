@@ -39,7 +39,7 @@ namespace MaintenanceManagementSystem.Database.Migrations
                     b.ToTable("JobTypes");
                 });
 
-            modelBuilder.Entity("MaintenanceManagementSystem.Database.Lookup.CancelationReason", b =>
+            modelBuilder.Entity("MaintenanceManagementSystem.Database.Lookup.CancellationReason", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -327,6 +327,9 @@ namespace MaintenanceManagementSystem.Database.Migrations
                     b.Property<bool>("IsForgetPassword")
                         .HasColumnType("bit");
 
+                    b.Property<bool>("IsRememberMe")
+                        .HasColumnType("bit");
+
                     b.Property<int?>("JobTypeId")
                         .HasColumnType("int");
 
@@ -434,7 +437,7 @@ namespace MaintenanceManagementSystem.Database.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("MaintenanceManagementSystem.Database.Lookup.CancelationReason", "cancelationReason")
+                    b.HasOne("MaintenanceManagementSystem.Database.Lookup.CancellationReason", "cancelationReason")
                         .WithMany("tickets")
                         .HasForeignKey("CancellationReasonID");
 
@@ -511,7 +514,7 @@ namespace MaintenanceManagementSystem.Database.Migrations
                     b.Navigation("users");
                 });
 
-            modelBuilder.Entity("MaintenanceManagementSystem.Database.Lookup.CancelationReason", b =>
+            modelBuilder.Entity("MaintenanceManagementSystem.Database.Lookup.CancellationReason", b =>
                 {
                     b.Navigation("tickets");
                 });

@@ -13,7 +13,7 @@ namespace MaintenanceManagementSystem.Application.Interfaces
         /*
          No registration page needed just login using their employees ID (Email)
          */
-        public bool CheckExistence(string email);
+        public User AuthenticateUser(Login Login);
 
         /*
          Employees must be asked to change their password to a complex password on the 
