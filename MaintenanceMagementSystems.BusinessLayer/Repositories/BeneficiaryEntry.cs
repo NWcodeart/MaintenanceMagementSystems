@@ -142,7 +142,8 @@ namespace MaintenanceManagementSystem.BusinessLayer.Repositories
                         UserRoleId = 1,
                         Name = user.Name,
                         Email = user.Email,
-                        Phone = user.Phone
+                        Phone = user.Phone,
+                        FloorId = user.FloorNumber
                     };
 
                     newUser.Password = BCrypt.Net.BCrypt.HashPassword(user.Password);
@@ -157,53 +158,32 @@ namespace MaintenanceManagementSystem.BusinessLayer.Repositories
             }
         }
 
-        public string GetUserRoleFromDB(int userRoleID = 0)
+        public string GetUserRoleFromDB(int userRoleID)
         {
-           
             try
             {
-                string RoleOfUser = "Undefined Role";
-
-                if (userRoleID != 0)
-                {
-                    UserRole userRole = new UserRole();
-                    userRole = _maintenanceSysContext.UserRoles.Single(u => u.Id == userRoleID);
-                        
-                    RoleOfUser = userRole.Role;
-
-                    return RoleOfUser;
-                }
-                else
-                {
-                    return RoleOfUser;
-                }
-         
+                var userRoles = _maintenanceSysContext.UserRoles.ToList();
+                var userRole= userRoles.FirstOrDefault(r => r.Id == userRoleID);
+                var stringRole = userRole.Role;
+                return stringRole;
             }
             catch (Exception)
             {
-                return "Function Match Error";
+                throw;
             }
+
         }
 
         public List<Building> ListBuildings()
         {
             try
             {
-                return _maintenanceSysContext.Buildings.ToList();
+                var buildings = _maintenanceSysContext.Buildings.ToList();
+                return buildings; 
             }
             catch (Exception)
             {
-                var newList = new List<Building>();
-                var newBuilding = new Building()
-                {
-                    Id = 0,
-                    Number = '0',
-                    CityId = 0,
-                    IsOwned = false,
-                    Street = "none"
-                };
-                newList.Add(newBuilding);
-                return newList;
+                throw;
             }
         }
 
@@ -211,18 +191,12 @@ namespace MaintenanceManagementSystem.BusinessLayer.Repositories
         {
             try
             {
-                return _maintenanceSysContext.Floors.ToList();
+                var floors = _maintenanceSysContext.Floors.ToList();
+                return floors;              
             }
             catch (Exception)
             {
-                var newList = new List<Floor>();
-                var newFloor = new Floor()
-                {
-                    Id = 0,
-                    Number = '0'
-                };
-                newList.Add(newFloor);
-                return newList;
+                throw;
             }
         }
     }

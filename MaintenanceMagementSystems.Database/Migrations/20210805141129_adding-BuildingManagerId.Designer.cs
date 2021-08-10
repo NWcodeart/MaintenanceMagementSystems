@@ -4,14 +4,16 @@ using MaintenanceManagementSystem.Database.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace MaintenanceManagementSystem.Database.Migrations
 {
     [DbContext(typeof(MaintenanceSysContext))]
-    partial class MaintenanceSysContextModelSnapshot : ModelSnapshot
+    [Migration("20210805141129_adding-BuildingManagerId")]
+    partial class addingBuildingManagerId
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -39,7 +41,7 @@ namespace MaintenanceManagementSystem.Database.Migrations
                     b.ToTable("JobTypes");
                 });
 
-            modelBuilder.Entity("MaintenanceManagementSystem.Database.Lookup.CancellationReason", b =>
+            modelBuilder.Entity("MaintenanceManagementSystem.Database.Lookup.CancelationReason", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -327,9 +329,6 @@ namespace MaintenanceManagementSystem.Database.Migrations
                     b.Property<bool>("IsForgetPassword")
                         .HasColumnType("bit");
 
-                    b.Property<bool>("IsRememberMe")
-                        .HasColumnType("bit");
-
                     b.Property<int?>("JobTypeId")
                         .HasColumnType("int");
 
@@ -437,7 +436,7 @@ namespace MaintenanceManagementSystem.Database.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("MaintenanceManagementSystem.Database.Lookup.CancellationReason", "cancelationReason")
+                    b.HasOne("MaintenanceManagementSystem.Database.Lookup.CancelationReason", "cancelationReason")
                         .WithMany("tickets")
                         .HasForeignKey("CancellationReasonID");
 
@@ -514,7 +513,7 @@ namespace MaintenanceManagementSystem.Database.Migrations
                     b.Navigation("users");
                 });
 
-            modelBuilder.Entity("MaintenanceManagementSystem.Database.Lookup.CancellationReason", b =>
+            modelBuilder.Entity("MaintenanceManagementSystem.Database.Lookup.CancelationReason", b =>
                 {
                     b.Navigation("tickets");
                 });

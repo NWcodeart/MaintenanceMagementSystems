@@ -22,7 +22,7 @@ namespace MaintenanceManagementSystem.Database.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer("DbConnection");
+                optionsBuilder.UseSqlServer("DefaultConnection");
             }
         }
 
@@ -164,7 +164,7 @@ namespace MaintenanceManagementSystem.Database.Models
         {
 
             var builder = new DbContextOptionsBuilder<MaintenanceSysContext>();
-            builder.UseSqlServer(Configuration.GetConnectionString("DbConnection"));
+            builder.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
 
             return new MaintenanceSysContext(builder.Options);
         }

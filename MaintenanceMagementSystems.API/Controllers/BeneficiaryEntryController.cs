@@ -111,7 +111,6 @@ namespace MaintenanceManagementSystem.API.Controllers
             }
         }
 
-        [Authorize(Roles = "Beneficiary")]
         [HttpGet]
         [Route("ListBuildings")]
         public IActionResult ListBuildings()
@@ -124,7 +123,6 @@ namespace MaintenanceManagementSystem.API.Controllers
             return Ok(_beneficiaryEntryRepo.ListBuildings());
         }
 
-        [Authorize(Roles = "Beneficiary")]
         [HttpGet]
         [Route("ListFloors")]
         public IActionResult ListFloors()
