@@ -135,11 +135,11 @@ namespace MaintenanceManagementSystem.Database.Models
                 .HasForeignKey(c => c.CityId).IsRequired();
 
             //the bulding has one BuildingManager and also BuildingManager manager on one building
-            modelBuilder.Entity<Building>()
-                .HasOne<User>(u => u.UserbuildingManager)
-                .WithMany()
-                .HasForeignKey(u => u.BuildingManagerId)
-                .IsRequired();
+            //modelBuilder.Entity<Building>()
+            //    .HasOne<User>(u => u.UserbuildingManager)
+            //    .WithMany()
+            //    .HasForeignKey(u => u.BuildingManagerId)
+            //    .IsRequired();
 
             //City has one Country while country has multi cities
             modelBuilder.Entity<City>()

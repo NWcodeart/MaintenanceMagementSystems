@@ -1,4 +1,6 @@
-﻿using MaintenanceManagementSystem.Database.Models;
+﻿using MaintenanceManagementSystem.API.Controllers;
+using MaintenanceManagementSystem.Application.Interfaces;
+using MaintenanceManagementSystem.Database.Models;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -12,6 +14,12 @@ namespace MaintenanceManagementSystem.MVC.Controllers
 {
     public class BuildingManagerController : Controller
     {
+        private readonly IBuildingManager _buildingManager;
+
+        public BuildingManagerController(IBuildingManager buildingManager)
+        {
+            _buildingManager = buildingManager;
+        }
         public ActionResult AddComments()
         {
             return View();
@@ -69,17 +77,7 @@ namespace MaintenanceManagementSystem.MVC.Controllers
         [HttpGet]
         public async Task<ActionResult> GetBuilding(int managerID)
         {
-            APICaller.ApiCaller();
-            Building building = new Building();
-            using (APICaller.APIClient)
-            {
-                var httpResponse = await APICaller.APIClient.GetAsync($"ViewBuilding/{managerID}");
-                if (httpResponse.IsSuccessStatusCode)
-                {
-                    building = await httpResponse.Content.ReadFromJsonAsync<Building>();
-                }
-            }
-            //return View();
+            var building = _buildingManager.ViewBuilding(managerID);
             return Json(building, System.Web.Mvc.JsonRequestBehavior.AllowGet);
         }
 
