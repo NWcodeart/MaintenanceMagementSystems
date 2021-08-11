@@ -36,7 +36,6 @@ namespace MaintenanceMagementSystems.MVC
             services.AddScoped<IBeneficiary, Beneficiary>();
             services.AddScoped<IBeneficiaryEntry, BeneficiaryEntry>();
             services.AddScoped<IBuildingManager, BuildingManager>();
-            services.AddTransient<IBuildingManager, BuildingManager>();
 
             services.AddDbContext<MaintenanceSysContext>(options =>
             {

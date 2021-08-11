@@ -1,4 +1,6 @@
-﻿using MaintenanceManagementSystem.Database.Models;
+﻿using MaintenanceManagementSystem.Database.Lookup;
+using MaintenanceManagementSystem.Database.Models;
+using MaintenanceManagementSystem.Entity.ModelsDto;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,13 +19,14 @@ namespace MaintenanceManagementSystem.Application.Interfaces
          */
         public List<Ticket> ListTickets(int workerID);
 
-        public Ticket GetTicket(int requestID, int workerID);
+        public Ticket GetTicket(int requestID);
 
         /*
          Can label the Maintenance request ticket as “Fixing”
          */
-        public bool SetStateForTicket(string state);
+        public bool AcceptingTicket(int TicketId, int WorkerId);
 
-
+        //for view purpose so we can list the status in drop down list
+        
     }
 }

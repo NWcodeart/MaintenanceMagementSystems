@@ -1,4 +1,5 @@
 ﻿using MaintenanceManagementSystem.Database.Models;
+using MaintenanceManagementSystem.Entity.ModelsDto;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -42,11 +43,12 @@ namespace MaintenanceManagementSystem.Application.Interfaces
         /*
          maintenance manager can access all tickets on the system.
          */
+        public List<User> ListOfWorkers(int TicketId);
+        public List<Ticket> ListOfTickets();
+        public Ticket GetTicket(int TicketId);
+        public User GetWorker(int WorkerId, int TicketId);
+        public bool RespondToTicket(int TicketId, TicketRespond respond);
         public List<Ticket> ViewTickets();
-
-        public bool RespondToTickets(); //reject or accept
-
-        public bool AssignTeam();
-
+        
     }
 }

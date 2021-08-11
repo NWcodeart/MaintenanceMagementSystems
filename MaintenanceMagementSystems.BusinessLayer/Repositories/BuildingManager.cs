@@ -21,16 +21,16 @@ namespace MaintenanceManagementSystem.BusinessLayer.Repositories
             _maintenanceSysContext = maintenanceSysContext;
         }
 
-        public bool AddComments(TicketDto ticket)
+        public bool AddComments(int id, string comment)
         {
             try
             {
                 using (_maintenanceSysContext)
                 {                    
-                    Ticket ticketObject = _maintenanceSysContext.Tickets.FirstOrDefault(t => t.Id == ticket.Id);
-                    if (ticket != null)
+                    Ticket ticketObject = _maintenanceSysContext.Tickets.FirstOrDefault(t => t.Id == id);
+                    if (ticketObject != null)
                     {
-                        ticketObject.BuildingManagerComment = ticket.BuildingManagerComment;
+                        ticketObject.BuildingManagerComment = comment;
                         return true;
                     }
                     else
@@ -87,7 +87,7 @@ namespace MaintenanceManagementSystem.BusinessLayer.Repositories
                 using (_maintenanceSysContext)
                 {
 
-                    Building building = new Building();//.Buildings.FirstOrDefault(b => b.BuildingManagerId == managerID);
+                    Building building = _maintenanceSysContext.Buildings.FirstOrDefault(b => b.BuildingManagerId == managerID);
                     if (building != null)
                     {
                         return building;

@@ -22,9 +22,9 @@ namespace MaintenanceManagementSystem.API.Controllers
 
         [HttpPost]
         [Route("AddComments/{ticket}")]
-        public IActionResult AddComments(TicketDto ticket)
+        public IActionResult AddComments(int id, string comment)
         {
-            _buildingManager.AddComments(ticket);
+            _buildingManager.AddComments(id, comment);
             return Ok();
         }
 

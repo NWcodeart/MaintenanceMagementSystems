@@ -31,7 +31,7 @@ namespace MaintenanceManagementSystem.BusinessLayer.Repositories
                         IsOwned = buildingAdded.IsOwned,
                         CityId = buildingAdded.CityId,
                         Street = buildingAdded.Street,
-                        //BuildingManagerId = buildingAdded.BuildingManagerId
+                        BuildingManagerId = buildingAdded.BuildingManagerId
                     };
                     _maintenanceSysContext.Buildings.Add(newBuilding);
                     _maintenanceSysContext.SaveChanges();

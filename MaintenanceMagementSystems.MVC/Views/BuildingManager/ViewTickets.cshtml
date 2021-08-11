@@ -1,5 +1,4 @@
 ﻿<h1> View Tickets </h1>
-@* = '@Url.Action("GetTickets", "BuildingManager")'*@
 @section Scripts2{
     <script src="~/js/viewTicketsbundle.min.js"></script>
     <body>
@@ -13,7 +12,7 @@
         <div id="EmailList"> </div>
 
     </body>
-    <script>
+ @*   <script>
     function ViewTickets() {
         debugger
         var id = $('#managerId').val();
@@ -23,5 +22,5 @@
             success: OnSuccess
         });
     }
-    </script>
+    </script>*@
 }

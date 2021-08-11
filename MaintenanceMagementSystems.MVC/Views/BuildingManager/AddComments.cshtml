@@ -11,23 +11,18 @@
 
 
 
-        <button type="button" id="btnUpdate" name="btnUpdate" data-name="UpdateButton" onclick="AddComments()"> Add Comments </button>
+        <button type="button" id="btnUpdate" name="btnUpdate" data-name="UpdateButton" > Add Comments </button>
     </body>
 
 
-    <script>
-                function AddComments() {
+    @*<script>
+        function AddComments() {
+            debugger
+            var Id = $('#updateId').val();
+            var BuildingManagerComment = $('#comments').val();
 
-                    var ticket = {
-                        Id: $('#updateId').val(),
-                        BuildingManagerComment: $('#comments').val()
-
-                    }
-
-
-                    var commentStringfy = JSON.stringify(ticket);
                     $.ajax({
-                        url: '@Url.Action("PostComments", "BuildingManager")' + "?ticket=" + commentStringfy ,
+                        url: '@Url.Action("PostComments", "BuildingManager")' + "?id=" + Id + "?comment=" + BuildingManagerComment ,
                         type: 'POST',
             // data: commentStringfy,
             // contentType: 'application/json; charset=utf-8',
@@ -35,6 +30,6 @@
             alert("Success");
             }
         });
-            }
-            </script>
+ }
+            </script>*@
 }

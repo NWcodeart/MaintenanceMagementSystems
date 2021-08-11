@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace MaintenanceManagementSystem.Database.Migrations
+/*namespace MaintenanceManagementSystem.Database.Migrations
 {
     [DbContext(typeof(MaintenanceSysContext))]
     [Migration("20210805141129_adding-BuildingManagerId")]
@@ -574,3 +574,4 @@ namespace MaintenanceManagementSystem.Database.Migrations
         }
     }
 }
+*/
