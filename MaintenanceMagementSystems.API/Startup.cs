@@ -47,7 +47,7 @@ namespace MaintenanceMagementSystems.API
 
             services.AddDbContext<MaintenanceSysContext>(options =>
             {
-                options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
+                options.UseSqlServer(configuration.GetConnectionString("DbConnection"));
 
             });
 

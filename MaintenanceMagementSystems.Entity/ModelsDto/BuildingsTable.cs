@@ -11,7 +11,6 @@ namespace MaintenanceManagementSystem.Entity.ModelsDto
         //Building
         public int BuildingId { get; set; }
         public char BuildingNumber { get; set; }
-        public int NumberOfFloors { get; set; }
         public List<FloorTable> FloorTables { get; set; }
         //location
         public int CountryId { get; set; }
@@ -20,8 +19,10 @@ namespace MaintenanceManagementSystem.Entity.ModelsDto
         public string City { get; set; }
         public string Street { get; set; }
         //Building manager
-        public int BuildingManagerId { get; set; }
+        public int? BuildingManagerId { get; set; }
         public string BuildingManagerName { get; set; }
         public string BuildingManagerEmail { get; set; }
+        //Is Owned
+        public bool IsOwned { get; set; }
     }
 }

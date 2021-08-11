@@ -50,7 +50,7 @@ namespace BackOffice
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=SystemAdmin}/{action=Index}/{id?}");
             });
         }
     }
