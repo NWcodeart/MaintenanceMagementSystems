@@ -17,9 +17,11 @@ namespace MaintenanceMagementSystems.MVC
 {
     public class Startup
     {
+        private readonly IConfiguration configuration;
+
         public Startup(IConfiguration configuration)
         {
-            Configuration = configuration;
+            this.configuration = configuration;
         }
 
         public IConfiguration Configuration { get; }
@@ -30,7 +32,17 @@ namespace MaintenanceMagementSystems.MVC
             services.AddHttpContextAccessor();
 
             services.AddControllersWithViews();
+            services.AddControllers();
+            services.AddScoped<IBeneficiary, Beneficiary>();
+            services.AddScoped<IBeneficiaryEntry, BeneficiaryEntry>();
+            services.AddScoped<IBuildingManager, BuildingManager>();
+            services.AddTransient<IBuildingManager, BuildingManager>();
 
+            services.AddDbContext<MaintenanceSysContext>(options =>
+            {
+                options.UseSqlServer(configuration.GetConnectionString("DbConnection"));
+
+            });
             services.AddSession(options =>
             {
                 options.IdleTimeout = TimeSpan.FromMinutes(60);

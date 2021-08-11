@@ -42,6 +42,11 @@ namespace MaintenanceManagementSystem.Application.Interfaces
         /*
          maintenance manager can access all tickets on the system.
          */
-        public List<Ticket> ListAllTickets();
+        public List<Ticket> ViewTickets();
+
+        public bool RespondToTickets(); //reject or accept
+
+        public bool AssignTeam();
+
     }
 }

@@ -9,8 +9,10 @@
 
         <button type="button" id="btnView" name="btnView" data-name="ViewButton" onclick="ViewBuilding()"> View Tickets </button>
 
-        <label id="Building"> Building </label>
-        <div id="Building"> </div>
+        <label id="BuildingId" name="BuildingId">  </label>
+        <label id="BuildingNumber" name="BuildingNumber">  </label>
+        <label id="BuildingCity" name="BuildingCity">  </label>
+
 
     </body>
     <script>
@@ -24,15 +26,10 @@
         });
         }
         function OnSuccess(response) {
-
-            var ticketList = response;
-            list = document.getElementById("Building");
-
-            ticketList.forEach((item) => {
-                li = document.createElement("li");
-                li.innerText = item;
-                list.appendChild(li);
-            })
+            var building = response;
+            $('#BuildingId').html(building.Id);
+            $('#BuildingNumber').html(building.Number);
+            $('#BuildingCity').html(building.city);
         }
     </script>
 }

@@ -87,7 +87,7 @@ namespace MaintenanceManagementSystem.BusinessLayer.Repositories
                 using (_maintenanceSysContext)
                 {
 
-                    Building building = _maintenanceSysContext.Buildings.FirstOrDefault(b => b.BuildingManagerId == managerID);
+                    Building building = new Building();//.Buildings.FirstOrDefault(b => b.BuildingManagerId == managerID);
                     if (building != null)
                     {
                         return building;

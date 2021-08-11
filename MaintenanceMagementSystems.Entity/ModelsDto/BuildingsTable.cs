@@ -1,20 +1,18 @@
-﻿using MaintenanceManagementSystem.Database.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MaintenanceManagementSystem.Entity.ModelsDto.SystemAdmin.TablesDisplayed
+namespace MaintenanceManagementSystem.Entity.ModelsDto
 {
-    //contien all attribute that may i need and what should i display
-    class BuildingTable
+    public class BuildingsTable
     {
         //Building
         public int BuildingId { get; set; }
         public char BuildingNumber { get; set; }
         public int NumberOfFloors { get; set; }
-        public List<Floor> Floors { get; set; }
+        public List<FloorTable> FloorTables { get; set; }
         //location
         public int CountryId { get; set; }
         public string Country { get; set; }

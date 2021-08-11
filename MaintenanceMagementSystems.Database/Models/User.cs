@@ -42,29 +42,29 @@ namespace MaintenanceManagementSystem.Database.Models
         public UserRole userRole { get; set; }
 
 
+        #nullable enable
         //user location section
         [ForeignKey("Id")]
         public int? FloorId { get; set; }
 
-        public Floor floor { get; set; }
+        public Floor? floor { get; set; }
 
-        public Building building { get; set; }
+        public Building? building { get; set; }
 
         //JobType section
         [ForeignKey("Id")]
         public int? JobTypeId { get; set; }
 
-        public JobType jobType { get; set; }
+        public JobType? jobType { get; set; }
 
 
         //Maintenance type section
         [ForeignKey("Id")]
         public int? MaintenanceTypeId { get; set; }
 
-        public MaintenanceType maintenanceType { get; set; }
+        public MaintenanceType? maintenanceType { get; set; }
 
 
-        #nullable enable
         //Ticket relations 
         public ICollection<Ticket>? BeneficiaryTickets { get; set; }
         public ICollection<BackOfficesTickets>? BackOfficeTickets { get; set; }
