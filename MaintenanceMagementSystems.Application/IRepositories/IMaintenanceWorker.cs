@@ -17,14 +17,14 @@ namespace MaintenanceManagementSystem.Application.Interfaces
          He receives the maintenance request from the maintenance manager and can 
          only accept it if he is free and not assigned to another request.
          */
-        public List<Ticket> ListTickets(int workerID);
+        public List<Ticket> ListTickets();
 
         public Ticket GetTicket(int requestID);
 
         /*
          Can label the Maintenance request ticket as “Fixing”
          */
-        public bool AcceptingTicket(int TicketId, int WorkerId);
+        public bool AcceptingTicket(int TicketId);
 
         //for view purpose so we can list the status in drop down list
         

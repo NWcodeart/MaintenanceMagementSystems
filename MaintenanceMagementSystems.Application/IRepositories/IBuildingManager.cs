@@ -11,11 +11,11 @@ namespace MaintenanceManagementSystem.Application.Interfaces
     public interface IBuildingManager
     {
 
-        public Building ViewBuilding(int managerID);
+        public Building ViewBuilding();
         public bool EditBuilding(int buildingID, BuildingDto Updatedbuilding);
-        public List<Ticket> ViewTickets(int managerID);
-        public List<Ticket> ViewTicketsStatus(int managerID);
+        public List<Ticket> ViewTickets();
+        public List<Ticket> ViewTicketsStatus();
         //public Ticket GetTicketFor(int requestID);
-        public bool AddComments(int id, string comment); 
+        public bool AddComments(int TicketId, string comment); 
     }
 }

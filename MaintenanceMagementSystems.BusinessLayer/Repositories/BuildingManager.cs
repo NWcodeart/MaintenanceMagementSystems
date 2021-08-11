@@ -15,22 +15,24 @@ namespace MaintenanceManagementSystem.BusinessLayer.Repositories
     public class BuildingManager : IBuildingManager
     {
         private MaintenanceSysContext _maintenanceSysContext;
-
-        public BuildingManager(MaintenanceSysContext maintenanceSysContext)
+        private IBackOfficeEntry _backOfficeEntry ;
+        public BuildingManager(MaintenanceSysContext maintenanceSysContext, IBackOfficeEntry backOfficeEntry)
         {
             _maintenanceSysContext = maintenanceSysContext;
+            _backOfficeEntry = backOfficeEntry;
         }
 
-        public bool AddComments(int id, string comment)
+        public bool AddComments(int TicketId, string comment)
         {
             try
             {
                 using (_maintenanceSysContext)
                 {                    
-                    Ticket ticketObject = _maintenanceSysContext.Tickets.FirstOrDefault(t => t.Id == id);
+                    Ticket ticketObject = _maintenanceSysContext.Tickets.FirstOrDefault(t => t.Id == TicketId);
                     if (ticketObject != null)
                     {
                         ticketObject.BuildingManagerComment = comment;
+                        _maintenanceSysContext.SaveChanges();
                         return true;
                     }
                     else
@@ -55,13 +57,12 @@ namespace MaintenanceManagementSystem.BusinessLayer.Repositories
                 using (_maintenanceSysContext)
                 {
                                                                                                                    //login claims
-                    Building building = _maintenanceSysContext.Buildings.FirstOrDefault(b => b.Id == buildingID //&& b.builbigManager
-                    );
+                    Building building = _maintenanceSysContext.Buildings.FirstOrDefault(b => b.Id == buildingID && b.BuildingManagerId == _backOfficeEntry.GetUserId());
                     if (building != null)
                     {
                         building.floors = (ICollection<Floor>)Updatedbuilding.floors;
                         building.IsOwned = Updatedbuilding.IsOwned;
-                        building.CityId = Updatedbuilding.CityId;
+                        _maintenanceSysContext.SaveChanges();
                         return true;
                     }
                     else
@@ -80,14 +81,14 @@ namespace MaintenanceManagementSystem.BusinessLayer.Repositories
         //--------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
-        public Building ViewBuilding(int managerID)
+        public Building ViewBuilding()
         {
             try
             {
                 using (_maintenanceSysContext)
                 {
 
-                    Building building = _maintenanceSysContext.Buildings.FirstOrDefault(b => b.BuildingManagerId == managerID);
+                    Building building = _maintenanceSysContext.Buildings.FirstOrDefault(b => b.BuildingManagerId == _backOfficeEntry.GetUserId());
                     if (building != null)
                     {
                         return building;
@@ -106,14 +107,14 @@ namespace MaintenanceManagementSystem.BusinessLayer.Repositories
 
         //--------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-        public List<Ticket> ViewTickets(int managerID)
+        public List<Ticket> ViewTickets()
         {
             try
             {
                 using (_maintenanceSysContext)
                 {
                     List<Ticket> tickets = null;
-                    List<int> ticketsId = _maintenanceSysContext.Tickets.SelectMany(t => t.backOfficesTickets).Where(u => u.BackOfficeId == managerID).Select(t => t.TicketId).ToList();
+                    List<int> ticketsId = _maintenanceSysContext.Tickets.SelectMany(t => t.backOfficesTickets).Where(u => u.BackOfficeId == _backOfficeEntry.GetUserId()).Select(t => t.TicketId).ToList();
                   
                      foreach( var i in ticketsId)
                     {
@@ -140,14 +141,14 @@ namespace MaintenanceManagementSystem.BusinessLayer.Repositories
         //--------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
-        public List<Ticket> ViewTicketsStatus(int managerID)
+        public List<Ticket> ViewTicketsStatus()
         {
             try
             {
                 using (_maintenanceSysContext)
                 {
                     List<Status> ticketsStatus = null;
-                    List<int> ticketsId = _maintenanceSysContext.Tickets.SelectMany(t => t.backOfficesTickets).Where(u => u.BackOfficeId == managerID).Select(t => t.TicketId).ToList();
+                    List<int> ticketsId = _maintenanceSysContext.Tickets.SelectMany(t => t.backOfficesTickets).Where(u => u.BackOfficeId == _backOfficeEntry.GetUserId()).Select(t => t.TicketId).ToList();
 
                     foreach (var i in ticketsId)
                     {

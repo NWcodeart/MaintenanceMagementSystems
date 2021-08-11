@@ -3,10 +3,7 @@
 @section Scripts2{
     <script src="~/js/viewTicketsbundle.min.js"></script>
     <body>
-        <label>Manager ID:</label>
-        <input type="number" id="managerId" name="managerId" placeholder="Id" />
-
-
+ 
         <button type="button" id="btnView" name="btnView" data-name="ViewButton" onclick="ViewBuilding()"> View Tickets </button>
 
         <label id="BuildingId" name="BuildingId">  </label>
@@ -18,9 +15,8 @@
     <script>
         function ViewBuilding() {
         debugger
-        var id = $('#managerId').val();
         $.ajax({
-            url: '@Url.Action("GetBuilding", "BuildingManager")' + "?managerID=" + id,
+            url: '@Url.Action("GetBuilding", "BuildingManager")',
             type: 'GET',
             success: OnSuccess
         });

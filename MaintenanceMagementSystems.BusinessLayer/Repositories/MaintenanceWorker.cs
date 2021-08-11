@@ -13,10 +13,12 @@ namespace MaintenanceManagementSystem.BusinessLayer.Repositories
     public class MaintenanceWorker : IMaintenanceWorker
     {
         private MaintenanceSysContext _maintenanceSysContext;
+        private IBackOfficeEntry _backOfficeEntry;
 
-        public MaintenanceWorker(MaintenanceSysContext maintenanceSysContext)
+        public MaintenanceWorker(MaintenanceSysContext maintenanceSysContext, IBackOfficeEntry backOfficeEntry)
         {
             _maintenanceSysContext = maintenanceSysContext;
+            _backOfficeEntry = backOfficeEntry;
         }
         public Ticket GetTicket(int TicketId)
         {
@@ -41,13 +43,13 @@ namespace MaintenanceManagementSystem.BusinessLayer.Repositories
             }
         }
 
-        public List<Ticket> ListTickets(int workerID)
+        public List<Ticket> ListTickets()
         {
             try
             {
                 using (_maintenanceSysContext)
                 {
-                    List<Ticket> tickets = _maintenanceSysContext.Tickets.SelectMany(t => t.backOfficesTickets).Where(u => u.BackOfficeId == workerID).Select(t => t.ticket).ToList();
+                    List<Ticket> tickets = _maintenanceSysContext.Tickets.SelectMany(t => t.backOfficesTickets).Where(u => u.BackOfficeId == _backOfficeEntry.GetUserId()).Select(t => t.ticket).ToList();
                     if (tickets != null)
                     {
                         return tickets;
@@ -64,13 +66,14 @@ namespace MaintenanceManagementSystem.BusinessLayer.Repositories
             }
         }
 
-        public bool AcceptingTicket(int TicketId, int WorkerId)
+        public bool AcceptingTicket(int TicketId)
         {
             try
             {
                 using (_maintenanceSysContext)
                 {
-                    bool isAvaliable = ListTickets(WorkerId).Exists(t => !( t.StatusID == 4));
+
+                    bool isAvaliable = ListTickets().Exists(t => !( t.StatusID == 4));
                     if (isAvaliable == true)
                     {
                         var ticket = GetTicket(TicketId);
