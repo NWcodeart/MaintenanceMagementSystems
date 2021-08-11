@@ -162,10 +162,8 @@ namespace MaintenanceManagementSystem.BusinessLayer.Repositories
         {
             try
             {
-                var userRoles = _maintenanceSysContext.UserRoles.ToList();
-                var userRole= userRoles.FirstOrDefault(r => r.Id == userRoleID);
-                var stringRole = userRole.Role;
-                return stringRole;
+                var userRole = _maintenanceSysContext.UserRoles.FirstOrDefault(r => r.Id == userRoleID).Role;
+                return userRole;
             }
             catch (Exception)
             {

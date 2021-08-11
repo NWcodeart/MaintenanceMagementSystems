@@ -1,5 +1,6 @@
 ﻿using MaintenanceManagementSystem.Application.Interfaces;
 using MaintenanceManagementSystem.Database.Models;
+using MaintenanceManagementSystem.Entity.ModelsDto;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -23,7 +24,7 @@ namespace MaintenanceManagementSystem.API.Controllers
             _SystemAdminRepo = systemAdminRepo;
             _maintenanceSysContext = maintenanceSysContext;
         }
-
+        [HttpPost]
         public IActionResult AddBulding(Building building)
         {
             var AllBuilding = _maintenanceSysContext.Buildings;
@@ -55,6 +56,18 @@ namespace MaintenanceManagementSystem.API.Controllers
                 return BadRequest("Error Exception");
             }
             
+        }
+        [HttpGet]
+        public List<BuildingsTable> GetBuildingTables()
+        {
+            var BuildingsTable = new BuildingsTable();
+            using (_maintenanceSysContext)
+            {
+                BuildingsTable = _maintenanceSysContext.Buildings.Select(new BuildingsTable
+                {
+
+                })
+            }
         }
     }
 }

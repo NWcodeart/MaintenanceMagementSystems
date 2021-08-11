@@ -16,10 +16,28 @@ namespace MaintenanceManagementSystem.Application.Interfaces
         public User AuthenticateUser(Login Login);
 
         /*
-         Employees must be asked to change their password to a complex password on the 
+         in the forget password the employee is asked to enter his email address
+         */
+        public bool ForgotPassword(string email);
+
+        /*
+         and then a request will be sent to that email containing a temporary that the employee 
+         can use to change his password
+         + Employees must be asked to change their password to a complex password on the 
          1st login to the back-office portal
          */
-        public bool ChangePassword(ChangePassword passwords);
+        public bool ChangePassword(string userEmail, ChangePassword changePassword);
+
+        /*
+         Remember me option, just setting that option
+         */
+        public bool SetAsRememberMe(int userID);
+
+        public int GetUserId(); //from claims
+
+        public string GetUserRole();
+
+        public string GetUserRoleFromDB(int userRoleID); //To be used to get role claim
 
     }
 }

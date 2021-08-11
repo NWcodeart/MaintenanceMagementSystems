@@ -9,11 +9,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MaintenanceManagementSystem
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MaintenanceManagementSystem.MVC", "MaintenanceMagementSystems.MVC\MaintenanceManagementSystem.MVC.csproj", "{B632D852-5F7B-4675-B29C-BE66B4FB304D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaintenanceManagementSystem.Entity", "MaintenanceMagementSystems.Entity\MaintenanceManagementSystem.Entity.csproj", "{61BC2731-4BBA-4B01-A287-44B7AE400990}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MaintenanceManagementSystem.Entity", "MaintenanceMagementSystems.Entity\MaintenanceManagementSystem.Entity.csproj", "{61BC2731-4BBA-4B01-A287-44B7AE400990}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaintenanceManagementSystem.BusinessLayer", "MaintenanceMagementSystems.BusinessLayer\MaintenanceManagementSystem.BusinessLayer.csproj", "{D002DC5B-E1EB-43E9-8DCD-98DBA52F7B5C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MaintenanceManagementSystem.BusinessLayer", "MaintenanceMagementSystems.BusinessLayer\MaintenanceManagementSystem.BusinessLayer.csproj", "{D002DC5B-E1EB-43E9-8DCD-98DBA52F7B5C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaintenanceManagementSystem.Application", "MaintenanceMagementSystems.Application\MaintenanceManagementSystem.Application.csproj", "{7F2EF226-7E16-4A81-BCA8-5A8BD3488E33}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MaintenanceManagementSystem.Application", "MaintenanceMagementSystems.Application\MaintenanceManagementSystem.Application.csproj", "{7F2EF226-7E16-4A81-BCA8-5A8BD3488E33}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaintenanceManagementSystem.BackOffice", "BackOffice\MaintenanceManagementSystem.BackOffice.csproj", "{DFC948A1-1FCF-4B78-8BB3-A5C83E36AD42}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{7F2EF226-7E16-4A81-BCA8-5A8BD3488E33}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7F2EF226-7E16-4A81-BCA8-5A8BD3488E33}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7F2EF226-7E16-4A81-BCA8-5A8BD3488E33}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DFC948A1-1FCF-4B78-8BB3-A5C83E36AD42}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DFC948A1-1FCF-4B78-8BB3-A5C83E36AD42}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DFC948A1-1FCF-4B78-8BB3-A5C83E36AD42}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DFC948A1-1FCF-4B78-8BB3-A5C83E36AD42}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
