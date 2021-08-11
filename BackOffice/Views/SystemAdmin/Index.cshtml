@@ -1,0 +1,19 @@
+﻿@model List<MaintenanceManagementSystem.Entity.ModelsDto.BuildingsTable>
+
+@{ 
+}
+
+<table>
+    <tr>
+        <th>Bulding Number/Code</th>
+        <th>Country</th>
+    </tr>
+    @foreach (var Building in Model)
+    {
+        <tr>
+            <td>@Building.BuildingNumber</td>
+            <td>@Building.Country</td>
+        </tr>
+    }
+
+</table>

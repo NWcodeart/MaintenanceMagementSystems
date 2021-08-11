@@ -32,7 +32,7 @@ namespace MaintenanceManagementSystem.Database.Models
 
         public bool IsRememberMe { get; set; } = false;
 
-        //public bool IsFirstLogin { get; set; } = true;
+        public bool IsFirstLogin { get; set; } = true;
 
         //UserRole section
         [ForeignKey("Id")]
