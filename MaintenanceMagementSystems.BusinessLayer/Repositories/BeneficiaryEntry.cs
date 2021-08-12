@@ -3,6 +3,7 @@ using MaintenanceManagementSystem.Database.Lookup;
 using MaintenanceManagementSystem.Database.Models;
 using MaintenanceManagementSystem.Entity.ModelsDto;
 using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -139,10 +140,11 @@ namespace MaintenanceManagementSystem.BusinessLayer.Repositories
                 {
                     var newUser = new User()
                     {
-                        UserRoleId = 1,
+                        UserRoleId = 5,
                         Name = user.Name,
                         Email = user.Email,
                         Phone = user.Phone,
+                        buildingId = user.BuildingNumber,
                         FloorId = user.FloorNumber
                     };
 
@@ -162,7 +164,7 @@ namespace MaintenanceManagementSystem.BusinessLayer.Repositories
         {
             try
             {
-                var userRole = _maintenanceSysContext.UserRoles.FirstOrDefault(r => r.Id == userRoleID).Role;
+                var userRole = _maintenanceSysContext.UserRoles.FirstOrDefault(r => r.Id == userRoleID).RoleType;
                 return userRole;
             }
             catch (Exception)

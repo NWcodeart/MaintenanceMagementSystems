@@ -16,6 +16,7 @@ using System.Threading.Tasks;
 
 namespace MaintenanceManagementSystem.API.Controllers
 {
+    [Authorize(Roles = "Beneficiary,SystemAdmin,BuildingManager,MaintenanceManager,MaintenanceWorker")]
     [Route("api/[controller]")]
     [ApiController]
     public class BeneficiaryEntryController : ControllerBase
@@ -75,8 +76,7 @@ namespace MaintenanceManagementSystem.API.Controllers
                 new Claim(JwtRegisteredClaimNames.Email, User.Email),
                 new Claim(ClaimTypes.Role, roleString),
                 new Claim(ClaimTypes.Sid, User.Id.ToString()),
-                new Claim("FloorID", User.FloorId.ToString()),
-                new Claim("JobTypeID", User.JobTypeId.ToString())
+                new Claim("FloorID", User.FloorId.ToString())
             };
 
             var token = new JwtSecurityToken(_config["Jwt:Issuer"],
@@ -115,7 +115,7 @@ namespace MaintenanceManagementSystem.API.Controllers
         [Route("ListBuildings")]
         public IActionResult ListBuildings()
         {
-            if (_beneficiaryEntryRepo.ListBuildings().Count == 0)
+            if (_beneficiaryEntryRepo.ListBuildings().ToList().Count() == 0)
             {
                 return NotFound("There are no buildings");
             }
@@ -127,7 +127,7 @@ namespace MaintenanceManagementSystem.API.Controllers
         [Route("ListFloors")]
         public IActionResult ListFloors()
         {
-            if (_beneficiaryEntryRepo.ListFloors().Count == 0)
+            if (_beneficiaryEntryRepo.ListFloors().ToList().Count() == 0)
             {
                 return NotFound("There are no floors");
             }
