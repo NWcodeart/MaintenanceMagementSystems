@@ -115,7 +115,7 @@ namespace MaintenanceManagementSystem.API.Controllers
         [Route("ListBuildings")]
         public IActionResult ListBuildings()
         {
-            if (_beneficiaryEntryRepo.ListBuildings().Count == 0)
+            if (_beneficiaryEntryRepo.ListBuildings().ToList().Count() == 0)
             {
                 return NotFound("There are no buildings");
             }
@@ -127,7 +127,7 @@ namespace MaintenanceManagementSystem.API.Controllers
         [Route("ListFloors")]
         public IActionResult ListFloors()
         {
-            if (_beneficiaryEntryRepo.ListFloors().Count == 0)
+            if (_beneficiaryEntryRepo.ListFloors().ToList().Count() == 0)
             {
                 return NotFound("There are no floors");
             }

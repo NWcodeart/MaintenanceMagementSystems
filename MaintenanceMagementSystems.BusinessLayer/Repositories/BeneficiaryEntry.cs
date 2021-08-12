@@ -3,6 +3,7 @@ using MaintenanceManagementSystem.Database.Lookup;
 using MaintenanceManagementSystem.Database.Models;
 using MaintenanceManagementSystem.Entity.ModelsDto;
 using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -143,6 +144,7 @@ namespace MaintenanceManagementSystem.BusinessLayer.Repositories
                         Name = user.Name,
                         Email = user.Email,
                         Phone = user.Phone,
+                        buildingId = user.BuildingNumber,
                         FloorId = user.FloorNumber
                     };
 
