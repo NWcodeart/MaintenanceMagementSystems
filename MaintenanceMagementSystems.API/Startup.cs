@@ -43,6 +43,10 @@ namespace MaintenanceMagementSystems.API
             services.AddScoped<IBeneficiary, Beneficiary>();
             services.AddScoped<IBeneficiaryEntry, BeneficiaryEntry>();
             services.AddScoped<IBuildingManager, BuildingManager>();
+            services.AddScoped<IMaintenanceManager, MaintenanceManager>();
+            services.AddScoped<IMaintenanceWorker, MaintenanceWorker>();
+            services.AddScoped<IBackOfficeEntry, BackOfficeEntry>();
+
             services.AddHttpContextAccessor();
 
             services.AddDbContext<MaintenanceSysContext>(options =>

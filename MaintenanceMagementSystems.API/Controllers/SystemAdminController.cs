@@ -85,5 +85,13 @@ namespace MaintenanceManagementSystem.API.Controllers
             }
             return BuildingsTable;
         }
-    }
+
+        [HttpPost]
+        public IActionResult AddEmployee(User user)
+        {
+            _SystemAdminRepo.RegisterNewEmployee(user);
+            return Ok();
+        }
+
+        }
 }
