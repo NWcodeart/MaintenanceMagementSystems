@@ -23,10 +23,10 @@ namespace MaintenanceManagementSystem.Application.Interfaces
         /*
          and then a request will be sent to that email containing a temporary that the employee 
          can use to change his password
-         + Employees must be asked to change their password to a complex password on the 
-         1st login to the back-office portal
-         */
-        public bool ChangePassword(string userEmail, ChangePassword changePassword);
+        + Employees must be asked to change their password to a complex password on the 
+        1st login to the back-office portal
+        */
+        public bool ChangePassword(ChangePassword changePassword);
 
         /*
          Remember me option, just setting that option
@@ -38,6 +38,8 @@ namespace MaintenanceManagementSystem.Application.Interfaces
         public string GetUserRole();
 
         public string GetUserRoleFromDB(int userRoleID); //To be used to get role claim
+
+        public string GetUserEmail();
 
     }
 }

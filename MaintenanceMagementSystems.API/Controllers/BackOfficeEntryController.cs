@@ -16,6 +16,7 @@ using System.Threading.Tasks;
 
 namespace MaintenanceManagementSystem.API.Controllers
 {
+    [Authorize(Roles = "SystemAdmin,BuildingManager,MaintenanceManager,MaintenanceWorker")]
     [Route("api/[controller]")]
     [ApiController]
     public class BackOfficeEntryController : ControllerBase
@@ -56,11 +57,11 @@ namespace MaintenanceManagementSystem.API.Controllers
 
             var claims = new List<Claim>
             {
-                new Claim(JwtRegisteredClaimNames.Email, User.Email),
+                new Claim(ClaimTypes.Email, User.Email),
                 new Claim(ClaimTypes.Role, roleString),
                 new Claim(ClaimTypes.Sid, User.Id.ToString()),
-                new Claim("FloorID", User.FloorId.ToString()),
-                new Claim("JobTypeID", User.JobTypeId.ToString())
+                new Claim("BuildingID", User.buildingId.ToString()),
+                new Claim("FloorID", User.FloorId.ToString())
             };
 
             var token = new JwtSecurityToken(_config["Jwt:Issuer"],
@@ -95,13 +96,17 @@ namespace MaintenanceManagementSystem.API.Controllers
             }
         }
 
-        /*[Authorize(Roles = "Back Office")]
         [HttpPost]
         [Route("ChangePassword")]
-        public IActionResult ChangePassword()
+        public IActionResult ChangePassword(ChangePassword changePassword)
         {
-
-        }*/
+            if (!(_backOfficeEntry.ChangePassword(changePassword)))
+            {
+                return BadRequest("Unmatched passwords, you can log out and choose 'forgot password' option instead");
+            }
+           
+            return Ok();
+        }
 
         [Authorize(Roles = "Back Office")]
         [HttpPost]

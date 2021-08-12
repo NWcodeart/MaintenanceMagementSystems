@@ -54,12 +54,6 @@ namespace MaintenanceManagementSystem.Database.Models
 
         public Building? building { get; set; }
 
-        //JobType section
-        [ForeignKey("Id")]
-        public int? JobTypeId { get; set; }
-
-        public JobType? jobType { get; set; }
-
 
         //Maintenance type section
         [ForeignKey("Id")]

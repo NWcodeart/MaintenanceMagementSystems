@@ -148,18 +148,17 @@ namespace MaintenanceManagementSystem.BusinessLayer.Repositories
                 {
                     var newUser = new User()
                     {
-                        UserRoleId = 2, //2 means BackOffic
+                        UserRoleId = newEmployee.UserRoleId, 
                         Name = newEmployee.Name,
                         Email = newEmployee.Email,
                         Phone = newEmployee.Phone,
-                        JobTypeId = newEmployee.JobTypeId, // 1 = Building manager, 2 = Maintenance Manager, 3 = Maintenance worker
                         FloorId = newEmployee.FloorId,
                         IsForgetPassword = true //true if user click on foreget pass or when admin who add the user
                     };
 
                     newUser.Password = BCrypt.Net.BCrypt.HashPassword(newEmployee.Password);
 
-                    if(newUser.JobTypeId == 3)
+                    if(newUser.UserRoleId == 3)
                     {
                         newUser.maintenanceType = newEmployee.maintenanceType;
                     }

@@ -140,7 +140,7 @@ namespace MaintenanceManagementSystem.BusinessLayer.Repositories
                 {
                     var newUser = new User()
                     {
-                        UserRoleId = 1,
+                        UserRoleId = 5,
                         Name = user.Name,
                         Email = user.Email,
                         Phone = user.Phone,
@@ -164,7 +164,7 @@ namespace MaintenanceManagementSystem.BusinessLayer.Repositories
         {
             try
             {
-                var userRole = _maintenanceSysContext.UserRoles.FirstOrDefault(r => r.Id == userRoleID).Role;
+                var userRole = _maintenanceSysContext.UserRoles.FirstOrDefault(r => r.Id == userRoleID).RoleType;
                 return userRole;
             }
             catch (Exception)

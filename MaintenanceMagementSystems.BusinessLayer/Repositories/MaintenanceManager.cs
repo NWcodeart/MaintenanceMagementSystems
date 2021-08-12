@@ -29,7 +29,7 @@ namespace MaintenanceManagementSystem.BusinessLayer.Repositories
                 using (_maintenanceSysContext)
                 {
                     Ticket ticket = _maintenanceSysContext.Tickets.FirstOrDefault(t => t.Id == TicketId);
-                    List <User> workers = _maintenanceSysContext.Users.Where(u => u.JobTypeId == 3 && u.MaintenanceTypeId == ticket.MaintenanceTypeID).ToList(); //3 => worker
+                    List <User> workers = _maintenanceSysContext.Users.Where(u => u.UserRoleId == 4 && u.MaintenanceTypeId == ticket.MaintenanceTypeID).ToList(); //4 => worker
                     if (workers != null)
                     {
                         return workers;
