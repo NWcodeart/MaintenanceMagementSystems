@@ -9,8 +9,8 @@ using System.Threading.Tasks;
 
 namespace MaintenanceManagementSystem.API.Controllers
 {
+    [Route("api/[controller]")]
     [ApiController]
-    //[Route("api/BuildingManager")]
     public class BuildingManagerAPIController : ControllerBase
     {
         private readonly IBuildingManager _buildingManager;
@@ -21,7 +21,8 @@ namespace MaintenanceManagementSystem.API.Controllers
 
 
         [HttpPost]
-        [Route("AddComments/{id}/{comment}")]
+        [Route("[action]")]
+        [ActionName("AddComments/{id}/{comment}")]
         public IActionResult AddComments(int id, string comment)
         {
             _buildingManager.AddComments(id, comment);
@@ -43,7 +44,8 @@ namespace MaintenanceManagementSystem.API.Controllers
 
 
         [HttpGet]
-        [Route("ViewBuilding/{id}")]
+        [Route("[action]")]
+        [ActionName("ViewBuilding")]
         public IActionResult ViewBuilding()
         {
             var building = _buildingManager.ViewBuilding();
