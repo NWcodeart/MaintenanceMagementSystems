@@ -48,7 +48,7 @@ namespace MaintenanceManagementSystem.BusinessLayer.Repositories
         //-------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
-        public List<Ticket> ListOfTickets()
+        public List<Ticket> ListNewTickets()
         {
             try
             {
