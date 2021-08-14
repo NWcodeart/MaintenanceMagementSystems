@@ -16,7 +16,6 @@ using System.Threading.Tasks;
 
 namespace MaintenanceManagementSystem.API.Controllers
 {
-    [Authorize(Roles = "Beneficiary,SystemAdmin,BuildingManager,MaintenanceManager,MaintenanceWorker")]
     [Route("api/[controller]")]
     [ApiController]
     public class BeneficiaryEntryController : ControllerBase
@@ -96,7 +95,7 @@ namespace MaintenanceManagementSystem.API.Controllers
             return Ok(_beneficiaryEntryRepo.GetUserRole());
         }
 
-        [Authorize(Roles = "Beneficiary")]
+        [AllowAnonymous]
         [HttpPost]
         [Route("ChangePassword")]
         public IActionResult ChangePassword([FromBody] string Email)
@@ -111,6 +110,7 @@ namespace MaintenanceManagementSystem.API.Controllers
             }
         }
 
+        [AllowAnonymous]
         [HttpGet]
         [Route("ListBuildings")]
         public IActionResult ListBuildings()
@@ -124,6 +124,7 @@ namespace MaintenanceManagementSystem.API.Controllers
             return Ok(buildings);
         }
 
+        [AllowAnonymous]
         [HttpGet]
         [Route("ListFloors")]
         public IActionResult ListFloors(int buildingID)
