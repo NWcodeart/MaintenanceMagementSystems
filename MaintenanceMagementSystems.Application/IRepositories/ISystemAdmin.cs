@@ -1,5 +1,6 @@
 ﻿using MaintenanceManagementSystem.Database.Lookup;
 using MaintenanceManagementSystem.Database.Models;
+using MaintenanceManagementSystem.Entity.ModelsDto;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,18 +25,22 @@ namespace MaintenanceManagementSystem.Application.Interfaces
         /*
          System admin can reset user’s passwords.
          */
-        public void ResetUserPassword(int UserId, string NewPasssword); 
+        public void ResetUserPassword(int UserId, string NewPasssword);
 
-        /*
-         System admin must set up the all the lookup data fields, these data fields are : 
-         ( Company Buildings, Maintenance Classification, calcellation reason) 
-        */
-        public void AddBuilding(Building buildingAdded);
-        public void AddMaintenanceType(string TypeAr, string TypeEn);
+
+        //MaintenanceType
+        public void AddMaintenanceType(MaintenanceType maintenanceType);
+        public void DeleteMaintenanceType(int id);
+
+        //CancellationReason
         public void AddCancellationReason(CancellationReason cancellationReasonAdded);
+        public void DeleteCancellationReason(int id);
 
-        //system admin can update building 
+        //building 
         public void UpdateBuilding(Building UpdatedBuilding);
+        public List<BuildingsTable> GetBuildings();
+        public void DeleteBuilding(int id);
+        public void AddBuilding(Building buildingAdded);
 
     }
 }

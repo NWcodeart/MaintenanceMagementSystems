@@ -1,6 +1,7 @@
 ﻿using MaintenanceManagementSystem.Application.Interfaces;
 using MaintenanceManagementSystem.Database.Lookup;
 using MaintenanceManagementSystem.Database.Models;
+using MaintenanceManagementSystem.Entity.ModelsDto;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -210,6 +211,44 @@ namespace MaintenanceManagementSystem.BusinessLayer.Repositories
             catch (Exception)
             {
                 throw;
+            }
+        }
+        public List<BuildingsTable> GetBuildings()
+        {
+            var BuildingsTable = new List<BuildingsTable>();
+            using (_maintenanceSysContext)
+            {
+                BuildingsTable = _maintenanceSysContext.Buildings.Select(b => new BuildingsTable
+                {
+                    BuildingId = b.Id,
+                    BuildingNumber = b.Number,
+                    FloorTables = b.floors.Select(f => new FloorTable
+                    {
+                        FloorId = f.Id,
+                        FloorNumber = f.Number
+                    }).ToList(),
+                    CountryId = b.city.CountryId,
+                    Country = b.city.country.CountryNameAr,
+                    CityId = b.CityId,
+                    City = b.city.CityNameAr,
+                    Street = b.Street,
+                    BuildingManagerId = b.BuildingManagerId,
+                    BuildingManagerName = b.UserbuildingManager.Name,
+                    BuildingManagerEmail = b.UserbuildingManager.Email,
+                    IsOwned = b.IsOwned
+                }).ToList();
+            }
+            return BuildingsTable;
+
+        }
+
+        public void DeleteBuilding(int id)
+        {
+            Building buildingToDelete = _maintenanceSysContext.Buildings.FirstOrDefault(b => b.Id == id);
+
+            if(buildingToDelete != null)
+            {
+                _maintenanceSysContext.Remove(buildingToDelete);
             }
         }
     }

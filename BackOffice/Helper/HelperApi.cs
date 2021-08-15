@@ -11,7 +11,7 @@ namespace MaintenanceManagementSystem.BackOffice.Helper
         public HttpClient Initial()
         {
             var client = new HttpClient();
-            client.BaseAddress = new Uri("http://localhost:16982");
+            client.BaseAddress = new Uri("https://localhost:44307/");
             return client;
         }
     }

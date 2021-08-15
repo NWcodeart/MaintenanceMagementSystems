@@ -13,23 +13,26 @@ namespace MaintenanceManagementSystem.BusinessLayer.Repositories
     public class Beneficiary : IBeneficiary
     {
         private MaintenanceSysContext _maintenanceSysContext;
+        private IBeneficiaryEntry _beneficiaryEntryRepo;
 
-        public Beneficiary(MaintenanceSysContext maintenanceSysContext)
+        public Beneficiary(MaintenanceSysContext maintenanceSysContext, IBeneficiaryEntry beneficiaryEntryRepo)
         {
             _maintenanceSysContext = maintenanceSysContext;
+            _beneficiaryEntryRepo = beneficiaryEntryRepo;
         }
 
-        public bool CancelTicket(int beneficiaryID, int requestID)
+        public bool CancelTicket(int requestID, int cancelationReasonID)
         {
             try
             {
                 using (_maintenanceSysContext)
                 {
-                    var request = GetTicket(beneficiaryID, requestID);
-                    var canceledStatus = _maintenanceSysContext.Statuses.FirstOrDefault(s => s.Id == 7);
+                    var request = _maintenanceSysContext.Tickets.FirstOrDefault(t => t.BeneficiaryID == _beneficiaryEntryRepo.GetUserId() && t.Id == requestID && t.StatusID == 1); //He can cancel the maintenance request before it reaches the maintenance manager
                     if (request != null)
                     {
-                        request.status = canceledStatus;
+                        request.StatusID = 7;
+                        request.CancellationReasonID = cancelationReasonID;
+                        _maintenanceSysContext.SaveChanges();
                         return true;
                     }
 
@@ -43,17 +46,17 @@ namespace MaintenanceManagementSystem.BusinessLayer.Repositories
             }
         }
 
-        public bool ConfirmTicket(int beneficiaryID, int requestID) //to be reviwed
+        public bool ConfirmTicket(int requestID)
         {
             try
             {
                 using (_maintenanceSysContext)
                 {
-                    var request = GetTicket(beneficiaryID, requestID);
-                    var completedStatus = _maintenanceSysContext.Statuses.FirstOrDefault(s => s.Id == 5);
+                    var request = _maintenanceSysContext.Tickets.FirstOrDefault(t => t.BeneficiaryID == _beneficiaryEntryRepo.GetUserId() && t.Id == requestID && t.StatusID == 4); //Only the beneficiary can confirm that the maintenance has been completed
                     if (request != null)
                     {
-                        request.status = completedStatus;
+                        request.StatusID = 5;
+                        _maintenanceSysContext.SaveChanges();
                         return true;
                     }
 
@@ -66,41 +69,58 @@ namespace MaintenanceManagementSystem.BusinessLayer.Repositories
             }
         }
 
-        public Ticket GetTicket(int beneficiaryID, int requestID)
+        public Ticket GetTicket(int requestID)
         {
             try
             {
                 using (_maintenanceSysContext)
                 {
-                    var request = _maintenanceSysContext.Tickets.FirstOrDefault(t => t.BeneficiaryID == beneficiaryID && t.Id == requestID);
-                    return request;
-                }
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-        }
-
-        public void SubmitTicket(int beneficiaryID, TicketRequest ticket)
-        {
-            try
-            {
-                using (_maintenanceSysContext)
-                {
-                    var newTicket = new Ticket()
+                    var request = _maintenanceSysContext.Tickets.FirstOrDefault(t => t.BeneficiaryID == _beneficiaryEntryRepo.GetUserId() && t.Id == requestID);
+                    if(request != null)
                     {
-                        BeneficiaryID = beneficiaryID,
-                        StatusID = 1,
-                        ApprovalState = 0,
-                        Description = ticket.Description,
-                        FloorId = ticket.FloorId,
-                        MaintenanceTypeID = ticket.MaintenanceTypeID,
-                        Date = ticket.Date,
-                        Picture = ticket.Picture
-                    };
-                    _maintenanceSysContext.Add(newTicket);
-                    _maintenanceSysContext.SaveChanges();
+                        return request;
+                    }
+                    else
+                    {
+                        return null;
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public bool SubmitTicket(TicketRequest ticket)
+        {
+            try
+            {
+                using (_maintenanceSysContext)
+                {
+                    var tickets = _maintenanceSysContext.Tickets.Where(t => t.BeneficiaryID == _beneficiaryEntryRepo.GetUserId()).ToList();
+                    var isThereActiveTicket = tickets.Exists(t => t.StatusID < 5);
+                    if (!isThereActiveTicket)
+                    {
+                        var newTicket = new Ticket()
+                        {
+                            BeneficiaryID = _beneficiaryEntryRepo.GetUserId(),
+                            StatusID = 1,
+                            ApprovalState = 0,
+                            Description = ticket.Description,
+                            FloorId = ticket.FloorId,
+                            MaintenanceTypeID = ticket.MaintenanceTypeID,
+                            Date = ticket.Date,
+                            Picture = ticket.Picture
+                        };
+                        _maintenanceSysContext.Add(newTicket);
+                        _maintenanceSysContext.SaveChanges();
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
                 }
             }
             catch (Exception)
@@ -110,14 +130,21 @@ namespace MaintenanceManagementSystem.BusinessLayer.Repositories
 
         }
 
-        public List<Ticket> ListAllTickets(int beneficiaryID)
+        public List<Ticket> ListAllTickets()
         {
-            throw new NotImplementedException();
+            try
+            {
+                using (_maintenanceSysContext)
+                {
+                    var tickets = _maintenanceSysContext.Tickets.Where(t => t.BeneficiaryID == _beneficiaryEntryRepo.GetUserId()).ToList();
+                    return tickets;
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
-        public List<Ticket> ListTicketsHistory(int beneficiaryID)
-        {
-            throw new NotImplementedException();
-        }
     }
 }
