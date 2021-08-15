@@ -1,4 +1,5 @@
-﻿using MaintenanceManagementSystem.Application.Interfaces;
+﻿using MaintenanceMagementSystems.API.Filters;
+using MaintenanceManagementSystem.Application.Interfaces;
 using MaintenanceManagementSystem.Database.Models;
 using MaintenanceManagementSystem.Entity.ModelsDto;
 using Microsoft.AspNetCore.Authorization;
@@ -16,6 +17,9 @@ using System.Threading.Tasks;
 
 namespace MaintenanceManagementSystem.API.Controllers
 {
+    [ServiceFilter(typeof(AuthorizeFilter))]
+    [ServiceFilter(typeof(ActionFilter))]
+    [ServiceFilter(typeof(ExceptionFilter))]
     [Authorize(Roles = "SystemAdmin,BuildingManager,MaintenanceManager,MaintenanceWorker")]
     [Route("api/[controller]")]
     [ApiController]
