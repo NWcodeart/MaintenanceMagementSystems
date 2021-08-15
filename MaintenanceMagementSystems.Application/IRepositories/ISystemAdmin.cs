@@ -29,12 +29,14 @@ namespace MaintenanceManagementSystem.Application.Interfaces
 
 
         //MaintenanceType
-        public void AddMaintenanceType(MaintenanceType maintenanceType);
+        public void AddMaintenanceType(string TypeAr, string TypeEn);
         public void DeleteMaintenanceType(int id);
+        public List<MaintenanceType> GetAllMaintenanceType();
 
         //CancellationReason
         public void AddCancellationReason(CancellationReason cancellationReasonAdded);
         public void DeleteCancellationReason(int id);
+        public List<CancellationReason> GetCancellationReason();
 
         //building 
         public void UpdateBuilding(Building UpdatedBuilding);

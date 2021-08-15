@@ -1,4 +1,5 @@
-﻿using MaintenanceManagementSystem.Application.Interfaces;
+﻿using MaintenanceMagementSystems.API.Filters;
+using MaintenanceManagementSystem.Application.Interfaces;
 using MaintenanceManagementSystem.Entity.ModelsDto;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -9,6 +10,9 @@ using System.Threading.Tasks;
 
 namespace MaintenanceManagementSystem.API.Controllers
 {
+    [ServiceFilter(typeof(AuthorizeFilter))]
+    [ServiceFilter(typeof(ActionFilter))]
+    [ServiceFilter(typeof(ExceptionFilter))]
     [Route("api/[controller]")]
     [ApiController]
     public class BuildingManagerAPIController : ControllerBase

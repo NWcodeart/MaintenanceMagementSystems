@@ -1,4 +1,5 @@
-﻿using MaintenanceManagementSystem.Application.Interfaces;
+﻿using MaintenanceMagementSystems.API.Filters;
+using MaintenanceManagementSystem.Application.Interfaces;
 using MaintenanceManagementSystem.Database.Lookup;
 using MaintenanceManagementSystem.Database.Models;
 using MaintenanceManagementSystem.Entity.ModelsDto;
@@ -12,6 +13,9 @@ using System.Threading.Tasks;
 
 namespace MaintenanceManagementSystem.API.Controllers
 {
+    [ServiceFilter(typeof(AuthorizeFilter))]
+    [ServiceFilter(typeof(ActionFilter))]
+    [ServiceFilter(typeof(ExceptionFilter))]
     [Authorize(Roles = "Admin")]
     [Route("api/SystemAdmin")]
     [ApiController]
@@ -107,7 +111,7 @@ namespace MaintenanceManagementSystem.API.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    if (BuildingUpdated.Id == null || !(AllBuilding.Any(x => x.Id == BuildingUpdated.Id)))
+                    if (BuildingUpdated.Id == 0 || !(AllBuilding.Any(x => x.Id == BuildingUpdated.Id)))
                     {
                         return BadRequest("Building undefiend");
                     }
@@ -142,14 +146,140 @@ namespace MaintenanceManagementSystem.API.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    if (maintenanceType.Id == null || !(AllType.Any(x => x.Id == maintenanceType.Id)))
+                    if (maintenanceType.Id == 0 || !(AllType.Any(x => x.Id == maintenanceType.Id)))
                     {
-                        return BadRequest("Building undefiend");
+                        return BadRequest("maintenanceType undefiend");
                     }
                     else
                     {
-                        _SystemAdminRepo.AddMaintenanceType(maintenanceType);
+                        _SystemAdminRepo.AddMaintenanceType(maintenanceType.MaintenanceTypeNameAr, maintenanceType.MaintenanceTypeNameEn);
                         return Ok("maintenanceType added successfully");
+                    }
+
+                }
+                else
+                {
+                    return BadRequest("Model State is invalid");
+                }
+
+            }
+            catch (Exception)
+            {
+                return BadRequest("Error Exception");
+            }
+        }
+        [HttpDelete]
+        [Route("DeleteMaintenanceType")]
+        public IActionResult DeleteMaintenanceType(MaintenanceType DeleteMaintenanceType)
+        {
+            var AllType = _maintenanceSysContext.MaintenanceTypes;
+
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    if (DeleteMaintenanceType.Id == 0 || !(AllType.Any(x => x.Id == DeleteMaintenanceType.Id)))
+                    {
+                        return BadRequest("maintenanceType undefiend");
+                    }
+                    else
+                    {
+                        _SystemAdminRepo.DeleteMaintenanceType(DeleteMaintenanceType.Id);
+                        return Ok("maintenanceType added successfully");
+                    }
+
+                }
+                else
+                {
+                    return BadRequest("Model State is invalid");
+                }
+
+            }
+            catch (Exception)
+            {
+                return BadRequest("Error Exception");
+            }
+        }
+        [HttpGet]
+        [Route("GetAllMaintenanceType")]
+        public IActionResult GetAllMaintenanceType()
+        {
+            try
+            {
+                var MaintenanceTypesTable = _SystemAdminRepo.GetAllMaintenanceType();
+                return Ok(MaintenanceTypesTable);
+
+            }
+            catch (Exception)
+            {
+                return BadRequest("Error Exception");
+            }
+        }
+        [HttpGet]
+        [Route("GetCancellationReason")]
+        public IActionResult GetCancellationReason()
+        {
+            try
+            {
+                var CancellationReasonsTable = _SystemAdminRepo.GetCancellationReason();
+                return Ok(CancellationReasonsTable);
+
+            }
+            catch (Exception)
+            {
+                return BadRequest("Error Exception");
+            }
+        }
+        [HttpPost]
+        [Route("AddCancellationReason")]
+        public IActionResult AddCancellationReason(CancellationReason cancellationReason)
+        {
+            var AllReasons = _maintenanceSysContext.CancelationReasons;
+
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    if (cancellationReason.Id == 0 || !(AllReasons.Any(x => x.Id == cancellationReason.Id)))
+                    {
+                        return BadRequest("cancellation Reason undefiend");
+                    }
+                    else
+                    {
+                        _SystemAdminRepo.AddCancellationReason(cancellationReason);
+                        return Ok("Cancellation Reason added successfully");
+                    }
+
+                }
+                else
+                {
+                    return BadRequest("Model State is invalid");
+                }
+
+            }
+            catch (Exception)
+            {
+                return BadRequest("Error Exception");
+            }
+        }
+        [HttpDelete]
+        [Route("DeleteCancellationReason")]
+        public IActionResult DeleteCancellationReason(CancellationReason cancellationReason)
+        {
+            var AllReasons = _maintenanceSysContext.CancelationReasons;
+
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    if (cancellationReason.Id == 0 || !(AllReasons.Any(x => x.Id == cancellationReason.Id)))
+                    {
+                        return BadRequest("cancellation Reason undefiend");
+                    }
+                    else
+                    {
+                        _SystemAdminRepo.DeleteCancellationReason(cancellationReason.Id);
+                        return Ok("cancellation Reason deleted successfully");
                     }
 
                 }
@@ -172,7 +302,102 @@ namespace MaintenanceManagementSystem.API.Controllers
             _SystemAdminRepo.RegisterNewEmployee(user);
             return Ok();
         }
+        [HttpDelete]
+        [Route("DeleteUser")]
+        public IActionResult DeleteUser(User DeletedUser)
+        {
+            var AllUsers = _maintenanceSysContext.Users;
 
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    if (DeletedUser.Id == 0 || !(AllUsers.Any(x => x.Id == DeletedUser.Id)))
+                    {
+                        return BadRequest("user undefiend");
+                    }
+                    else
+                    {
+                        _SystemAdminRepo.DeleteCancellationReason(DeletedUser.Id);
+                        return Ok("user deleted successfully");
+                    }
+
+                }
+                else
+                {
+                    return BadRequest("Model State is invalid");
+                }
+
+            }
+            catch (Exception)
+            {
+                return BadRequest("Error Exception");
+            }
+        }
+        [HttpPost]
+        [Route("UpdateUser")]
+        public IActionResult UpdateUser(User UpdatedUser)
+        {
+            var AllUsers = _maintenanceSysContext.Users;
+
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    if (UpdatedUser.Id == 0 || !(AllUsers.Any(x => x.Id == UpdatedUser.Id)))
+                    {
+                        return BadRequest("user undefiend");
+                    }
+                    else
+                    {
+                        _SystemAdminRepo.UpdateUser(UpdatedUser);
+                        return Ok("user updated successfully");
+                    }
+
+                }
+                else
+                {
+                    return BadRequest("Model State is invalid");
+                }
+
+            }
+            catch (Exception)
+            {
+                return BadRequest("Error Exception");
+            }
+        }
+        [HttpPost]
+        [Route("ResetUserPassword")]
+        public IActionResult ResetUserPassword(User UpdatedPassUser)
+        {
+            var AllUsers = _maintenanceSysContext.Users;
+
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    if (UpdatedPassUser.Id == 0 || !(AllUsers.Any(x => x.Id == UpdatedPassUser.Id)))
+                    {
+                        return BadRequest("user undefiend");
+                    }
+                    else
+                    {
+                        _SystemAdminRepo.ResetUserPassword(UpdatedPassUser.Id, UpdatedPassUser.Password);
+                        return Ok("user password updated successfully");
+                    }
+
+                }
+                else
+                {
+                    return BadRequest("Model State is invalid");
+                }
+
+            }
+            catch (Exception)
+            {
+                return BadRequest("Error Exception");
+            }
+        }
     }
 }
      

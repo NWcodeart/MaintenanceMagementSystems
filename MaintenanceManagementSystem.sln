@@ -15,8 +15,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MaintenanceManagementSystem
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MaintenanceManagementSystem.Application", "MaintenanceMagementSystems.Application\MaintenanceManagementSystem.Application.csproj", "{7F2EF226-7E16-4A81-BCA8-5A8BD3488E33}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaintenanceManagementSystem.BackOffice", "BackOffice\MaintenanceManagementSystem.BackOffice.csproj", "{DFC948A1-1FCF-4B78-8BB3-A5C83E36AD42}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -47,10 +45,6 @@ Global
 		{7F2EF226-7E16-4A81-BCA8-5A8BD3488E33}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7F2EF226-7E16-4A81-BCA8-5A8BD3488E33}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7F2EF226-7E16-4A81-BCA8-5A8BD3488E33}.Release|Any CPU.Build.0 = Release|Any CPU
-		{DFC948A1-1FCF-4B78-8BB3-A5C83E36AD42}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DFC948A1-1FCF-4B78-8BB3-A5C83E36AD42}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DFC948A1-1FCF-4B78-8BB3-A5C83E36AD42}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DFC948A1-1FCF-4B78-8BB3-A5C83E36AD42}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
