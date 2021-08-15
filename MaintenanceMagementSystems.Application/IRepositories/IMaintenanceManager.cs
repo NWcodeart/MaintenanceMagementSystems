@@ -44,7 +44,7 @@ namespace MaintenanceManagementSystem.Application.Interfaces
          maintenance manager can access all tickets on the system.
          */
         public List<User> ListOfWorkers(int TicketId);
-        public List<Ticket> ListOfTickets();
+        public List<Ticket> ListNewTickets();
         public Ticket GetTicket(int TicketId);
         public User GetWorker(int WorkerId, int TicketId);
         public bool RespondToTicket(int TicketId, TicketRespond respond);

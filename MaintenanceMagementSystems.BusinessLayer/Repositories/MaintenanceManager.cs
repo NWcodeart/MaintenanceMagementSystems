@@ -10,13 +10,16 @@ using System.Threading.Tasks;
 
 namespace MaintenanceManagementSystem.BusinessLayer.Repositories
 {
-    class MaintenanceManager : IMaintenanceManager
+    public class MaintenanceManager : IMaintenanceManager
     {
         private MaintenanceSysContext _maintenanceSysContext;
+        private IBackOfficeEntry _backOfficeEntry;
 
-        public MaintenanceManager(MaintenanceSysContext maintenanceSysContext)
+        public MaintenanceManager(MaintenanceSysContext maintenanceSysContext, IBackOfficeEntry backOfficeEntry)
         {
             _maintenanceSysContext = maintenanceSysContext;
+            _backOfficeEntry = backOfficeEntry;
+
         }
 
         public List<User> ListOfWorkers(int TicketId)
@@ -26,7 +29,7 @@ namespace MaintenanceManagementSystem.BusinessLayer.Repositories
                 using (_maintenanceSysContext)
                 {
                     Ticket ticket = _maintenanceSysContext.Tickets.FirstOrDefault(t => t.Id == TicketId);
-                    List <User> workers = _maintenanceSysContext.Users.Where(u => u.JobTypeId == 3 && u.MaintenanceTypeId == ticket.MaintenanceTypeID).ToList(); //3 => worker
+                    List <User> workers = _maintenanceSysContext.Users.Where(u => u.UserRoleId == 4 && u.MaintenanceTypeId == ticket.MaintenanceTypeID).ToList(); //4 => worker
                     if (workers != null)
                     {
                         return workers;
@@ -45,7 +48,7 @@ namespace MaintenanceManagementSystem.BusinessLayer.Repositories
         //-------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
-        public List<Ticket> ListOfTickets()
+        public List<Ticket> ListNewTickets()
         {
             try
             {
@@ -135,7 +138,7 @@ namespace MaintenanceManagementSystem.BusinessLayer.Repositories
                             ticket.StatusID = respond.status;
                             if(respond.status == 6)
                             {
-                                ticket.RejectedBy = 0;///Login cliams 
+                                ticket.RejectedBy = _backOfficeEntry.GetUserId();///Login cliams 
                                 ticket.RejectionReason = respond.reason;
                             }
                         }

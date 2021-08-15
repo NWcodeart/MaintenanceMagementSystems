@@ -4,20 +4,42 @@ using MaintenanceManagementSystem.Database.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace MaintenanceManagementSystem.Database.Migrations
 {
     [DbContext(typeof(MaintenanceSysContext))]
-    partial class MaintenanceSysContextModelSnapshot : ModelSnapshot
+    [Migration("20210811133717_NewDB")]
+    partial class NewDB
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.8")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("MaintenanceManagementSystem.Database.JobType", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("JobTypeNameAr")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("JobTypeNameEn")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("JobTypes");
+                });
 
             modelBuilder.Entity("MaintenanceManagementSystem.Database.Lookup.CancellationReason", b =>
                 {
@@ -131,15 +153,7 @@ namespace MaintenanceManagementSystem.Database.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("RoleNameAr")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("RoleNameEn")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("RoleType")
+                    b.Property<string>("Role")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -322,6 +336,9 @@ namespace MaintenanceManagementSystem.Database.Migrations
                     b.Property<bool>("IsRememberMe")
                         .HasColumnType("bit");
 
+                    b.Property<int?>("JobTypeId")
+                        .HasColumnType("int");
+
                     b.Property<int?>("MaintenanceTypeId")
                         .HasColumnType("int");
 
@@ -346,6 +363,8 @@ namespace MaintenanceManagementSystem.Database.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("FloorId");
+
+                    b.HasIndex("JobTypeId");
 
                     b.HasIndex("MaintenanceTypeId");
 
@@ -467,6 +486,10 @@ namespace MaintenanceManagementSystem.Database.Migrations
                         .WithMany("users")
                         .HasForeignKey("FloorId");
 
+                    b.HasOne("MaintenanceManagementSystem.Database.JobType", "jobType")
+                        .WithMany("users")
+                        .HasForeignKey("JobTypeId");
+
                     b.HasOne("MaintenanceManagementSystem.Database.Lookup.MaintenanceType", "maintenanceType")
                         .WithMany("users")
                         .HasForeignKey("MaintenanceTypeId");
@@ -485,9 +508,16 @@ namespace MaintenanceManagementSystem.Database.Migrations
 
                     b.Navigation("floor");
 
+                    b.Navigation("jobType");
+
                     b.Navigation("maintenanceType");
 
                     b.Navigation("userRole");
+                });
+
+            modelBuilder.Entity("MaintenanceManagementSystem.Database.JobType", b =>
+                {
+                    b.Navigation("users");
                 });
 
             modelBuilder.Entity("MaintenanceManagementSystem.Database.Lookup.CancellationReason", b =>

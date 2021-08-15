@@ -13,30 +13,28 @@ namespace MaintenanceManagementSystem.Application.Interfaces
         /*
          beneficiary can only access tickets opened by him.
         */
-        public List<Ticket> ListAllTickets(int beneficiaryID);
-
-        public List<Ticket> ListTicketsHistory(int beneficiaryID);
+        public List<Ticket> ListAllTickets();
 
         /*
          he can submit a maintenance request ticket though the beneficiary portal.
          */
-        public void SubmitTicket(int beneficiaryID, TicketRequest ticket);
+        public bool SubmitTicket(TicketRequest ticket);
 
         /*
          Only the beneficiary can confirm that the maintenance has been completed 
          */
-        public bool ConfirmTicket(int beneficiaryID, int requestID);
+        public bool ConfirmTicket(int requestID);
 
         /*
          he can cancel the maintenance request before it reaches the maintenance 
          manager after that it cannot be closed. also he should provide reason of 
          cancellation
          */
-        public bool CancelTicket(int beneficiaryID, int requestID); 
+        public bool CancelTicket(int requestID, int cancelationReasonID); 
 
         /*
          must sign of the repair order after the work has been made
          */
-        public Ticket GetTicket(int beneficiaryID, int requestID);
+        public Ticket GetTicket(int requestID);
     }
 }

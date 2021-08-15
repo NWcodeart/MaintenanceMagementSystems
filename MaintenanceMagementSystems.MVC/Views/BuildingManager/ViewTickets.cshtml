@@ -15,9 +15,9 @@
  @*   <script>
     function ViewTickets() {
         debugger
-        var id = $('#managerId').val();
+      
         $.ajax({
-            url: '@Url.Action("GetTickets","BuildingManager")' + "?managerID=" + id,
+            url: '@Url.Action("GetTickets","BuildingManager")',
             type: 'GET',
             success: OnSuccess
         });

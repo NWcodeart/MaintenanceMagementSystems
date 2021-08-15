@@ -75,8 +75,7 @@ namespace MaintenanceManagementSystem.API.Controllers
                 new Claim(JwtRegisteredClaimNames.Email, User.Email),
                 new Claim(ClaimTypes.Role, roleString),
                 new Claim(ClaimTypes.Sid, User.Id.ToString()),
-                new Claim("FloorID", User.FloorId.ToString()),
-                new Claim("JobTypeID", User.JobTypeId.ToString())
+                new Claim("FloorID", User.FloorId.ToString())
             };
 
             var token = new JwtSecurityToken(_config["Jwt:Issuer"],
@@ -96,7 +95,7 @@ namespace MaintenanceManagementSystem.API.Controllers
             return Ok(_beneficiaryEntryRepo.GetUserRole());
         }
 
-        [Authorize(Roles = "Beneficiary")]
+        [AllowAnonymous]
         [HttpPost]
         [Route("ChangePassword")]
         public IActionResult ChangePassword([FromBody] string Email)
@@ -111,28 +110,32 @@ namespace MaintenanceManagementSystem.API.Controllers
             }
         }
 
+        [AllowAnonymous]
         [HttpGet]
         [Route("ListBuildings")]
         public IActionResult ListBuildings()
         {
-            if (_beneficiaryEntryRepo.ListBuildings().Count == 0)
+            var buildings = _beneficiaryEntryRepo.ListBuildings();
+            if (buildings.Count() == 0)
             {
                 return NotFound("There are no buildings");
             }
 
-            return Ok(_beneficiaryEntryRepo.ListBuildings());
+            return Ok(buildings);
         }
 
+        [AllowAnonymous]
         [HttpGet]
-        [Route("ListFloors")]
-        public IActionResult ListFloors()
+        [Route("ListFloors/{buildingID}")]
+        public IActionResult ListFloors(int buildingID)
         {
-            if (_beneficiaryEntryRepo.ListFloors().Count == 0)
+            var floors = _beneficiaryEntryRepo.ListFloors(buildingID);
+            if (floors.Count() == 0)
             {
                 return NotFound("There are no floors");
             }
 
-            return Ok(_beneficiaryEntryRepo.ListFloors());
+            return Ok(floors);
         }
     }
 }

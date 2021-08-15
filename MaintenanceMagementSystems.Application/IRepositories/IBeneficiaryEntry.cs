@@ -1,5 +1,6 @@
 ﻿using MaintenanceManagementSystem.Database.Models;
 using MaintenanceManagementSystem.Entity.ModelsDto;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -42,6 +43,6 @@ namespace MaintenanceManagementSystem.Application.Interfaces
          */
         public List<Building> ListBuildings();
 
-        public List<Floor> ListFloors();
+        public List<Floor> ListFloors(int buildingID);
     }
 }

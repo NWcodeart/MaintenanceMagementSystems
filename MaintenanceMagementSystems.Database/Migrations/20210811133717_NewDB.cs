@@ -2,11 +2,11 @@
 
 namespace MaintenanceManagementSystem.Database.Migrations
 {
-    public partial class fixingByuildigManagerId : Migration
+    public partial class NewDB : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            
+
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

@@ -36,7 +36,6 @@ namespace MaintenanceManagementSystem.Database.Models
         public DbSet<CancellationReason> CancelationReasons { get; set; }
         public DbSet<City> Cities { get; set; }
         public DbSet<Country> Countries { get; set; }
-        public DbSet<JobType> JobTypes { get; set; }
         public DbSet<MaintenanceType> MaintenanceTypes { get; set; }
         public DbSet<Status> Statuses { get; set; }
         public DbSet<UserRole> UserRoles { get; set; }
@@ -110,12 +109,6 @@ namespace MaintenanceManagementSystem.Database.Models
                 .WithMany(u => u.users)
                 .HasForeignKey(f => f.FloorId);
 
-            //user can has one jobtype while jobtype has multiple user
-            modelBuilder.Entity<User>()
-                .HasOne<JobType>(jt => jt.jobType)
-                .WithMany(u => u.users)
-                .HasForeignKey(jt => jt.JobTypeId);
-
             //user maybe work in manintenance type and every maintenance type has multiple worker
             modelBuilder.Entity<User>()
                 .HasOne<MaintenanceType>(mt => mt.maintenanceType)
@@ -146,6 +139,12 @@ namespace MaintenanceManagementSystem.Database.Models
                .HasOne<Country>(c => c.country)
                .WithMany(cun => cun.Cities)
                .HasForeignKey(c => c.CountryId).IsRequired();
+
+            //User Roles
+            modelBuilder.Entity<UserRole>()
+                .HasMany<User>(u => u.users)
+                .WithOne(u => u.userRole)
+                .HasForeignKey(u => u.UserRoleId);
         }
     }
 

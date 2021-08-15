@@ -46,11 +46,11 @@ namespace MaintenanceManagementSystem.BusinessLayer.Repositories
             }
         }
 
-        public bool ChangePassword(string userEmail, ChangePassword changePassword)
+        public bool ChangePassword(ChangePassword changePassword)
         {
             try
             {
-                var user = _maintenanceSysContext.Users.FirstOrDefault(u => u.Email == userEmail);
+                var user = _maintenanceSysContext.Users.FirstOrDefault(u => u.Id == GetUserId());
             
                 if (user != null && BCrypt.Net.BCrypt.Verify(changePassword.CurrentPassword, user.Password))
                 {
@@ -112,7 +112,7 @@ namespace MaintenanceManagementSystem.BusinessLayer.Repositories
         {
             try
             {
-                var userRole = _maintenanceSysContext.UserRoles.FirstOrDefault(r => r.Id == userRoleID).Role;
+                var userRole = _maintenanceSysContext.UserRoles.FirstOrDefault(r => r.Id == userRoleID).RoleType;
                 return userRole;
             }
             catch (Exception)
@@ -155,5 +155,24 @@ namespace MaintenanceManagementSystem.BusinessLayer.Repositories
                 throw;
             }
         }
+
+        public string GetUserEmail()
+        {
+            try
+            {
+                using (_maintenanceSysContext)
+                {
+                    ClaimsPrincipal currentUser = _httpContextAccessor.HttpContext.User;
+                    var stringClaimValue = currentUser.FindFirst(ClaimTypes.Email).Value;
+                    return stringClaimValue;
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+
     }
 }

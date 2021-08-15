@@ -129,10 +129,21 @@ namespace MaintenanceManagementSystem.API.Controllers
             }
         }
 
+<<<<<<< HEAD
         //look up operations 
 
         [HttpPost]
         [Route("")]
         public IActionResult 
     }
+=======
+        [HttpPost]
+        public IActionResult AddEmployee(User user)
+        {
+            _SystemAdminRepo.RegisterNewEmployee(user);
+            return Ok();
+        }
+
+        }
+>>>>>>> b6052e722058b7720620db6e85f82b322b92dbb5
 }

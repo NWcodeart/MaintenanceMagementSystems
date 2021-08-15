@@ -11,6 +11,7 @@ using System.Net.Http.Json;
 using System.Threading.Tasks;
 //using System.Web.Mvc;
 
+
 namespace MaintenanceManagementSystem.MVC.Controllers
 {
     public class BuildingManagerController : Controller
@@ -41,9 +42,9 @@ namespace MaintenanceManagementSystem.MVC.Controllers
             return View();
         }
         [HttpGet]
-        public async Task<ActionResult> GetTickets(int managerID)
+        public async Task<ActionResult> GetTickets()
         {
-            var tickets = _buildingManager.ViewTickets(managerID);
+            var tickets = _buildingManager.ViewTickets();
             return Json(tickets, System.Web.Mvc.JsonRequestBehavior.AllowGet);
         }
 
@@ -56,13 +57,15 @@ namespace MaintenanceManagementSystem.MVC.Controllers
             return View();
         }
         [HttpGet]
-        public async Task<ActionResult> GetBuilding(int managerID)
+        public async Task<ActionResult> GetBuilding()
         {
-            var building = _buildingManager.ViewBuilding(managerID);
+            var building = _buildingManager.ViewBuilding();
             return Json(building, System.Web.Mvc.JsonRequestBehavior.AllowGet);
         }
 
 
         //--------------------------------------------------------------------------------------------------------------------------
+
+
     }
 }

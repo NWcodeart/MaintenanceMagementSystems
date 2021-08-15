@@ -1,0 +1,32 @@
+﻿<h1> Edit Building </h1>
+@section Scripts2{
+    <script src="~/js/bundle.min.js"></script>
+    <body>
+        <label>Update floors:</label>
+        <input type="text" id="updatefloor" name="updatefloor" placeholder="updatefloor" />
+
+
+        <label>Owned:</label>
+        <select name="Owned" id="Owned">
+            <option value="Owned">Owned</option>
+            <option value="Rented">Rented</option>
+        </select>
+
+        <button type="button" id="btnUpdate" name="btnUpdate" data-name="UpdateButton"> Edit Building </button>
+    </body>
+
+    @*   <script>
+        function EditBuilding() {
+            debugger
+
+            $.ajax({
+                url: '@Url.Action("PutBuilding","BuildingManager")',
+                type: 'POST',
+                success: function (data) {
+            alert("Success");
+            }
+        
+            });
+        }
+        </script>*@
+}

@@ -9,8 +9,8 @@ using System.Threading.Tasks;
 
 namespace MaintenanceManagementSystem.API.Controllers
 {
+    [Route("api/[controller]")]
     [ApiController]
-    //[Route("api/BuildingManager")]
     public class BuildingManagerAPIController : ControllerBase
     {
         private readonly IBuildingManager _buildingManager;
@@ -21,7 +21,8 @@ namespace MaintenanceManagementSystem.API.Controllers
 
 
         [HttpPost]
-        [Route("AddComments/{ticket}")]
+        [Route("[action]")]
+        [ActionName("AddComments/{id}/{comment}")]
         public IActionResult AddComments(int id, string comment)
         {
             _buildingManager.AddComments(id, comment);
@@ -43,10 +44,11 @@ namespace MaintenanceManagementSystem.API.Controllers
 
 
         [HttpGet]
-        [Route("ViewBuilding/{id}")]
-        public IActionResult ViewBuilding(int managerID)
+        [Route("[action]")]
+        [ActionName("ViewBuilding")]
+        public IActionResult ViewBuilding()
         {
-            var building = _buildingManager.ViewBuilding(managerID);
+            var building = _buildingManager.ViewBuilding();
             return Ok(building);
         }
 
@@ -58,9 +60,9 @@ namespace MaintenanceManagementSystem.API.Controllers
         [HttpGet]
         [Route("[action]")]
         [Route("api/BuildingManagerAPI/ViewTickets/{id}")]
-        public IActionResult  ViewTickets(int managerID)
+        public IActionResult  ViewTickets()
         {
-            var tickets = _buildingManager.ViewTickets(managerID);
+            var tickets = _buildingManager.ViewTickets();
             return Ok(tickets);
 
         }
@@ -68,9 +70,9 @@ namespace MaintenanceManagementSystem.API.Controllers
         
         [HttpGet]
         [Route("ViewTicketsStatus/{id}")]
-        public IActionResult ViewTicketsStatus(int managerID)
+        public IActionResult ViewTicketsStatus()
         {
-            var tickets = _buildingManager.ViewTicketsStatus(managerID);
+            var tickets = _buildingManager.ViewTicketsStatus();
             return Ok(tickets);
 
         }

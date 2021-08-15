@@ -35,6 +35,10 @@ namespace MaintenanceMagementSystems.API
             services.AddScoped<IBeneficiary, Beneficiary>();
             services.AddScoped<IBeneficiaryEntry, BeneficiaryEntry>();
             services.AddScoped<IBuildingManager, BuildingManager>();
+            services.AddScoped<IMaintenanceManager, MaintenanceManager>();
+            services.AddScoped<IMaintenanceWorker, MaintenanceWorker>();
+            services.AddScoped<IBackOfficeEntry, BackOfficeEntry>();
+
             services.AddHttpContextAccessor();
 
             services.AddDbContext<MaintenanceSysContext>(options =>
@@ -84,7 +88,7 @@ namespace MaintenanceMagementSystems.API
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            if (env.IsDevelopment())
+            if (env.IsDevelopment() || env.IsProduction())
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
