@@ -16,7 +16,6 @@ using System.Threading.Tasks;
 
 namespace MaintenanceManagementSystem.API.Controllers
 {
-    [Authorize(Roles = "Beneficiary,SystemAdmin,BuildingManager,MaintenanceManager,MaintenanceWorker")]
     [Route("api/[controller]")]
     [ApiController]
     public class BeneficiaryEntryController : ControllerBase
@@ -96,7 +95,7 @@ namespace MaintenanceManagementSystem.API.Controllers
             return Ok(_beneficiaryEntryRepo.GetUserRole());
         }
 
-        [Authorize(Roles = "Beneficiary")]
+        [AllowAnonymous]
         [HttpPost]
         [Route("ChangePassword")]
         public IActionResult ChangePassword([FromBody] string Email)
@@ -111,28 +110,32 @@ namespace MaintenanceManagementSystem.API.Controllers
             }
         }
 
+        [AllowAnonymous]
         [HttpGet]
         [Route("ListBuildings")]
         public IActionResult ListBuildings()
         {
-            if (_beneficiaryEntryRepo.ListBuildings().ToList().Count() == 0)
+            var buildings = _beneficiaryEntryRepo.ListBuildings();
+            if (buildings.Count() == 0)
             {
                 return NotFound("There are no buildings");
             }
 
-            return Ok(_beneficiaryEntryRepo.ListBuildings());
+            return Ok(buildings);
         }
 
+        [AllowAnonymous]
         [HttpGet]
         [Route("ListFloors")]
-        public IActionResult ListFloors()
+        public IActionResult ListFloors(int buildingID)
         {
-            if (_beneficiaryEntryRepo.ListFloors().ToList().Count() == 0)
+            var floors = _beneficiaryEntryRepo.ListFloors(buildingID);
+            if (floors.Count() == 0)
             {
                 return NotFound("There are no floors");
             }
 
-            return Ok(_beneficiaryEntryRepo.ListFloors());
+            return Ok(floors);
         }
     }
 }

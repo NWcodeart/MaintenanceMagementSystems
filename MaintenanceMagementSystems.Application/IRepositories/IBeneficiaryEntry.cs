@@ -43,6 +43,6 @@ namespace MaintenanceManagementSystem.Application.Interfaces
          */
         public List<Building> ListBuildings();
 
-        public List<Floor> ListFloors();
+        public List<Floor> ListFloors(int buildingID);
     }
 }

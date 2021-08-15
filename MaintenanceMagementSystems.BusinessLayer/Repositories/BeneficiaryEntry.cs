@@ -187,11 +187,11 @@ namespace MaintenanceManagementSystem.BusinessLayer.Repositories
             }
         }
 
-        public List<Floor> ListFloors()
+        public List<Floor> ListFloors(int buildingID)
         {
             try
             {
-                var floors = _maintenanceSysContext.Floors.ToList();
+                var floors = _maintenanceSysContext.Floors.Where(f => f.BuildingId == buildingID).ToList();
                 return floors;              
             }
             catch (Exception)

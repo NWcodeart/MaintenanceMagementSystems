@@ -27,13 +27,12 @@ namespace MaintenanceManagementSystem.Database.Models
 
         #nullable enable
         public string? Street { get; set; }
+        public int? BuildingManagerId { get; set; }
+        public User? UserbuildingManager { get; set; }
 
         [Required]
         #nullable disable
         public ICollection<Floor> floors { get; set; }
-
-        #nullable enable
-        public int? BuildingManagerId { get; set; }
-        public User? UserbuildingManager { get; set; }
+        
     }
 }
