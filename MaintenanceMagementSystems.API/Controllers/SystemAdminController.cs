@@ -1,4 +1,5 @@
 ﻿using MaintenanceManagementSystem.Application.Interfaces;
+using MaintenanceManagementSystem.Database.Lookup;
 using MaintenanceManagementSystem.Database.Models;
 using MaintenanceManagementSystem.Entity.ModelsDto;
 using Microsoft.AspNetCore.Authorization;
@@ -113,7 +114,7 @@ namespace MaintenanceManagementSystem.API.Controllers
                     else
                     {
                         _SystemAdminRepo.UpdateBuilding(BuildingUpdated);
-                        return Ok("Building delete successfully");
+                        return Ok("Building updated successfully");
                     }
 
                 }
@@ -129,21 +130,49 @@ namespace MaintenanceManagementSystem.API.Controllers
             }
         }
 
-<<<<<<< HEAD
         //look up operations 
 
         [HttpPost]
-        [Route("")]
-        public IActionResult 
-    }
-=======
+        [Route("AddMaintenanceType")]
+        public IActionResult AddMaintenanceType(MaintenanceType maintenanceType)
+        {
+            var AllType = _maintenanceSysContext.MaintenanceTypes;
+
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    if (maintenanceType.Id == null || !(AllType.Any(x => x.Id == maintenanceType.Id)))
+                    {
+                        return BadRequest("Building undefiend");
+                    }
+                    else
+                    {
+                        _SystemAdminRepo.AddMaintenanceType(maintenanceType);
+                        return Ok("maintenanceType added successfully");
+                    }
+
+                }
+                else
+                {
+                    return BadRequest("Model State is invalid");
+                }
+
+            }
+            catch (Exception)
+            {
+                return BadRequest("Error Exception");
+            }
+        }
+
         [HttpPost]
+        [Route("AddEmployee")]
         public IActionResult AddEmployee(User user)
         {
             _SystemAdminRepo.RegisterNewEmployee(user);
             return Ok();
         }
 
-        }
->>>>>>> b6052e722058b7720620db6e85f82b322b92dbb5
+    }
 }
+     

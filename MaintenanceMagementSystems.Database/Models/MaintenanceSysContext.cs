@@ -142,9 +142,7 @@ namespace MaintenanceManagementSystem.Database.Models
 
             //User Roles
             modelBuilder.Entity<UserRole>()
-                .HasMany<User>(u => u.users)
-                .WithOne(u => u.userRole)
-                .HasForeignKey(u => u.UserRoleId);
+            .HasKey(ur => new { ur.Id });
         }
     }
 
