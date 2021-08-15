@@ -249,7 +249,32 @@ namespace MaintenanceManagementSystem.BusinessLayer.Repositories
             if(buildingToDelete != null)
             {
                 _maintenanceSysContext.Remove(buildingToDelete);
+                _maintenanceSysContext.SaveChanges();
             }
+        }
+
+        public void DeleteMaintenanceType(int id)
+        {
+            MaintenanceType maintenanceType = _maintenanceSysContext.MaintenanceTypes.FirstOrDefault(m => m.Id == id);
+            _maintenanceSysContext.Remove(maintenanceType);
+            _maintenanceSysContext.SaveChanges();
+        }
+
+        public void DeleteCancellationReason(int id)
+        {
+            CancellationReason cancellationReason = _maintenanceSysContext.CancelationReasons.FirstOrDefault(m => m.Id == id);
+            _maintenanceSysContext.Remove(cancellationReason);
+            _maintenanceSysContext.SaveChanges();
+        }
+
+        public List<MaintenanceType> GetAllMaintenanceType()
+        {
+            return _maintenanceSysContext.MaintenanceTypes.ToList();
+        }
+
+        public List<CancellationReason> GetCancellationReason()
+        {
+            return _maintenanceSysContext.CancelationReasons.ToList();
         }
     }
 }
