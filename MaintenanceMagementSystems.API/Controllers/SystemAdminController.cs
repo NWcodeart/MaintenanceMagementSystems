@@ -1,4 +1,5 @@
-﻿using MaintenanceManagementSystem.Application.Interfaces;
+﻿using MaintenanceMagementSystems.API.Filters;
+using MaintenanceManagementSystem.Application.Interfaces;
 using MaintenanceManagementSystem.Database.Lookup;
 using MaintenanceManagementSystem.Database.Models;
 using MaintenanceManagementSystem.Entity.ModelsDto;
@@ -12,6 +13,9 @@ using System.Threading.Tasks;
 
 namespace MaintenanceManagementSystem.API.Controllers
 {
+    [ServiceFilter(typeof(AuthorizeFilter))]
+    [ServiceFilter(typeof(ActionFilter))]
+    [ServiceFilter(typeof(ExceptionFilter))]
     [Authorize(Roles = "Admin")]
     [Route("api/SystemAdmin")]
     [ApiController]
