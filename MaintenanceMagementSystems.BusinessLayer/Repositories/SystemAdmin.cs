@@ -251,5 +251,20 @@ namespace MaintenanceManagementSystem.BusinessLayer.Repositories
                 _maintenanceSysContext.Remove(buildingToDelete);
             }
         }
+
+        public void AddMaintenanceType(MaintenanceType maintenanceType)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void DeleteMaintenanceType(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void DeleteCancellationReason(int id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

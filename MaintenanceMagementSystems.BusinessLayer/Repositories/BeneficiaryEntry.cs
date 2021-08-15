@@ -18,20 +18,24 @@ namespace MaintenanceManagementSystem.BusinessLayer.Repositories
     {
         private readonly MaintenanceSysContext _maintenanceSysContext;
         private readonly IHttpContextAccessor _httpContextAccessor;
+        private readonly DbContextOptions<MaintenanceSysContext> _options;
 
-        public BeneficiaryEntry(MaintenanceSysContext maintenanceSysContext, IHttpContextAccessor httpContextAccessor)
+        public BeneficiaryEntry(MaintenanceSysContext maintenanceSysContext,
+            IHttpContextAccessor httpContextAccessor,
+            DbContextOptions<MaintenanceSysContext> options)
         {
             _maintenanceSysContext = maintenanceSysContext;
             _httpContextAccessor = httpContextAccessor;
+            _options = options;
         }
 
-        public User AuthenticateUser(Login Login)
+        public async Task<User> AuthenticateUser(Login Login)
         {
             try
             {
                 using (_maintenanceSysContext)
                 {
-                    var user = _maintenanceSysContext.Users.FirstOrDefault(l => l.Email == Login.Username);
+                    var user = await _maintenanceSysContext.Users.FirstOrDefaultAsync(l => l.Email == Login.Username);
 
                     if (user != null && BCrypt.Net.BCrypt.Verify(Login.Password, user.Password))
                     {
@@ -160,15 +164,19 @@ namespace MaintenanceManagementSystem.BusinessLayer.Repositories
             }
         }
 
-        public string GetUserRoleFromDB(int userRoleID)
+        public async Task<string> GetUserRoleFromDB(int userRoleID)
         {
             try
             {
-                var userRole = _maintenanceSysContext.UserRoles.Where(r => r.Id == userRoleID).FirstOrDefault();
-                var roleType = userRole.RoleType;
-                return roleType;
+               
+                using (var db = new MaintenanceSysContext(_options))
+                {
+                    var userRole = await db.UserRoles.FirstOrDefaultAsync(r => r.Id == userRoleID);
+                    var roleType = userRole.RoleType;
+                    return roleType;
+                }
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 throw;
             }

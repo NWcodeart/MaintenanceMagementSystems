@@ -19,7 +19,7 @@ namespace MaintenanceManagementSystem.Application.Interfaces
 
         public bool CheckExistence(string email);
 
-        public User AuthenticateUser(Login Login);
+        public Task<User> AuthenticateUser(Login Login);
 
         public int GetUserId();
 
@@ -35,7 +35,7 @@ namespace MaintenanceManagementSystem.Application.Interfaces
          */
         public void ChangeLanguage(); //To be reviewed
 
-        public string GetUserRoleFromDB(int userRoleID); //To be used to get role claim
+        public Task<string> GetUserRoleFromDB(int userRoleID); //To be used to get role claim
 
         /*
          the two methods over there are for view purpose, so when beneficiary register to the system,
