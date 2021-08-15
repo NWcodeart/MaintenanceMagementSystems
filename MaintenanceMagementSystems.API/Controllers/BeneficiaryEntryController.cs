@@ -126,7 +126,7 @@ namespace MaintenanceManagementSystem.API.Controllers
 
         [AllowAnonymous]
         [HttpGet]
-        [Route("ListFloors")]
+        [Route("ListFloors/{buildingID}")]
         public IActionResult ListFloors(int buildingID)
         {
             var floors = _beneficiaryEntryRepo.ListFloors(buildingID);

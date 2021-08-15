@@ -21,12 +21,10 @@ namespace MaintenanceManagementSystem.API.Controllers
     public class BeneficiaryController : ControllerBase
     {
         private IBeneficiary _beneficiaryRepo;
-        private IBeneficiaryEntry _beneficiaryEntryRepo;
 
-        public BeneficiaryController(IBeneficiary beneficiaryrepo, IBeneficiaryEntry beneficiaryEntryRepo)
+        public BeneficiaryController(IBeneficiary beneficiaryrepo)
         {
             _beneficiaryRepo = beneficiaryrepo;
-            _beneficiaryEntryRepo = beneficiaryEntryRepo;
         }
         
         [HttpPost]
@@ -37,34 +35,63 @@ namespace MaintenanceManagementSystem.API.Controllers
             {
                 return BadRequest("Invalid Data");
             }
-            else
+            else if (!_beneficiaryRepo.SubmitTicket(ticket))
             {
-                _beneficiaryRepo.SubmitTicket(_beneficiaryEntryRepo.GetUserId(), ticket);
-                return Ok("Request has been submitted successfully");
+                return BadRequest("You cannot request a new ticket while you have an active ticket");
             }
 
+            _beneficiaryRepo.SubmitTicket(ticket);
+            return Ok("Request has been submitted successfully");
+            
         }
 
         [HttpPatch]
         [Route("ConfirmRequest/{requestID}")]
         public IActionResult ConfirmRequest(int requestID)
         {
-            if (!(_beneficiaryRepo.ConfirmTicket(_beneficiaryEntryRepo.GetUserId(), requestID)))
+            if (!(_beneficiaryRepo.ConfirmTicket(requestID)))
             {
                 return NotFound("Request with given ID is not found");
             }
+
             return Ok("Request has been confirmed successfully");
         }
 
         [HttpPatch]
-        [Route("CancelRequest/{requestID}")]
-        public IActionResult CancelRequest(int requestID)
+        [Route("CancelRequest/{requestID}/{cancelationReasonID}")]
+        public IActionResult CancelRequest(int requestID, int cancelationReasonID)
         {
-            if (!(_beneficiaryRepo.CancelTicket(_beneficiaryEntryRepo.GetUserId(), requestID)))
+            if (!(_beneficiaryRepo.CancelTicket(requestID, cancelationReasonID)))
             {
-                return NotFound("Request with given ID is not found");
+                return NotFound("Request with given ID is not found or it's already sent to the maintenance manager");
             }
+
             return Ok("Request has been canceled successfully");
         }
+
+        [HttpGet]
+        [Route("ListTickets")]
+        public IActionResult ListTickets()
+        {
+            if (_beneficiaryRepo.ListAllTickets().Count() == 0)
+            {
+                return NotFound("No tickets available");
+            }
+
+            return Ok(_beneficiaryRepo.ListAllTickets());
+        }
+
+        [HttpGet]
+        [Route("GetTicket/{requestID}")]
+        public IActionResult GetTicket(int requestID)
+        {
+            if(_beneficiaryRepo.GetTicket(requestID) == null)
+            {
+                return NotFound("Ticket with given ID is not found");
+            }
+
+            return Ok(_beneficiaryRepo.GetTicket(requestID));
+        }
+
     }
 }

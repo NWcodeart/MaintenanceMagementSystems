@@ -139,6 +139,10 @@ namespace MaintenanceManagementSystem.Database.Models
                .HasOne<Country>(c => c.country)
                .WithMany(cun => cun.Cities)
                .HasForeignKey(c => c.CountryId).IsRequired();
+
+            //User Roles
+            modelBuilder.Entity<UserRole>()
+            .HasKey(ur => new { ur.Id });
         }
     }
 
