@@ -17,7 +17,7 @@ namespace MaintenanceManagementSystem.BackOffice.Controllers
         {
             List<BuildingsTable> buildingsTable = new List<BuildingsTable>();
             HttpClient Client = HttpHelper.Initial();
-            HttpResponseMessage res = await Client.GetAsync("api/GetBuildingTables");
+            HttpResponseMessage res = await Client.GetAsync("api/SystemAdmin/GetBuildingsTable");
             if (res.IsSuccessStatusCode)
             {
                 var result = res.Content.ReadAsStringAsync().Result;

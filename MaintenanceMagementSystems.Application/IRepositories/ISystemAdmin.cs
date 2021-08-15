@@ -1,5 +1,6 @@
 ﻿using MaintenanceManagementSystem.Database.Lookup;
 using MaintenanceManagementSystem.Database.Models;
+using MaintenanceManagementSystem.Entity.ModelsDto;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,6 +37,8 @@ namespace MaintenanceManagementSystem.Application.Interfaces
 
         //system admin can update building 
         public void UpdateBuilding(Building UpdatedBuilding);
+        public List<BuildingsTable> GetBuildings();
+        public void DeleteBuilding(int id);
 
     }
 }

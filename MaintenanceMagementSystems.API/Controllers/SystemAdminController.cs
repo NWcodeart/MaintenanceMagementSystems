@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 namespace MaintenanceManagementSystem.API.Controllers
 {
     [Authorize(Roles = "Admin")]
-    [Route("api/[controller]")]
+    [Route("api/SystemAdmin")]
     [ApiController]
     public class SystemAdminController : ControllerBase
     {
@@ -58,32 +58,81 @@ namespace MaintenanceManagementSystem.API.Controllers
             
         }
         [HttpGet]
-        public List<BuildingsTable> GetBuildingsTable()
+        [Route("GetBuildingsTable")]
+        public IActionResult GetBuildingsTable()
         {
-            var BuildingsTable = new List<BuildingsTable>();
-            using (_maintenanceSysContext)
-            {
-                BuildingsTable = _maintenanceSysContext.Buildings.Select(b => new BuildingsTable
-                {
-                    BuildingId = b.Id,
-                    BuildingNumber = b.Number,
-                    FloorTables = b.floors.Select( f => new FloorTable
-                    {
-                        FloorId = f.Id,
-                        FloorNumber = f.Number
-                    }).ToList(),
-                    CountryId = b.city.CountryId,
-                    Country = b.city.country.CountryNameAr,
-                    CityId = b.CityId,
-                    City = b.city.CityNameAr,
-                    Street = b.Street,
-                    BuildingManagerId = b.BuildingManagerId,
-                    BuildingManagerName = b.UserbuildingManager.Name,
-                    BuildingManagerEmail = b.UserbuildingManager.Email,
-                    IsOwned = b.IsOwned
-                }).ToList();
-            }
-            return BuildingsTable;
+            List<BuildingsTable> buildingsTables = _SystemAdminRepo.GetBuildings();
+            return Ok(buildingsTables);
         }
+        [HttpDelete]
+        [Route("DeleteBuilding")]
+        public IActionResult DeleteBuilding(int id = 0)
+        {
+            var AllBuilding = _maintenanceSysContext.Buildings;
+
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    if (id == 0 || !(AllBuilding.Any(x => x.Id == id)))
+                    {
+                        return BadRequest("Building undefiend");
+                    }
+                    else
+                    {
+                        _SystemAdminRepo.DeleteBuilding(id);
+                        return Ok("Building delete successfully");
+                    }
+
+                }
+                else
+                {
+                    return BadRequest("Model State is invalid");
+                }
+
+            }
+            catch (Exception)
+            {
+                return BadRequest("Error Exception");
+            }
+        }
+        [HttpPost]
+        [Route("UpdateBuilding")]
+        public IActionResult UpdateBuilding(Building BuildingUpdated)
+        {
+            var AllBuilding = _maintenanceSysContext.Buildings;
+
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    if (BuildingUpdated.Id == null || !(AllBuilding.Any(x => x.Id == BuildingUpdated.Id)))
+                    {
+                        return BadRequest("Building undefiend");
+                    }
+                    else
+                    {
+                        _SystemAdminRepo.UpdateBuilding(BuildingUpdated);
+                        return Ok("Building delete successfully");
+                    }
+
+                }
+                else
+                {
+                    return BadRequest("Model State is invalid");
+                }
+
+            }
+            catch (Exception)
+            {
+                return BadRequest("Error Exception");
+            }
+        }
+
+        //look up operations 
+
+        [HttpPost]
+        [Route("")]
+        public IActionResult 
     }
 }
