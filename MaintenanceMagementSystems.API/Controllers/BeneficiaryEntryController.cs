@@ -18,7 +18,7 @@ using System.Threading.Tasks;
 namespace MaintenanceManagementSystem.API.Controllers
 {
     [ServiceFilter(typeof(AuthorizeFilter))]
-    [ServiceFilter(typeof(ActionFilter))]
+    //[ServiceFilter(typeof(ActionFilter))]
     [ServiceFilter(typeof(ExceptionFilter))]
     [Route("api/[controller]")]
     [ApiController]
