@@ -18,7 +18,7 @@ using System.Threading.Tasks;
 namespace MaintenanceManagementSystem.API.Controllers
 {
     [ServiceFilter(typeof(AuthorizeFilter))]
-    [ServiceFilter(typeof(ActionFilter))]
+    //[ServiceFilter(typeof(ActionFilter))]
     [ServiceFilter(typeof(ExceptionFilter))]
     [Route("api/[controller]")]
     [ApiController]
@@ -60,7 +60,7 @@ namespace MaintenanceManagementSystem.API.Controllers
 
             if (user != null)
             {
-                var tokenString = GenerateJSONWebToken(user);
+                var tokenString = GenerateJSONWebToken(user.Result);
                 response = Ok(tokenString);
             }
 
@@ -77,7 +77,7 @@ namespace MaintenanceManagementSystem.API.Controllers
             var claims = new List<Claim>
             {
                 new Claim(JwtRegisteredClaimNames.Email, User.Email),
-                new Claim(ClaimTypes.Role, roleString),
+                new Claim(ClaimTypes.Role, roleString.Result),
                 new Claim(ClaimTypes.Sid, User.Id.ToString()),
                 new Claim("FloorID", User.FloorId.ToString())
             };
