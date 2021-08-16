@@ -20,7 +20,6 @@ namespace MaintenanceManagementSystem.API.Controllers
     [ServiceFilter(typeof(AuthorizeFilter))]
     [ServiceFilter(typeof(ActionFilter))]
     [ServiceFilter(typeof(ExceptionFilter))]
-    [Authorize(Roles = "SystemAdmin,BuildingManager,MaintenanceManager,MaintenanceWorker")]
     [Route("api/[controller]")]
     [ApiController]
     public class BackOfficeEntryController : ControllerBase
@@ -85,7 +84,7 @@ namespace MaintenanceManagementSystem.API.Controllers
             return Ok(_backOfficeEntry.GetUserRole());
         }
 
-        [Authorize(Roles = "Back Office")]
+        [AllowAnonymous]
         [HttpPost]
         [Route("ForgotPassword")]
         public IActionResult ForgotPassword([FromBody] string Email)
@@ -100,6 +99,7 @@ namespace MaintenanceManagementSystem.API.Controllers
             }
         }
 
+        [AllowAnonymous]
         [HttpPost]
         [Route("ChangePassword")]
         public IActionResult ChangePassword(ChangePassword changePassword)
@@ -112,7 +112,7 @@ namespace MaintenanceManagementSystem.API.Controllers
             return Ok();
         }
 
-        [Authorize(Roles = "Back Office")]
+        [AllowAnonymous]
         [HttpPost]
         [Route("SetAsRememberMe")]
         public IActionResult SetAsRememberMe()

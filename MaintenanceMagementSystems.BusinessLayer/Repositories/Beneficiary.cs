@@ -1,4 +1,5 @@
 ﻿using MaintenanceManagementSystem.Application.Interfaces;
+using MaintenanceManagementSystem.Database.Lookup;
 using MaintenanceManagementSystem.Database.Models;
 using MaintenanceManagementSystem.Entity.ModelsDto;
 using Microsoft.AspNetCore.Http;
@@ -146,5 +147,17 @@ namespace MaintenanceManagementSystem.BusinessLayer.Repositories
             }
         }
 
+        public List<CancellationReason> ListCancellationReasons()
+        {
+            try
+            {
+                var cancellationReasons = _maintenanceSysContext.CancelationReasons.ToList();
+                return cancellationReasons;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
     }
 }

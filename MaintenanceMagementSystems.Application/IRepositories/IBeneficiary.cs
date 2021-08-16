@@ -1,4 +1,5 @@
-﻿using MaintenanceManagementSystem.Database.Models;
+﻿using MaintenanceManagementSystem.Database.Lookup;
+using MaintenanceManagementSystem.Database.Models;
 using MaintenanceManagementSystem.Entity.ModelsDto;
 using System;
 using System.Collections.Generic;
@@ -30,7 +31,12 @@ namespace MaintenanceManagementSystem.Application.Interfaces
          manager after that it cannot be closed. also he should provide reason of 
          cancellation
          */
-        public bool CancelTicket(int requestID, int cancelationReasonID); 
+        public bool CancelTicket(int requestID, int cancelationReasonID);
+
+        /*
+         for view purpose, so we can render the cancelation reasons as a drop-down list
+         */
+        public List<CancellationReason> ListCancellationReasons();
 
         /*
          must sign of the repair order after the work has been made
