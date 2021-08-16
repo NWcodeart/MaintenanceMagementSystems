@@ -16,7 +16,7 @@ namespace MaintenanceManagementSystem.API.Controllers
     [ServiceFilter(typeof(AuthorizeFilter))]
     [ServiceFilter(typeof(ActionFilter))]
     [ServiceFilter(typeof(ExceptionFilter))]
-    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "SystemAdmin")]
     [Route("api/SystemAdmin")]
     [ApiController]
     public class SystemAdminController : ControllerBase

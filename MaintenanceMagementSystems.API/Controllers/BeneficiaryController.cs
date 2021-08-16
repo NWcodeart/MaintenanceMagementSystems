@@ -19,7 +19,7 @@ namespace MaintenanceManagementSystem.API.Controllers
     [ServiceFilter(typeof(AuthorizeFilter))]
     [ServiceFilter(typeof(ActionFilter))]
     [ServiceFilter(typeof(ExceptionFilter))]
-    [Authorize(Roles = "Beneficiary")]
+    [Authorize(Roles = "Beneficiary,SystemAdmin,BuildingManager,MaintenanceManager,MaintenanceWorker")]
     [Route("api/[controller]")]
     [ApiController]
     public class BeneficiaryController : ControllerBase
@@ -97,5 +97,16 @@ namespace MaintenanceManagementSystem.API.Controllers
             return Ok(_beneficiaryRepo.GetTicket(requestID));
         }
 
+        [HttpGet]
+        [Route("ListCancellationReasons")]
+        public IActionResult ListCancellationReasons()
+        {
+            if(_beneficiaryRepo.ListCancellationReasons().Count() == 0)
+            {
+                return NotFound("No rancellation reasons available");
+            }
+
+            return Ok(_beneficiaryRepo.ListCancellationReasons());
+        }
     }
 }
