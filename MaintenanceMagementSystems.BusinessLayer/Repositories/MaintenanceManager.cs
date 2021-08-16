@@ -142,6 +142,7 @@ namespace MaintenanceManagementSystem.BusinessLayer.Repositories
                                 ticket.RejectionReason = respond.reason;
                             }
                         }
+                        _maintenanceSysContext.SaveChanges();
                         return true;
                     }
                     return false;
@@ -164,6 +165,30 @@ namespace MaintenanceManagementSystem.BusinessLayer.Repositories
                 using (_maintenanceSysContext)
                 {
                     List<Ticket> tickets = _maintenanceSysContext.Tickets.ToList();
+                    if (tickets != null)
+                    {
+                        return tickets;
+                    }
+                    else
+                    {
+                        return null;
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public List<Ticket> ViewUnderReviewTickets()
+        {
+            try
+            {
+                using (_maintenanceSysContext)
+                {
+                    List<Ticket> tickets = _maintenanceSysContext.Tickets
+                        .Where(t => t.StatusID == 2 || ((t.CreatedTime - DateTime.Now).TotalDays >= 2) && t.StatusID == 1).ToList(); //2 => under review -> has been passed to BM OR 1=> has not passed to BM and it has been created from more than 2 days
                     if (tickets != null)
                     {
                         return tickets;

@@ -49,6 +49,7 @@ namespace MaintenanceManagementSystem.Application.Interfaces
         public User GetWorker(int WorkerId, int TicketId);
         public bool RespondToTicket(int TicketId, TicketRespond respond);
         public List<Ticket> ViewTickets();
-        
+        public List<Ticket> ViewUnderReviewTickets();
+
     }
 }

@@ -88,5 +88,15 @@ namespace MaintenanceManagementSystem.API.Controllers
             return Ok();
 
         }
+        //--------------------------------------------------------------------------------------------
+
+        [HttpPost]
+        [Route("ViewUnderReviewTickets")]
+        public IActionResult ViewUnderReviewTickets()
+        {
+            _maintenanceManager.ViewUnderReviewTickets();
+            return Ok();
+
+        }
     }
 }

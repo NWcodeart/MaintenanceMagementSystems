@@ -27,9 +27,9 @@ namespace MaintenanceManagementSystem.API.Controllers
         [HttpPost]
         [Route("[action]")]
         [ActionName("AddComments/{id}/{comment}")]
-        public IActionResult AddComments(int id, string comment)
+        public IActionResult AddComments( string comment)
         {
-            _buildingManager.AddComments(id, comment);
+            _buildingManager.AddComments( comment);
             return Ok();
         }
 
