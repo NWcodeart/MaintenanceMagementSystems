@@ -170,12 +170,36 @@ namespace MaintenanceManagementSystem.API.Controllers
         }
 
         [HttpPost]
-        [Route("AddEmployee")]
-        public IActionResult AddEmployee(User user)
+        [Route("AddUser")]
+        public IActionResult AddUser(User user)
         {
             _SystemAdminRepo.RegisterNewEmployee(user);
             return Ok();
         }
+
+        [HttpDelete]
+        [Route("DeleteUser")]
+        public IActionResult DeleteUser(User user)
+        {
+            _SystemAdminRepo.DeleteUser(user.Id);
+            return Ok();
+        }
+        [HttpPost]
+        [Route("UpdateUser")]
+        public IActionResult UpdateUser(User user)
+        {
+            _SystemAdminRepo.UpdateUser(user);
+            return Ok();
+        }
+
+        [HttpGet]
+        [Route("GetUsers")]
+        public IActionResult GetUsers()
+        {
+            var users = _SystemAdminRepo.GetUsers();
+            return Ok(users);
+        }
+
 
     }
 }
