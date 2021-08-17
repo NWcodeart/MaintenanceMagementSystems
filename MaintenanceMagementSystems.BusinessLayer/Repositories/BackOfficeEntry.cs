@@ -2,6 +2,7 @@
 using MaintenanceManagementSystem.Database.Models;
 using MaintenanceManagementSystem.Entity.ModelsDto;
 using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,11 +16,15 @@ namespace MaintenanceManagementSystem.BusinessLayer.Repositories
     {
         private readonly MaintenanceSysContext _maintenanceSysContext;
         private readonly IHttpContextAccessor _httpContextAccessor;
+        private readonly DbContextOptions<MaintenanceSysContext> _options;
 
-        public BackOfficeEntry(MaintenanceSysContext maintenanceSysContext, IHttpContextAccessor httpContextAccessor)
+        public BackOfficeEntry(MaintenanceSysContext maintenanceSysContext, 
+            IHttpContextAccessor httpContextAccessor,
+            DbContextOptions<MaintenanceSysContext> options)
         {
             _maintenanceSysContext = maintenanceSysContext;
             _httpContextAccessor = httpContextAccessor;
+            _options = options;
         }
 
         public User AuthenticateUser(Login Login)
@@ -108,14 +113,18 @@ namespace MaintenanceManagementSystem.BusinessLayer.Repositories
             }
         }
 
-        public string GetUserRoleFromDB(int userRoleID)
+        public async Task<string> GetUserRoleFromDB(int userRoleID)
         {
             try
             {
-                var userRole = _maintenanceSysContext.UserRoles.FirstOrDefault(r => r.Id == userRoleID).RoleType;
-                return userRole;
+                using (var db = new MaintenanceSysContext(_options))
+                {
+                    var userRole = await db.UserRoles.FirstOrDefaultAsync(r => r.Id == userRoleID);
+                    var roleType = userRole.RoleType;
+                    return roleType;
+                }
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 throw;
             }

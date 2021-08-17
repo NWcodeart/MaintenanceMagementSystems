@@ -112,7 +112,9 @@ namespace MaintenanceManagementSystem.BusinessLayer.Repositories
                             FloorId = ticket.FloorId,
                             MaintenanceTypeID = ticket.MaintenanceTypeID,
                             Date = ticket.Date,
-                            Picture = ticket.Picture
+                            Picture = ticket.Picture,
+                            CreatedBy = _beneficiaryEntryRepo.GetUserId(),
+                            CreatedTime = DateTime.Now
                         };
                         _maintenanceSysContext.Add(newTicket);
                         _maintenanceSysContext.SaveChanges();
@@ -153,6 +155,19 @@ namespace MaintenanceManagementSystem.BusinessLayer.Repositories
             {
                 var cancellationReasons = _maintenanceSysContext.CancelationReasons.ToList();
                 return cancellationReasons;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public List<MaintenanceType> ListMaintenanceTypes()
+        {
+            try
+            {
+                var maintenanceTypes = _maintenanceSysContext.MaintenanceTypes.ToList();
+                return maintenanceTypes;
             }
             catch (Exception)
             {

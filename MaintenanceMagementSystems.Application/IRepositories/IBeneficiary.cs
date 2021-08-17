@@ -42,5 +42,10 @@ namespace MaintenanceManagementSystem.Application.Interfaces
          must sign of the repair order after the work has been made
          */
         public Ticket GetTicket(int requestID);
+
+        /*
+         for view purpose, so we can render the maintenance types as a drop-down list
+         */
+        public List<MaintenanceType> ListMaintenanceTypes();
     }
 }

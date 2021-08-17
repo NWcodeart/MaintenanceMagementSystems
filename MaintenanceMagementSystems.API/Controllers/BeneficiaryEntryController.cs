@@ -57,10 +57,14 @@ namespace MaintenanceManagementSystem.API.Controllers
             IActionResult response = Unauthorized("Incorrect username or password");
 
             var user = _beneficiaryEntryRepo.AuthenticateUser(login);
+            if(user == null)
+            {
+                return response;
+            }
 
             if (user != null)
             {
-                var tokenString = GenerateJSONWebToken(user.Result);
+                string tokenString = GenerateJSONWebToken(user);
                 response = Ok(tokenString);
             }
 
@@ -79,6 +83,7 @@ namespace MaintenanceManagementSystem.API.Controllers
                 new Claim(JwtRegisteredClaimNames.Email, User.Email),
                 new Claim(ClaimTypes.Role, roleString.Result),
                 new Claim(ClaimTypes.Sid, User.Id.ToString()),
+                new Claim("BuildingID", User.buildingId.ToString()),
                 new Claim("FloorID", User.FloorId.ToString())
             };
 

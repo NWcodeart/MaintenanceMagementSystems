@@ -19,7 +19,7 @@ namespace MaintenanceManagementSystem.Application.Interfaces
 
         public bool CheckExistence(string email);
 
-        public Task<User> AuthenticateUser(Login Login);
+        public User AuthenticateUser(Login Login);
 
         public int GetUserId();
 

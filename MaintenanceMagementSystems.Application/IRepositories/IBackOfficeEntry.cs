@@ -37,7 +37,7 @@ namespace MaintenanceManagementSystem.Application.Interfaces
 
         public string GetUserRole();
 
-        public string GetUserRoleFromDB(int userRoleID); //To be used to get role claim
+        public Task<string> GetUserRoleFromDB(int userRoleID); //To be used to get role claim
 
         public string GetUserEmail();
 
