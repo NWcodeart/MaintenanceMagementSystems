@@ -94,3 +94,20 @@ Error Number:207,State:1,Class:16
 End Date :   8/17/2021 5:23:52 PM
 
 
+=====================================Error Logging ===================================
+
+Start Date :   8/17/2021 6:34:17 PM
+Error Message: 
+System.InvalidOperationException: Unable to resolve service for type 'MaintenanceManagementSystem.Application.Interfaces.ISystemAdmin' while attempting to activate 'MaintenanceManagementSystem.API.Controllers.SystemAdminController'.
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.GetService(IServiceProvider sp, Type type, Type requiredBy, Boolean isDefaultParameterRequired)
+   at lambda_method252(Closure , IServiceProvider , Object[] )
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerActivatorProvider.<>c__DisplayClass4_0.<CreateActivator>b__0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerFactoryProvider.<>c__DisplayClass5_0.<CreateControllerFactory>g__CreateController|0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextExceptionFilterAsync>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+
+End Date :   8/17/2021 6:34:17 PM
+
+
