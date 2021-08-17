@@ -16,3 +16,27 @@ System.Collections.Generic.Dictionary`2[System.String,System.String]
 MaintenanceManagementSystem.API.Controllers.BackOfficeEntryController.Login (MaintenanceManagementSystem.API)
 
 
+===================================Action Type===================================
+Start Date :   8/17/2021 7:31:53 PM
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+MaintenanceManagementSystem.API.Controllers.BackOfficeEntryController.RegisterSystemAdmin (MaintenanceManagementSystem.API)
+
+
+===================================Action Type===================================
+Start Date :   8/17/2021 7:33:34 PM
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+MaintenanceManagementSystem.API.Controllers.BackOfficeEntryController.RegisterSystemAdmin (MaintenanceManagementSystem.API)
+
+
+===================================Action Type===================================
+Start Date :   8/17/2021 7:37:34 PM
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+MaintenanceManagementSystem.API.Controllers.BackOfficeEntryController.Login (MaintenanceManagementSystem.API)
+
+
+===================================Action Type===================================
+Start Date :   8/17/2021 7:38:40 PM
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+MaintenanceManagementSystem.API.Controllers.SystemAdminController.GetBuildingsTable (MaintenanceManagementSystem.API)
+
+

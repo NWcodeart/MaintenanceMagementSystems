@@ -11,6 +11,13 @@ namespace MaintenanceManagementSystem.Application.Interfaces
     public interface IBackOfficeEntry
     {
         /*
+         To register system admin only, nothing to do with the website
+         */
+        public void RegisterSystemAdmin(RegistrationDto user);
+
+        public bool CheckExistence(string email);
+
+        /*
          No registration page needed just login using their employees ID (Email)
          */
         public User AuthenticateUser(Login Login);
