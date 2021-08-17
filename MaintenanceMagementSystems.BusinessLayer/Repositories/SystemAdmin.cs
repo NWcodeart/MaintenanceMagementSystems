@@ -276,5 +276,10 @@ namespace MaintenanceManagementSystem.BusinessLayer.Repositories
         {
             return _maintenanceSysContext.CancelationReasons.ToList();
         }
+
+        public List<User> GetUsers()
+        {
+            return _maintenanceSysContext.Users.ToList();
+        }
     }
 }

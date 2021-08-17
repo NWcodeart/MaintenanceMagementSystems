@@ -16,8 +16,8 @@ namespace MaintenanceManagementSystem.Application.Interfaces
         public void DeleteUser(int userID);
 
         //system admin can Update UserInformations
-        public void UpdateUser(User UpdatedUser); 
-
+        public void UpdateUser(User UpdatedUser);
+        public List<User> GetUsers();
         /*
          System admin can reset user’s passwords.
          */
