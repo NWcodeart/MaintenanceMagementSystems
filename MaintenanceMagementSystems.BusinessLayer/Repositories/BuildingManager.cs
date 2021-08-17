@@ -22,17 +22,22 @@ namespace MaintenanceManagementSystem.BusinessLayer.Repositories
             _backOfficeEntry = backOfficeEntry;
         }
 
-        public bool AddComments(int TicketId, string comment)
+        public bool AddComments(string comment)
         {
             try
             {
                 using (_maintenanceSysContext)
                 {                    
-                    Ticket ticketObject = _maintenanceSysContext.Tickets.FirstOrDefault(t => t.Id == TicketId);
-                    if (ticketObject != null)
+                    List<Ticket> ticketList = _maintenanceSysContext.Tickets.Where(t => t.StatusID == 1).ToList();  //1 => new
+                    if (ticketList != null)
                     {
-                        ticketObject.BuildingManagerComment = comment;
-                        _maintenanceSysContext.SaveChanges();
+                        foreach(var ticket in ticketList)
+                        {
+                            ticket.BuildingManagerComment = comment;
+                            ticket.StatusID = 2; //2 => under review
+                            _maintenanceSysContext.SaveChanges();
+                           
+                        }
                         return true;
                     }
                     else

@@ -152,7 +152,7 @@ namespace MaintenanceManagementSystem.API.Controllers
                     }
                     else
                     {
-                        //_SystemAdminRepo.AddMaintenanceType(maintenanceType);
+                       // _SystemAdminRepo.AddMaintenanceType(maintenanceType);
                         return Ok("maintenanceType added successfully");
                     }
 
