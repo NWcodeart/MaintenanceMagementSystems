@@ -103,12 +103,6 @@ namespace MaintenanceManagementSystem.Database.Migrations
                 );
 
             migrationBuilder.InsertData(
-                table: "MaintenanceTypes",
-                columns: new[] { "MaintenanceTypeNameAr", "MaintenanceTypeNameEn" },
-                values: new object[] { "أخرى", "Other" }
-                );
-
-            migrationBuilder.InsertData(
                 table: "CancelationReasons",
                 columns: new[] { "ReasonTypeAr", "ReasonTypeEn" },
                 values: new object[] { "لقد أرسلت شيئًا خاطئًا", "I submitted something wrong" }
