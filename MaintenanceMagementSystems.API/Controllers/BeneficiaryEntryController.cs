@@ -36,7 +36,7 @@ namespace MaintenanceManagementSystem.API.Controllers
         [AllowAnonymous]
         [HttpPost]
         [Route("Register")]
-        public IActionResult Register(BeneficiaryRegistration user)
+        public IActionResult Register(RegistrationDto user)
         {
             if (_beneficiaryEntryRepo.CheckExistence(user.Email))
             {

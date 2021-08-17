@@ -33,7 +33,7 @@ namespace MaintenanceManagementSystem.MVC.Controllers
             return View();
         }
 
-        public async Task<IActionResult> Register(BeneficiaryRegistration RegisterInfo)
+        public async Task<IActionResult> Register(RegistrationDto RegisterInfo)
         {
             using (var httpClient = new HttpClient())
             {

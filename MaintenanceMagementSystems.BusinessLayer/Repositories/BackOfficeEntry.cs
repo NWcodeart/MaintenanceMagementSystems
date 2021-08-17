@@ -182,6 +182,50 @@ namespace MaintenanceManagementSystem.BusinessLayer.Repositories
             }
         }
 
+        public void RegisterSystemAdmin(RegistrationDto user)
+        {
+            try
+            {
+                using (_maintenanceSysContext)
+                {
+                    var newUser = new User()
+                    {
+                        UserRoleId = 1,
+                        Name = user.Name,
+                        Email = user.Email,
+                        Phone = user.Phone,
+                        buildingId = user.BuildingNumber,
+                        FloorId = user.FloorNumber
+                    };
 
+                    newUser.Password = BCrypt.Net.BCrypt.HashPassword(user.Password);
+
+                    _maintenanceSysContext.Users.Add(newUser);
+                    _maintenanceSysContext.SaveChanges();
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public bool CheckExistence(string email)
+        {
+            try
+            {
+                var user = _maintenanceSysContext.Users.FirstOrDefault(u => u.Email == email);
+                if (user != null)
+                {
+                    return true;
+                }
+
+                return false;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
     }
 }

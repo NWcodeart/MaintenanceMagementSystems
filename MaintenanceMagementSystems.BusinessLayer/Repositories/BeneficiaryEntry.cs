@@ -137,7 +137,7 @@ namespace MaintenanceManagementSystem.BusinessLayer.Repositories
             }
         }
 
-        public void Register(BeneficiaryRegistration user)
+        public void Register(RegistrationDto user)
         {
             try
             {

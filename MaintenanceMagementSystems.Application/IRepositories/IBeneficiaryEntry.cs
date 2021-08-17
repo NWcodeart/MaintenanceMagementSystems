@@ -15,7 +15,7 @@ namespace MaintenanceManagementSystem.Application.Interfaces
         /*
          The portal should contain a registration page and a login page
          */
-        public void Register(BeneficiaryRegistration user);
+        public void Register(RegistrationDto user);
 
         public bool CheckExistence(string email);
 

@@ -38,6 +38,7 @@ namespace MaintenanceMagementSystems.API
             services.AddScoped<IMaintenanceManager, MaintenanceManager>();
             services.AddScoped<IMaintenanceWorker, MaintenanceWorker>();
             services.AddScoped<IBackOfficeEntry, BackOfficeEntry>();
+            services.AddScoped<ISystemAdmin, SystemAdmin>();
 
             services.AddHttpContextAccessor();
 

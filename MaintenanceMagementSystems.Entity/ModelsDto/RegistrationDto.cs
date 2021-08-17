@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MaintenanceManagementSystem.Entity.ModelsDto
 {
-    public class BeneficiaryRegistration
+    public class RegistrationDto
     {
         [Required]
         [RegularExpression(@"^[a-zA-z\s]+$", ErrorMessage = "Accepted characters are alphabets and spaces only")] //Alpha and spaces

@@ -127,5 +127,20 @@ namespace MaintenanceManagementSystem.API.Controllers
             }
         }
 
+        [AllowAnonymous]
+        [HttpPost]
+        [Route("RegisterSystemAdmin")]
+        public IActionResult RegisterSystemAdmin(RegistrationDto user)
+        {
+            if (_backOfficeEntry.CheckExistence(user.Email))
+            {
+                return BadRequest("You are already registered");
+            }
+            else
+            {
+                _backOfficeEntry.RegisterSystemAdmin(user);
+                return Ok("You have been registered successfully");
+            }
+        }
     }
 }
