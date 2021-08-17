@@ -1,6 +1,7 @@
 ﻿using MaintenanceMagementSystems.API.Filters;
 using MaintenanceManagementSystem.Application.IRepositories;
 using MaintenanceManagementSystem.Database.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -18,11 +19,12 @@ namespace MaintenanceManagementSystem.API.Controllers
     public class SystemUserController : Controller
     {
         
-            private readonly ISystemUser _systemUser;
-            public SystemUserController(ISystemUser systemUser)
-            {
-                 _systemUser = systemUser;
-            }
+        private readonly ISystemUser _systemUser;
+
+        public SystemUserController(ISystemUser systemUser)
+        {
+            _systemUser = systemUser;
+        }
 
 
             [HttpPost]
@@ -35,5 +37,6 @@ namespace MaintenanceManagementSystem.API.Controllers
             }
 
             //--------------------------------------------------------------------------------------------
+
     }
 }
