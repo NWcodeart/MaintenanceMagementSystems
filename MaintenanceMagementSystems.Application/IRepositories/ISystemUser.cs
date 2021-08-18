@@ -11,7 +11,7 @@ namespace MaintenanceManagementSystem.Application.IRepositories
     {
         public bool UpdateUser(User UpdatedUser);
         public bool SendEmail(string email);
-        public bool ResetPassword(string tempPassword, string newPassword);
+        public bool ResetPassword(Guid tempPassword, string newPassword);
 
     }
 }
