@@ -40,3 +40,759 @@ System.Collections.Generic.Dictionary`2[System.String,System.String]
 MaintenanceManagementSystem.API.Controllers.SystemAdminController.GetBuildingsTable (MaintenanceManagementSystem.API)
 
 
+===================================Action Type===================================
+Start Date :   8/17/2021 10:44:04 PM
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+MaintenanceManagementSystem.API.Controllers.BackOfficeEntryController.Login (MaintenanceManagementSystem.API)
+
+
+===================================Action Type===================================
+Start Date :   8/18/2021 6:35:41 AM
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+BackOfficePortal.Controllers.HomeController.Signin (BackOfficePortal)
+
+
+===================================Action Type===================================
+Start Date :   8/18/2021 6:36:36 AM
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+BackOfficePortal.Controllers.HomeController.Login (BackOfficePortal)
+
+
+===================================Action Type===================================
+Start Date :   8/18/2021 6:40:30 AM
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+BackOfficePortal.Controllers.HomeController.Signin (BackOfficePortal)
+
+
+===================================Action Type===================================
+Start Date :   8/18/2021 6:40:49 AM
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+BackOfficePortal.Controllers.HomeController.Login (BackOfficePortal)
+
+
+===================================Action Type===================================
+Start Date :   8/18/2021 6:40:50 AM
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+BackOfficePortal.Controllers.HomeController.Signin (BackOfficePortal)
+
+
+===================================Action Type===================================
+Start Date :   8/18/2021 6:41:26 AM
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+BackOfficePortal.Controllers.HomeController.Login (BackOfficePortal)
+
+
+===================================Action Type===================================
+Start Date :   8/18/2021 6:41:28 AM
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+BackOfficePortal.Controllers.MaintenanceWorkerController.ListTickets (BackOfficePortal)
+
+
+===================================Action Type===================================
+Start Date :   8/18/2021 6:47:27 AM
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+BackOfficePortal.Controllers.HomeController.Signin (BackOfficePortal)
+
+
+===================================Action Type===================================
+Start Date :   8/18/2021 6:47:46 AM
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+BackOfficePortal.Controllers.HomeController.Login (BackOfficePortal)
+
+
+===================================Action Type===================================
+Start Date :   8/18/2021 6:47:51 AM
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+BackOfficePortal.Controllers.HomeController.Signin (BackOfficePortal)
+
+
+===================================Action Type===================================
+Start Date :   8/18/2021 6:48:04 AM
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+BackOfficePortal.Controllers.HomeController.Login (BackOfficePortal)
+
+
+===================================Action Type===================================
+Start Date :   8/18/2021 6:48:04 AM
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+BackOfficePortal.Controllers.HomeController.Signin (BackOfficePortal)
+
+
+===================================Action Type===================================
+Start Date :   8/18/2021 6:48:34 AM
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+BackOfficePortal.Controllers.HomeController.Login (BackOfficePortal)
+
+
+===================================Action Type===================================
+Start Date :   8/18/2021 6:48:35 AM
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+BackOfficePortal.Controllers.HomeController.Signin (BackOfficePortal)
+
+
+===================================Action Type===================================
+Start Date :   8/18/2021 6:49:27 AM
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+BackOfficePortal.Controllers.HomeController.Login (BackOfficePortal)
+
+
+===================================Action Type===================================
+Start Date :   8/18/2021 6:49:29 AM
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+BackOfficePortal.Controllers.MaintenanceWorkerController.ListTickets (BackOfficePortal)
+
+
+===================================Action Type===================================
+Start Date :   8/18/2021 6:49:41 AM
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+BackOfficePortal.Controllers.HomeController.Signin (BackOfficePortal)
+
+
+===================================Action Type===================================
+Start Date :   8/18/2021 6:53:13 AM
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+BackOfficePortal.Controllers.HomeController.Signin (BackOfficePortal)
+
+
+===================================Action Type===================================
+Start Date :   8/18/2021 6:57:16 AM
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+BackOfficePortal.Controllers.HomeController.Signin (BackOfficePortal)
+
+
+===================================Action Type===================================
+Start Date :   8/18/2021 7:01:22 AM
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+BackOfficePortal.Controllers.HomeController.Signin (BackOfficePortal)
+
+
+===================================Action Type===================================
+Start Date :   8/18/2021 7:01:36 AM
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+BackOfficePortal.Controllers.HomeController.Login (BackOfficePortal)
+
+
+===================================Action Type===================================
+Start Date :   8/18/2021 7:01:37 AM
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+BackOfficePortal.Controllers.MaintenanceWorkerController.ListTickets (BackOfficePortal)
+
+
+===================================Action Type===================================
+Start Date :   8/18/2021 7:04:05 AM
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+BackOfficePortal.Controllers.HomeController.Signin (BackOfficePortal)
+
+
+===================================Action Type===================================
+Start Date :   8/18/2021 7:04:51 AM
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+BackOfficePortal.Controllers.HomeController.Login (BackOfficePortal)
+
+
+===================================Action Type===================================
+Start Date :   8/18/2021 7:04:52 AM
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+BackOfficePortal.Controllers.HomeController.Signin (BackOfficePortal)
+
+
+===================================Action Type===================================
+Start Date :   8/18/2021 7:05:02 AM
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+BackOfficePortal.Controllers.HomeController.Login (BackOfficePortal)
+
+
+===================================Action Type===================================
+Start Date :   8/18/2021 7:05:03 AM
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+BackOfficePortal.Controllers.MaintenanceWorkerController.ListTickets (BackOfficePortal)
+
+
+===================================Action Type===================================
+Start Date :   10‏‏/1‏‏/1443 بعد الهجرة 7:05:32 ص
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+BackOfficePortal.Controllers.BuildingManagerController.ViewTickets (BackOfficePortal)
+
+
+===================================Action Type===================================
+Start Date :   10‏‏/1‏‏/1443 بعد الهجرة 7:05:52 ص
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+BackOfficePortal.Controllers.BuildingManagerController.GetTickets (BackOfficePortal)
+
+
+===================================Action Type===================================
+Start Date :   10‏‏/1‏‏/1443 بعد الهجرة 7:13:01 ص
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+BackOfficePortal.Controllers.BuildingManagerController.ViewTickets (BackOfficePortal)
+
+
+===================================Action Type===================================
+Start Date :   10‏‏/1‏‏/1443 بعد الهجرة 7:15:53 ص
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+BackOfficePortal.Controllers.BuildingManagerController.ViewTickets (BackOfficePortal)
+
+
+===================================Action Type===================================
+Start Date :   10‏‏/1‏‏/1443 بعد الهجرة 7:15:53 ص
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+BackOfficePortal.Controllers.BuildingManagerController.ViewTickets (BackOfficePortal)
+
+
+===================================Action Type===================================
+Start Date :   10‏‏/1‏‏/1443 بعد الهجرة 7:17:32 ص
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+BackOfficePortal.Controllers.BuildingManagerController.ViewTickets (BackOfficePortal)
+
+
+===================================Action Type===================================
+Start Date :   10‏‏/1‏‏/1443 بعد الهجرة 7:31:52 ص
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+BackOfficePortal.Controllers.BuildingManagerController.ViewTickets (BackOfficePortal)
+
+
+===================================Action Type===================================
+Start Date :   10‏‏/1‏‏/1443 بعد الهجرة 7:36:06 ص
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+BackOfficePortal.Controllers.BuildingManagerController.ViewTickets (BackOfficePortal)
+
+
+===================================Action Type===================================
+Start Date :   10‏‏/1‏‏/1443 بعد الهجرة 7:36:14 ص
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+BackOfficePortal.Controllers.BuildingManagerController.ViewTickets (BackOfficePortal)
+
+
+===================================Action Type===================================
+Start Date :   10‏‏/1‏‏/1443 بعد الهجرة 7:36:16 ص
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+BackOfficePortal.Controllers.BuildingManagerController.ViewTickets (BackOfficePortal)
+
+
+===================================Action Type===================================
+Start Date :   10‏‏/1‏‏/1443 بعد الهجرة 7:36:16 ص
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+BackOfficePortal.Controllers.BuildingManagerController.ViewTickets (BackOfficePortal)
+
+
+===================================Action Type===================================
+Start Date :   10‏‏/1‏‏/1443 بعد الهجرة 7:37:07 ص
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+BackOfficePortal.Controllers.BuildingManagerController.ViewTickets (BackOfficePortal)
+
+
+===================================Action Type===================================
+Start Date :   10‏‏/1‏‏/1443 بعد الهجرة 7:37:23 ص
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+BackOfficePortal.Controllers.BuildingManagerController.ViewTickets (BackOfficePortal)
+
+
+===================================Action Type===================================
+Start Date :   10‏‏/1‏‏/1443 بعد الهجرة 7:37:23 ص
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+BackOfficePortal.Controllers.BuildingManagerController.ViewTickets (BackOfficePortal)
+
+
+===================================Action Type===================================
+Start Date :   10‏‏/1‏‏/1443 بعد الهجرة 7:39:21 ص
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+BackOfficePortal.Controllers.BuildingManagerController.ViewTickets (BackOfficePortal)
+
+
+===================================Action Type===================================
+Start Date :   10‏‏/1‏‏/1443 بعد الهجرة 7:39:57 ص
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+BackOfficePortal.Controllers.BuildingManagerController.ViewTickets (BackOfficePortal)
+
+
+===================================Action Type===================================
+Start Date :   10‏‏/1‏‏/1443 بعد الهجرة 8:30:14 ص
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+BackOfficePortal.Controllers.BuildingManagerController.ViewTickets (BackOfficePortal)
+
+
+===================================Action Type===================================
+Start Date :   10‏‏/1‏‏/1443 بعد الهجرة 8:33:11 ص
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+BackOfficePortal.Controllers.BuildingManagerController.ViewTickets (BackOfficePortal)
+
+
+===================================Action Type===================================
+Start Date :   10‏‏/1‏‏/1443 بعد الهجرة 8:33:14 ص
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+BackOfficePortal.Controllers.BuildingManagerController.ViewTickets (BackOfficePortal)
+
+
+===================================Action Type===================================
+Start Date :   10‏‏/1‏‏/1443 بعد الهجرة 8:35:25 ص
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+BackOfficePortal.Controllers.BuildingManagerController.ViewTickets (BackOfficePortal)
+
+
+===================================Action Type===================================
+Start Date :   10‏‏/1‏‏/1443 بعد الهجرة 8:38:22 ص
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+BackOfficePortal.Controllers.BuildingManagerController.ViewTickets (BackOfficePortal)
+
+
+===================================Action Type===================================
+Start Date :   10‏‏/1‏‏/1443 بعد الهجرة 8:40:58 ص
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+BackOfficePortal.Controllers.BuildingManagerController.ViewTickets (BackOfficePortal)
+
+
+===================================Action Type===================================
+Start Date :   10‏‏/1‏‏/1443 بعد الهجرة 8:41:56 ص
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+BackOfficePortal.Controllers.BuildingManagerController.ViewTickets (BackOfficePortal)
+
+
+===================================Action Type===================================
+Start Date :   10‏‏/1‏‏/1443 بعد الهجرة 8:42:38 ص
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+BackOfficePortal.Controllers.BuildingManagerController.ViewTickets (BackOfficePortal)
+
+
+===================================Action Type===================================
+Start Date :   10‏‏/1‏‏/1443 بعد الهجرة 8:44:09 ص
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+BackOfficePortal.Controllers.BuildingManagerController.ViewTickets (BackOfficePortal)
+
+
+===================================Action Type===================================
+Start Date :   10‏‏/1‏‏/1443 بعد الهجرة 8:45:12 ص
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+BackOfficePortal.Controllers.BuildingManagerController.ViewTickets (BackOfficePortal)
+
+
+===================================Action Type===================================
+Start Date :   10‏‏/1‏‏/1443 بعد الهجرة 8:45:45 ص
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+BackOfficePortal.Controllers.BuildingManagerController.ViewTickets (BackOfficePortal)
+
+
+===================================Action Type===================================
+Start Date :   8/18/2021 8:46:15 AM
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+BackOfficePortal.Controllers.HomeController.Signin (BackOfficePortal)
+
+
+===================================Action Type===================================
+Start Date :   8/18/2021 8:46:43 AM
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+BackOfficePortal.Controllers.HomeController.Login (BackOfficePortal)
+
+
+===================================Action Type===================================
+Start Date :   8/18/2021 8:47:30 AM
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+BackOfficePortal.Controllers.HomeController.Signin (BackOfficePortal)
+
+
+===================================Action Type===================================
+Start Date :   8/18/2021 8:47:49 AM
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+BackOfficePortal.Controllers.HomeController.Login (BackOfficePortal)
+
+
+===================================Action Type===================================
+Start Date :   8/18/2021 8:47:54 AM
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+BackOfficePortal.Controllers.MaintenanceWorkerController.ListTickets (BackOfficePortal)
+
+
+===================================Action Type===================================
+Start Date :   8/18/2021 8:49:00 AM
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+BackOfficePortal.Controllers.HomeController.Signin (BackOfficePortal)
+
+
+===================================Action Type===================================
+Start Date :   8/18/2021 8:49:13 AM
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+BackOfficePortal.Controllers.HomeController.Login (BackOfficePortal)
+
+
+===================================Action Type===================================
+Start Date :   8/18/2021 8:49:14 AM
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+BackOfficePortal.Controllers.MaintenanceWorkerController.ListTickets (BackOfficePortal)
+
+
+===================================Action Type===================================
+Start Date :   8/18/2021 8:55:47 AM
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+BackOfficePortal.Controllers.HomeController.Signin (BackOfficePortal)
+
+
+===================================Action Type===================================
+Start Date :   8/18/2021 8:56:12 AM
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+BackOfficePortal.Controllers.HomeController.Login (BackOfficePortal)
+
+
+===================================Action Type===================================
+Start Date :   8/18/2021 8:56:13 AM
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+BackOfficePortal.Controllers.MaintenanceWorkerController.ListTickets (BackOfficePortal)
+
+
+===================================Action Type===================================
+Start Date :   10‏‏/1‏‏/1443 بعد الهجرة 9:09:54 ص
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+BackOfficePortal.Controllers.BuildingManagerController.ViewTickets (BackOfficePortal)
+
+
+===================================Action Type===================================
+Start Date :   10‏‏/1‏‏/1443 بعد الهجرة 9:10:55 ص
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+BackOfficePortal.Controllers.BuildingManagerController.ViewTickets (BackOfficePortal)
+
+
+===================================Action Type===================================
+Start Date :   8/18/2021 9:12:45 AM
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+BackOfficePortal.Controllers.BuildingManagerController.ViewTickets (BackOfficePortal)
+
+
+===================================Action Type===================================
+Start Date :   8/18/2021 9:13:04 AM
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+BackOfficePortal.Controllers.BuildingManagerController.ViewTickets (BackOfficePortal)
+
+
+===================================Action Type===================================
+Start Date :   10‏‏/1‏‏/1443 بعد الهجرة 9:14:14 ص
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+BackOfficePortal.Controllers.BuildingManagerController.ViewTickets (BackOfficePortal)
+
+
+===================================Action Type===================================
+Start Date :   10‏‏/1‏‏/1443 بعد الهجرة 9:23:03 ص
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+BackOfficePortal.Controllers.BuildingManagerController.ViewTickets (BackOfficePortal)
+
+
+===================================Action Type===================================
+Start Date :   8/18/2021 9:25:19 AM
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+BackOfficePortal.Controllers.HomeController.Signin (BackOfficePortal)
+
+
+===================================Action Type===================================
+Start Date :   10‏‏/1‏‏/1443 بعد الهجرة 9:46:02 ص
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+BackOfficePortal.Controllers.MaintenanceWorkerController.ViewTicket (BackOfficePortal)
+
+
+===================================Action Type===================================
+Start Date :   10‏‏/1‏‏/1443 بعد الهجرة 9:52:31 ص
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+BackOfficePortal.Controllers.MaintenanceWorkerController.ViewTicket (BackOfficePortal)
+
+
+===================================Action Type===================================
+Start Date :   10‏‏/1‏‏/1443 بعد الهجرة 9:52:32 ص
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+BackOfficePortal.Controllers.MaintenanceWorkerController.ViewTicket (BackOfficePortal)
+
+
+===================================Action Type===================================
+Start Date :   10‏‏/1‏‏/1443 بعد الهجرة 9:54:22 ص
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+BackOfficePortal.Controllers.MaintenanceWorkerController.ViewTicket (BackOfficePortal)
+
+
+===================================Action Type===================================
+Start Date :   10‏‏/1‏‏/1443 بعد الهجرة 9:54:34 ص
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+BackOfficePortal.Controllers.MaintenanceWorkerController.ViewTicket (BackOfficePortal)
+
+
+===================================Action Type===================================
+Start Date :   10‏‏/1‏‏/1443 بعد الهجرة 10:05:51 ص
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+BackOfficePortal.Controllers.MaintenanceWorkerController.ViewTicket (BackOfficePortal)
+
+
+===================================Action Type===================================
+Start Date :   10‏‏/1‏‏/1443 بعد الهجرة 10:05:51 ص
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+BackOfficePortal.Controllers.MaintenanceWorkerController.ViewTicket (BackOfficePortal)
+
+
+===================================Action Type===================================
+Start Date :   10‏‏/1‏‏/1443 بعد الهجرة 10:06:58 ص
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+BackOfficePortal.Controllers.MaintenanceWorkerController.ViewTicket (BackOfficePortal)
+
+
+===================================Action Type===================================
+Start Date :   10‏‏/1‏‏/1443 بعد الهجرة 10:11:59 ص
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+BackOfficePortal.Controllers.MaintenanceWorkerController.ViewTicket (BackOfficePortal)
+
+
+===================================Action Type===================================
+Start Date :   10‏‏/1‏‏/1443 بعد الهجرة 10:11:59 ص
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+BackOfficePortal.Controllers.MaintenanceWorkerController.ViewTicket (BackOfficePortal)
+
+
+===================================Action Type===================================
+Start Date :   10‏‏/1‏‏/1443 بعد الهجرة 10:11:59 ص
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+BackOfficePortal.Controllers.MaintenanceWorkerController.ViewTicket (BackOfficePortal)
+
+
+===================================Action Type===================================
+Start Date :   10‏‏/1‏‏/1443 بعد الهجرة 10:11:59 ص
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+BackOfficePortal.Controllers.MaintenanceWorkerController.ViewTicket (BackOfficePortal)
+
+
+===================================Action Type===================================
+Start Date :   10‏‏/1‏‏/1443 بعد الهجرة 10:11:59 ص
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+BackOfficePortal.Controllers.MaintenanceWorkerController.ViewTicket (BackOfficePortal)
+
+
+===================================Action Type===================================
+Start Date :   10‏‏/1‏‏/1443 بعد الهجرة 10:13:34 ص
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+BackOfficePortal.Controllers.MaintenanceWorkerController.ViewTicket (BackOfficePortal)
+
+
+===================================Action Type===================================
+Start Date :   10‏‏/1‏‏/1443 بعد الهجرة 10:13:53 ص
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+BackOfficePortal.Controllers.BuildingManagerController.ViewTickets (BackOfficePortal)
+
+
+===================================Action Type===================================
+Start Date :   10‏‏/1‏‏/1443 بعد الهجرة 10:17:45 ص
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+BackOfficePortal.Controllers.BuildingManagerController.ViewTickets (BackOfficePortal)
+
+
+===================================Action Type===================================
+Start Date :   10‏‏/1‏‏/1443 بعد الهجرة 10:27:13 ص
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+BackOfficePortal.Controllers.BuildingManagerController.ViewTickets (BackOfficePortal)
+
+
+===================================Action Type===================================
+Start Date :   10‏‏/1‏‏/1443 بعد الهجرة 10:29:30 ص
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+BackOfficePortal.Controllers.BuildingManagerController.ViewTickets (BackOfficePortal)
+
+
+===================================Action Type===================================
+Start Date :   10‏‏/1‏‏/1443 بعد الهجرة 10:40:55 ص
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+BackOfficePortal.Controllers.BuildingManagerController.ViewTickets (BackOfficePortal)
+
+
+===================================Action Type===================================
+Start Date :   10‏‏/1‏‏/1443 بعد الهجرة 10:40:58 ص
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+BackOfficePortal.Controllers.BuildingManagerController.ViewTickets (BackOfficePortal)
+
+
+===================================Action Type===================================
+Start Date :   10‏‏/1‏‏/1443 بعد الهجرة 10:41:47 ص
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+BackOfficePortal.Controllers.BuildingManagerController.ViewTickets (BackOfficePortal)
+
+
+===================================Action Type===================================
+Start Date :   10‏‏/1‏‏/1443 بعد الهجرة 10:41:49 ص
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+BackOfficePortal.Controllers.BuildingManagerController.ViewTickets (BackOfficePortal)
+
+
+===================================Action Type===================================
+Start Date :   10‏‏/1‏‏/1443 بعد الهجرة 10:41:53 ص
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+BackOfficePortal.Controllers.BuildingManagerController.ViewTickets (BackOfficePortal)
+
+
+===================================Action Type===================================
+Start Date :   10‏‏/1‏‏/1443 بعد الهجرة 10:42:06 ص
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+BackOfficePortal.Controllers.BuildingManagerController.ViewTickets (BackOfficePortal)
+
+
+===================================Action Type===================================
+Start Date :   10‏‏/1‏‏/1443 بعد الهجرة 10:44:18 ص
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+BackOfficePortal.Controllers.BuildingManagerController.ViewTickets (BackOfficePortal)
+
+
+===================================Action Type===================================
+Start Date :   10‏‏/1‏‏/1443 بعد الهجرة 10:44:25 ص
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+BackOfficePortal.Controllers.BuildingManagerController.ViewTickets (BackOfficePortal)
+
+
+===================================Action Type===================================
+Start Date :   10‏‏/1‏‏/1443 بعد الهجرة 10:44:27 ص
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+BackOfficePortal.Controllers.BuildingManagerController.ViewTickets (BackOfficePortal)
+
+
+===================================Action Type===================================
+Start Date :   10‏‏/1‏‏/1443 بعد الهجرة 10:45:26 ص
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+BackOfficePortal.Controllers.BuildingManagerController.ViewTickets (BackOfficePortal)
+
+
+===================================Action Type===================================
+Start Date :   10‏‏/1‏‏/1443 بعد الهجرة 10:45:26 ص
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+BackOfficePortal.Controllers.BuildingManagerController.ViewTickets (BackOfficePortal)
+
+
+===================================Action Type===================================
+Start Date :   10‏‏/1‏‏/1443 بعد الهجرة 10:45:41 ص
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+BackOfficePortal.Controllers.BuildingManagerController.ViewTickets (BackOfficePortal)
+
+
+===================================Action Type===================================
+Start Date :   10‏‏/1‏‏/1443 بعد الهجرة 10:45:41 ص
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+BackOfficePortal.Controllers.BuildingManagerController.ViewTickets (BackOfficePortal)
+
+
+===================================Action Type===================================
+Start Date :   10‏‏/1‏‏/1443 بعد الهجرة 10:51:28 ص
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+BackOfficePortal.Controllers.BuildingManagerController.ViewTickets (BackOfficePortal)
+
+
+===================================Action Type===================================
+Start Date :   10‏‏/1‏‏/1443 بعد الهجرة 10:51:37 ص
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+BackOfficePortal.Controllers.BuildingManagerController.ViewTickets (BackOfficePortal)
+
+
+===================================Action Type===================================
+Start Date :   8/18/2021 11:08:20 AM
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+BackOfficePortal.Controllers.HomeController.Signin (BackOfficePortal)
+
+
+===================================Action Type===================================
+Start Date :   10‏‏/1‏‏/1443 بعد الهجرة 11:13:20 ص
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+BackOfficePortal.Controllers.BuildingManagerController.ViewTickets (BackOfficePortal)
+
+
+===================================Action Type===================================
+Start Date :   10‏‏/1‏‏/1443 بعد الهجرة 11:14:46 ص
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+BackOfficePortal.Controllers.BuildingManagerController.ViewTickets (BackOfficePortal)
+
+
+===================================Action Type===================================
+Start Date :   10‏‏/1‏‏/1443 بعد الهجرة 11:15:09 ص
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+BackOfficePortal.Controllers.BuildingManagerController.ViewTickets (BackOfficePortal)
+
+
+===================================Action Type===================================
+Start Date :   10‏‏/1‏‏/1443 بعد الهجرة 11:15:12 ص
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+BackOfficePortal.Controllers.BuildingManagerController.ViewTickets (BackOfficePortal)
+
+
+===================================Action Type===================================
+Start Date :   10‏‏/1‏‏/1443 بعد الهجرة 11:16:16 ص
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+BackOfficePortal.Controllers.BuildingManagerController.ViewTickets (BackOfficePortal)
+
+
+===================================Action Type===================================
+Start Date :   10‏‏/1‏‏/1443 بعد الهجرة 11:16:19 ص
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+BeneficiaryPortal.Controllers.BeneficiaryController.UpdateUser (BeneficiaryPortal)
+
+
+===================================Action Type===================================
+Start Date :   10‏‏/1‏‏/1443 بعد الهجرة 11:17:10 ص
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+BackOfficePortal.Controllers.BuildingManagerController.ViewTickets (BackOfficePortal)
+
+
+===================================Action Type===================================
+Start Date :   10‏‏/1‏‏/1443 بعد الهجرة 11:17:13 ص
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+BeneficiaryPortal.Controllers.BeneficiaryController.UpdateUser (BeneficiaryPortal)
+
+
+===================================Action Type===================================
+Start Date :   10‏‏/1‏‏/1443 بعد الهجرة 11:17:24 ص
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+BeneficiaryPortal.Controllers.BeneficiaryController.UpdateUser (BeneficiaryPortal)
+
+
+===================================Action Type===================================
+Start Date :   10‏‏/1‏‏/1443 بعد الهجرة 11:21:05 ص
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+BeneficiaryPortal.Controllers.BeneficiaryController.UpdateUser (BeneficiaryPortal)
+
+
+===================================Action Type===================================
+Start Date :   10‏‏/1‏‏/1443 بعد الهجرة 11:31:14 ص
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+BeneficiaryPortal.Controllers.BeneficiaryController.UpdateUser (BeneficiaryPortal)
+
+
+===================================Action Type===================================
+Start Date :   10‏‏/1‏‏/1443 بعد الهجرة 11:31:14 ص
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+BeneficiaryPortal.Controllers.BeneficiaryController.UpdateUser (BeneficiaryPortal)
+
+
+===================================Action Type===================================
+Start Date :   10‏‏/1‏‏/1443 بعد الهجرة 11:35:18 ص
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+BeneficiaryPortal.Controllers.BeneficiaryController.UpdateUser (BeneficiaryPortal)
+
+
+===================================Action Type===================================
+Start Date :   10‏‏/1‏‏/1443 بعد الهجرة 11:35:20 ص
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+BeneficiaryPortal.Controllers.BeneficiaryController.UpdateUser (BeneficiaryPortal)
+
+
+===================================Action Type===================================
+Start Date :   10‏‏/1‏‏/1443 بعد الهجرة 11:54:08 ص
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+BeneficiaryPortal.Controllers.BeneficiaryController.UpdateUser (BeneficiaryPortal)
+
+
+===================================Action Type===================================
+Start Date :   10‏‏/1‏‏/1443 بعد الهجرة 11:54:22 ص
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+BackOfficePortal.Controllers.BuildingManagerController.ViewTickets (BackOfficePortal)
+
+
+===================================Action Type===================================
+Start Date :   10‏‏/1‏‏/1443 بعد الهجرة 11:55:21 ص
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+BackOfficePortal.Controllers.BuildingManagerController.ViewTickets (BackOfficePortal)
+
+
+===================================Action Type===================================
+Start Date :   8/18/2021 11:55:59 AM
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+BeneficiaryPortal.Controllers.BeneficiaryController.ChangeLanguage (BeneficiaryPortal)
+
+
+===================================Action Type===================================
+Start Date :   10‏‏/1‏‏/1443 بعد الهجرة 11:56:00 ص
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+BeneficiaryPortal.Controllers.BeneficiaryController.ChangeLanguage (BeneficiaryPortal)
+
+

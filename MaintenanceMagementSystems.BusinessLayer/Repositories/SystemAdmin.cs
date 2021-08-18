@@ -2,6 +2,7 @@
 using MaintenanceManagementSystem.Database.Lookup;
 using MaintenanceManagementSystem.Database.Models;
 using MaintenanceManagementSystem.Entity.ModelsDto;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -280,6 +281,58 @@ namespace MaintenanceManagementSystem.BusinessLayer.Repositories
         public List<User> GetUsers()
         {
             return _maintenanceSysContext.Users.ToList();
+        }
+
+        public List<Country> GetCountrys()
+        {
+            var Countrys = _maintenanceSysContext.Countries.Include(c => c.Cities);
+              return Countrys.ToList();
+        }
+
+        public void DeleteCountry(int id)
+        {
+            Country country = _maintenanceSysContext.Countries.FirstOrDefault(m => m.Id == id);
+            _maintenanceSysContext.Remove(country);
+            _maintenanceSysContext.SaveChanges();
+        }
+
+        public void AddCountry(Country country)
+        {
+            try
+            {
+                using (_maintenanceSysContext)
+                {
+                    _maintenanceSysContext.Countries.Add(country);
+                    _maintenanceSysContext.SaveChanges();
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public void DeleteCity(int id)
+        {
+            City city = _maintenanceSysContext.Cities.FirstOrDefault(m => m.Id == id);
+            _maintenanceSysContext.Remove(city);
+            _maintenanceSysContext.SaveChanges();
+        }
+
+        public void AddCity(City city)
+        {
+            try
+            {
+                using (_maintenanceSysContext)
+                {
+                    _maintenanceSysContext.Cities.Add(city);
+                    _maintenanceSysContext.SaveChanges();
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
     }
 }
