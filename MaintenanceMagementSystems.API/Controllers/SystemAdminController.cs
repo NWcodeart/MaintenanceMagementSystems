@@ -29,6 +29,7 @@ namespace MaintenanceManagementSystem.API.Controllers
             _SystemAdminRepo = systemAdminRepo;
             _maintenanceSysContext = maintenanceSysContext;
         }
+        [AllowAnonymous]
         [HttpPost]
         public IActionResult AddBulding(Building building)
         {
@@ -60,8 +61,9 @@ namespace MaintenanceManagementSystem.API.Controllers
             {
                 return BadRequest("Error Exception");
             }
-            
+
         }
+        [AllowAnonymous]
         [HttpGet]
         [Route("GetBuildingsTable")]
         public IActionResult GetBuildingsTable()
@@ -69,6 +71,7 @@ namespace MaintenanceManagementSystem.API.Controllers
             List<BuildingsTable> buildingsTables = _SystemAdminRepo.GetBuildings();
             return Ok(buildingsTables);
         }
+        [AllowAnonymous]
         [HttpDelete]
         [Route("DeleteBuilding")]
         public IActionResult DeleteBuilding(int id = 0)
@@ -101,6 +104,7 @@ namespace MaintenanceManagementSystem.API.Controllers
                 return BadRequest("Error Exception");
             }
         }
+        [AllowAnonymous]
         [HttpPost]
         [Route("UpdateBuilding")]
         public IActionResult UpdateBuilding(Building BuildingUpdated)
@@ -111,7 +115,7 @@ namespace MaintenanceManagementSystem.API.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    if (BuildingUpdated.Id == null || !(AllBuilding.Any(x => x.Id == BuildingUpdated.Id)))
+                    if (BuildingUpdated.Id == 0 || !(AllBuilding.Any(x => x.Id == BuildingUpdated.Id)))
                     {
                         return BadRequest("Building undefiend");
                     }
@@ -136,6 +140,7 @@ namespace MaintenanceManagementSystem.API.Controllers
 
         //look up operations 
 
+        [AllowAnonymous]
         [HttpPost]
         [Route("AddMaintenanceType")]
         public IActionResult AddMaintenanceType(MaintenanceType maintenanceType)
@@ -146,7 +151,7 @@ namespace MaintenanceManagementSystem.API.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    if (maintenanceType.Id == null || !(AllType.Any(x => x.Id == maintenanceType.Id)))
+                    if (maintenanceType.Id == 0 || !(AllType.Any(x => x.Id == maintenanceType.Id)))
                     {
                         return BadRequest("Building undefiend");
                     }
@@ -169,6 +174,7 @@ namespace MaintenanceManagementSystem.API.Controllers
             }
         }
 
+        [AllowAnonymous]
         [HttpPost]
         [Route("AddUser")]
         public IActionResult AddUser(User user)
@@ -176,7 +182,7 @@ namespace MaintenanceManagementSystem.API.Controllers
             _SystemAdminRepo.RegisterNewEmployee(user);
             return Ok();
         }
-
+        [AllowAnonymous]
         [HttpDelete]
         [Route("DeleteUser")]
         public IActionResult DeleteUser(User user)
@@ -184,6 +190,7 @@ namespace MaintenanceManagementSystem.API.Controllers
             _SystemAdminRepo.DeleteUser(user.Id);
             return Ok();
         }
+        [AllowAnonymous]
         [HttpPost]
         [Route("UpdateUser")]
         public IActionResult UpdateUser(User user)
@@ -192,6 +199,7 @@ namespace MaintenanceManagementSystem.API.Controllers
             return Ok();
         }
 
+        [AllowAnonymous]
         [HttpGet]
         [Route("GetUsers")]
         public IActionResult GetUsers()
@@ -199,6 +207,7 @@ namespace MaintenanceManagementSystem.API.Controllers
             var users = _SystemAdminRepo.GetUsers();
             return Ok(users);
         }
+        [AllowAnonymous]
         [HttpGet]
         [Route("GetCountries")]
         public IActionResult GetCountries()
@@ -206,6 +215,7 @@ namespace MaintenanceManagementSystem.API.Controllers
             var countries = _SystemAdminRepo.GetCountrys();
             return Ok(countries);
         }
+        [AllowAnonymous]
         [HttpPost]
         [Route("AddCountry")]
         public IActionResult AddCountry(Country country)
@@ -213,6 +223,7 @@ namespace MaintenanceManagementSystem.API.Controllers
             _SystemAdminRepo.AddCountry(country);
             return Ok();
         }
+        [AllowAnonymous]
         [HttpDelete]
         [Route("DeleteCountry")]
         public IActionResult DeleteCountry(int id)
@@ -227,6 +238,7 @@ namespace MaintenanceManagementSystem.API.Controllers
             _SystemAdminRepo.AddCity(city);
             return Ok();
         }
+        [AllowAnonymous]
         [HttpDelete]
         [Route("DeleteCity")]
         public IActionResult DeleteCity(int id)

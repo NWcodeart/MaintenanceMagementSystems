@@ -797,68 +797,128 @@ BeneficiaryPortal.Controllers.BeneficiaryController.ChangeLanguage (BeneficiaryP
 
 
 ===================================Action Type===================================
-Start Date :   8/18/2021 5:03:01 PM
+Start Date :   8/18/2021 2:10:16 PM
 System.Collections.Generic.Dictionary`2[System.String,System.String]
-MaintenanceManagementSystem.API.Controllers.BuildingManagerAPIController.ViewTickets (MaintenanceManagementSystem.API)
+MaintenanceManagementSystem.API.Controllers.BackOfficeEntryController.Login (MaintenanceManagementSystem.API)
 
 
 ===================================Action Type===================================
-Start Date :   8/18/2021 5:05:56 PM
+Start Date :   8/18/2021 2:11:49 PM
 System.Collections.Generic.Dictionary`2[System.String,System.String]
-MaintenanceManagementSystem.API.Controllers.BuildingManagerAPIController.ViewTickets (MaintenanceManagementSystem.API)
+MaintenanceManagementSystem.API.Controllers.BackOfficeEntryController.Login (MaintenanceManagementSystem.API)
 
 
 ===================================Action Type===================================
-Start Date :   8/18/2021 5:07:15 PM
+Start Date :   8/18/2021 2:13:17 PM
 System.Collections.Generic.Dictionary`2[System.String,System.String]
-MaintenanceManagementSystem.API.Controllers.BuildingManagerAPIController.ViewTickets (MaintenanceManagementSystem.API)
+MaintenanceManagementSystem.API.Controllers.BackOfficeEntryController.Login (MaintenanceManagementSystem.API)
 
 
 ===================================Action Type===================================
-Start Date :   8/18/2021 5:13:29 PM
+Start Date :   8/18/2021 2:13:23 PM
 System.Collections.Generic.Dictionary`2[System.String,System.String]
-MaintenanceManagementSystem.API.Controllers.BuildingManagerAPIController.ViewTicketsStatus (MaintenanceManagementSystem.API)
+MaintenanceManagementSystem.API.Controllers.BackOfficeEntryController.Login (MaintenanceManagementSystem.API)
 
 
 ===================================Action Type===================================
-Start Date :   8/18/2021 5:14:52 PM
+Start Date :   8/18/2021 2:13:40 PM
 System.Collections.Generic.Dictionary`2[System.String,System.String]
-MaintenanceManagementSystem.API.Controllers.BuildingManagerAPIController.ViewBuilding (MaintenanceManagementSystem.API)
+MaintenanceManagementSystem.API.Controllers.BackOfficeEntryController.Login (MaintenanceManagementSystem.API)
 
 
 ===================================Action Type===================================
-Start Date :   8/18/2021 5:16:09 PM
+Start Date :   8/18/2021 2:13:50 PM
 System.Collections.Generic.Dictionary`2[System.String,System.String]
-MaintenanceManagementSystem.API.Controllers.BuildingManagerAPIController.ViewBuilding (MaintenanceManagementSystem.API)
+MaintenanceManagementSystem.API.Controllers.BackOfficeEntryController.Login (MaintenanceManagementSystem.API)
 
 
 ===================================Action Type===================================
-Start Date :   8/18/2021 5:16:21 PM
+Start Date :   8/18/2021 2:14:23 PM
 System.Collections.Generic.Dictionary`2[System.String,System.String]
-MaintenanceManagementSystem.API.Controllers.BuildingManagerAPIController.ViewBuilding (MaintenanceManagementSystem.API)
+MaintenanceManagementSystem.API.Controllers.BackOfficeEntryController.Login (MaintenanceManagementSystem.API)
 
 
 ===================================Action Type===================================
-Start Date :   8/18/2021 7:37:30 PM
+Start Date :   10‏‏/1‏‏/1443 بعد الهجرة 2:23:36 م
 System.Collections.Generic.Dictionary`2[System.String,System.String]
-MaintenanceManagementSystem.API.Controllers.BuildingManagerAPIController.AddComments (MaintenanceManagementSystem.API)
+BeneficiaryPortal.Controllers.BeneficiaryController.NewTicket (BeneficiaryPortal)
 
 
 ===================================Action Type===================================
-Start Date :   8/18/2021 7:43:49 PM
+Start Date :   10‏‏/1‏‏/1443 بعد الهجرة 2:28:06 م
 System.Collections.Generic.Dictionary`2[System.String,System.String]
-MaintenanceManagementSystem.API.Controllers.BuildingManagerAPIController.AddComments (MaintenanceManagementSystem.API)
+BeneficiaryPortal.Controllers.BeneficiaryController.NewTicket (BeneficiaryPortal)
 
 
 ===================================Action Type===================================
-Start Date :   8/18/2021 7:48:51 PM
+Start Date :   10‏‏/1‏‏/1443 بعد الهجرة 2:34:47 م
 System.Collections.Generic.Dictionary`2[System.String,System.String]
-MaintenanceManagementSystem.API.Controllers.BuildingManagerAPIController.AddComments (MaintenanceManagementSystem.API)
+BeneficiaryPortal.Controllers.BeneficiaryController.NewTicket (BeneficiaryPortal)
 
 
 ===================================Action Type===================================
-Start Date :   8/18/2021 8:01:14 PM
+Start Date :   8/18/2021 2:36:56 PM
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+MaintenanceManagementSystem.API.Controllers.SystemAdminController.GetBuildingsTable (MaintenanceManagementSystem.API)
+
+
+===================================Action Type===================================
+Start Date :   8/18/2021 2:37:27 PM
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+MaintenanceManagementSystem.API.Controllers.SystemAdminController.GetBuildingsTable (MaintenanceManagementSystem.API)
+
+
+===================================Action Type===================================
+Start Date :   8/18/2021 2:38:05 PM
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+MaintenanceManagementSystem.API.Controllers.SystemAdminController.GetBuildingsTable (MaintenanceManagementSystem.API)
+
+
+===================================Action Type===================================
+Start Date :   8/18/2021 3:03:28 PM
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+MaintenanceManagementSystem.API.Controllers.SystemAdminController.GetBuildingsTable (MaintenanceManagementSystem.API)
+
+
+===================================Action Type===================================
+Start Date :   8/18/2021 3:04:56 PM
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+MaintenanceManagementSystem.API.Controllers.SystemAdminController.GetBuildingsTable (MaintenanceManagementSystem.API)
+
+
+===================================Action Type===================================
+Start Date :   10‏‏/1‏‏/1443 بعد الهجرة 3:07:56 م
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+BeneficiaryPortal.Controllers.BeneficiaryController.NewTicket (BeneficiaryPortal)
+
+
+===================================Action Type===================================
+Start Date :   8/18/2021 4:39:19 PM
 System.Collections.Generic.Dictionary`2[System.String,System.String]
 MaintenanceManagementSystem.API.Controllers.BeneficiaryController.ListTickets (MaintenanceManagementSystem.API)
+
+
+===================================Action Type===================================
+Start Date :   8/18/2021 4:45:27 PM
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+MaintenanceManagementSystem.API.Controllers.BeneficiaryController.ListTickets (MaintenanceManagementSystem.API)
+
+
+===================================Action Type===================================
+Start Date :   8/18/2021 4:45:30 PM
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+MaintenanceManagementSystem.API.Controllers.BeneficiaryController.ListMaintenanceTypes (MaintenanceManagementSystem.API)
+
+
+===================================Action Type===================================
+Start Date :   8/18/2021 4:45:46 PM
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+MaintenanceManagementSystem.API.Controllers.BeneficiaryController.SubmitRequest (MaintenanceManagementSystem.API)
+
+
+===================================Action Type===================================
+Start Date :   8/18/2021 4:45:46 PM
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+MaintenanceManagementSystem.API.Controllers.BeneficiaryController.ListMaintenanceTypes (MaintenanceManagementSystem.API)
 
 
