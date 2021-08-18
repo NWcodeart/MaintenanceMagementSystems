@@ -61,11 +61,10 @@ namespace MaintenanceManagementSystem.API.Controllers
         //--------------------------------------------------------------------------------------------
 
        
-        //[Route("[action]")]
-        // [ActionName("ViewTickets/{id}")]
+  
         [HttpGet]
         [Route("[action]")]
-        [Route("api/BuildingManagerAPI/ViewTickets/{id}")]
+        [ActionName("ViewTickets")]
         public IActionResult  ViewTickets()
         {
             var tickets = _buildingManager.ViewTickets();
@@ -73,9 +72,11 @@ namespace MaintenanceManagementSystem.API.Controllers
 
         }
 
-        
+        //--------------------------------------------------------------------------------------------
+
         [HttpGet]
-        [Route("ViewTicketsStatus/{id}")]
+        [Route("[action]")]
+        [ActionName("ViewTicketsStatus")]
         public IActionResult ViewTicketsStatus()
         {
             var tickets = _buildingManager.ViewTicketsStatus();

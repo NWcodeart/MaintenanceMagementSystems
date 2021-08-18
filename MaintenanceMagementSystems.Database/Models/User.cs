@@ -1,5 +1,6 @@
 ﻿using MaintenanceManagementSystem.Database.Lookup;
 using MaintenanceManagementSystem.Database.ManyToMany;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -69,6 +70,8 @@ namespace MaintenanceManagementSystem.Database.Models
         public ICollection<Ticket>? TicketsRejected { get; set; }
 
         public bool IsDeleted { get; set; } = false;
+
+        public Guid TemporaryPassword { get; set; }
 
     }
 }

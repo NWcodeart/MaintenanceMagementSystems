@@ -40,5 +40,13 @@ namespace MaintenanceManagementSystem.Application.Interfaces
         public void DeleteBuilding(int id);
         public void AddBuilding(Building buildingAdded);
 
+        //ccountry
+        public List<Country> GetCountrys();
+        public void DeleteCountry(int id);
+        public void AddCountry(Country country);
+
+        //city
+        public void DeleteCity(int id);
+        public void AddCity(City city);
     }
 }

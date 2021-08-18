@@ -108,17 +108,5 @@ namespace MaintenanceManagementSystem.API.Controllers
 
             return Ok(_beneficiaryRepo.ListCancellationReasons());
         }
-
-        [HttpGet]
-        [Route("ListMaintenanceTypes")]
-        public IActionResult ListMaintenanceTypes()
-        {
-            if (_beneficiaryRepo.ListMaintenanceTypes().Count() == 0)
-            {
-                return NotFound("No maintenance types available");
-            }
-
-            return Ok(_beneficiaryRepo.ListMaintenanceTypes());
-        }
     }
 }
