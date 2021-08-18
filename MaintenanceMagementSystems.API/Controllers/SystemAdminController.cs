@@ -199,6 +199,42 @@ namespace MaintenanceManagementSystem.API.Controllers
             var users = _SystemAdminRepo.GetUsers();
             return Ok(users);
         }
+        [HttpGet]
+        [Route("GetCountries")]
+        public IActionResult GetCountries()
+        {
+            var countries = _SystemAdminRepo.GetCountrys();
+            return Ok(countries);
+        }
+        [HttpPost]
+        [Route("AddCountry")]
+        public IActionResult AddCountry(Country country)
+        {
+            _SystemAdminRepo.AddCountry(country);
+            return Ok();
+        }
+        [HttpDelete]
+        [Route("DeleteCountry")]
+        public IActionResult DeleteCountry(int id)
+        {
+            _SystemAdminRepo.DeleteCountry(id);
+            return Ok();
+        }
+        [HttpPost]
+        [Route("AddCity")]
+        public IActionResult AddCity(City city)
+        {
+            _SystemAdminRepo.AddCity(city);
+            return Ok();
+        }
+        [HttpDelete]
+        [Route("DeleteCity")]
+        public IActionResult DeleteCity(int id)
+        {
+            _SystemAdminRepo.DeleteCity(id);
+            return Ok();
+        }
+
 
 
     }
