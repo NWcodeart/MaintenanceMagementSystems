@@ -1,5 +1,6 @@
 ﻿using MaintenanceMagementSystems.API.Filters;
 using MaintenanceManagementSystem.Application.Interfaces;
+using MaintenanceManagementSystem.Database.Lookup;
 using MaintenanceManagementSystem.Database.Models;
 using MaintenanceManagementSystem.Entity.ModelsDto;
 using Microsoft.AspNetCore.Authorization;
@@ -99,6 +100,43 @@ namespace MaintenanceManagementSystem.API.Controllers
             _maintenanceManager.ViewUnderReviewTickets();
             return Ok();
 
+        }
+        //--------------------------------------------------------------------------------------------
+
+        [HttpGet]
+        [Route("ViewMainteneceType")]
+        public IActionResult ViewMainteneceType()
+        {
+            _maintenanceManager.ViewMainteneceType();
+            return Ok();
+
+        }
+        //--------------------------------------------------------------------------------------------
+
+        [HttpPost]
+        [Route("AddMainteneceType/{NewType}")]
+        public IActionResult AddMainteneceType(MaintenanceType NewType)
+        {
+            _maintenanceManager.AddMainteneceType(NewType);
+            return Ok();
+        }
+        //--------------------------------------------------------------------------------------------
+
+        [HttpPost]
+        [Route("UpdateMainteneceType/{UpdatedType}")]
+        public IActionResult UpdateMainteneceType(MaintenanceType UpdatedType)
+        {
+            _maintenanceManager.UpdateMainteneceType(UpdatedType);
+            return Ok();
+        }
+        //--------------------------------------------------------------------------------------------
+
+        [HttpDelete]
+        [Route("DeleteMainteneceType/{DeletedType}")]
+        public IActionResult DeleteMainteneceType(MaintenanceType DeletedType)
+        {
+            _maintenanceManager.DeleteMainteneceType(DeletedType);
+            return Ok();
         }
     }
 }

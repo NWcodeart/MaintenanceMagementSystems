@@ -34,6 +34,23 @@ namespace MaintenanceManagementSystem.API.Controllers
                 return Ok();
             }
 
-            //--------------------------------------------------------------------------------------------
+        //--------------------------------------------------------------------------------------------
+        [HttpPost]
+        [Route("[action]")]
+        [ActionName("SendEmail/{email}")]
+        public IActionResult SendEmail(string email)
+        {
+            _systemUser.SendEmail(email);
+            return Ok();
+        }
+        //--------------------------------------------------------------------------------------------
+        [HttpPost]
+        [Route("[action]")]
+        [ActionName("ResetPassword/{tempPassword}/{newPassword}")]
+        public IActionResult ResetPassword(string tempPassword, string newPassword)
+        {
+            _systemUser.ResetPassword(tempPassword, newPassword);
+            return Ok();
+        }
     }
 }

@@ -1,4 +1,5 @@
-﻿using MaintenanceManagementSystem.Database.Models;
+﻿using MaintenanceManagementSystem.Database.Lookup;
+using MaintenanceManagementSystem.Database.Models;
 using MaintenanceManagementSystem.Entity.ModelsDto;
 using System;
 using System.Collections.Generic;
@@ -50,6 +51,9 @@ namespace MaintenanceManagementSystem.Application.Interfaces
         public bool RespondToTicket(int TicketId, TicketRespond respond);
         public List<Ticket> ViewTickets();
         public List<Ticket> ViewUnderReviewTickets();
-
+        public List<MaintenanceType> ViewMainteneceType();
+        public bool DeleteMainteneceType(MaintenanceType DeletedType);
+        public bool UpdateMainteneceType(MaintenanceType UpdatedType);
+        public bool AddMainteneceType(MaintenanceType NewType);
     }
 }

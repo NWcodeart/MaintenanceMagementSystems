@@ -42,5 +42,6 @@ namespace MaintenanceManagementSystem.Application.Interfaces
          must sign of the repair order after the work has been made
          */
         public Ticket GetTicket(int requestID);
+        
     }
 }

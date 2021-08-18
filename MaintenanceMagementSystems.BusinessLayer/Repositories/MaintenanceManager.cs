@@ -1,4 +1,5 @@
 ﻿using MaintenanceManagementSystem.Application.Interfaces;
+using MaintenanceManagementSystem.Database.Lookup;
 using MaintenanceManagementSystem.Database.ManyToMany;
 using MaintenanceManagementSystem.Database.Models;
 using MaintenanceManagementSystem.Entity.ModelsDto;
@@ -180,7 +181,7 @@ namespace MaintenanceManagementSystem.BusinessLayer.Repositories
                 throw;
             }
         }
-
+        //-------------------------------------------------------------------------------------------------------------------------------------------------------------
         public List<Ticket> ViewUnderReviewTickets()
         {
             try
@@ -197,6 +198,95 @@ namespace MaintenanceManagementSystem.BusinessLayer.Repositories
                     {
                         return null;
                     }
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        //-------------------------------------------------------------------------------------------------------------------------------------------------------------
+        public bool AddMainteneceType(MaintenanceType NewType)
+        {
+            try
+            {
+                using (_maintenanceSysContext)
+                {
+                    MaintenanceType type = new MaintenanceType();
+                    type.Id = NewType.Id;
+                    type.MaintenanceTypeNameAr = NewType.MaintenanceTypeNameAr;
+                    type.MaintenanceTypeNameAr = NewType.MaintenanceTypeNameEn;
+                    _maintenanceSysContext.MaintenanceTypes.Add(type);
+                    _maintenanceSysContext.SaveChanges();
+                    return true;
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+        //-------------------------------------------------------------------------------------------------------------------------------------------------------------
+        public bool UpdateMainteneceType(MaintenanceType UpdatedType)
+        {
+            try
+            {
+                using (_maintenanceSysContext)
+                {
+                    MaintenanceType type = _maintenanceSysContext.MaintenanceTypes.FirstOrDefault(t => t.Id == UpdatedType.Id);
+                    if (type != null)
+                    {
+                        type.Id = UpdatedType.Id;
+                        type.MaintenanceTypeNameAr = UpdatedType.MaintenanceTypeNameAr;
+                        type.MaintenanceTypeNameAr = UpdatedType.MaintenanceTypeNameEn;
+                        _maintenanceSysContext.SaveChanges();
+                        return true;
+                    }
+                    return false;
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+        //-------------------------------------------------------------------------------------------------------------------------------------------------------------
+        public bool DeleteMainteneceType(MaintenanceType DeletedType)
+        {
+            try
+            {
+                using (_maintenanceSysContext)
+                {
+                    MaintenanceType type = _maintenanceSysContext.MaintenanceTypes.FirstOrDefault(t => t.Id == DeletedType.Id);
+                    if(type != null)
+                    {
+                        _maintenanceSysContext.MaintenanceTypes.Remove(type);
+                        _maintenanceSysContext.SaveChanges();
+                        return true;
+                    }
+                    return false;
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+        //-------------------------------------------------------------------------------------------------------------------------------------------------------------
+        public List<MaintenanceType> ViewMainteneceType()
+        {
+            try
+            {
+                using (_maintenanceSysContext)
+                {
+                    List<MaintenanceType> types = _maintenanceSysContext.MaintenanceTypes.ToList();
+                    if (types != null)
+                    {
+                        return types;
+                    }
+                    else
+                        return null;
                 }
             }
             catch (Exception)

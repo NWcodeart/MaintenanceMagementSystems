@@ -10,6 +10,8 @@ namespace MaintenanceManagementSystem.Application.IRepositories
     public interface ISystemUser
     {
         public bool UpdateUser(User UpdatedUser);
+        public bool SendEmail(string email);
+        public bool ResetPassword(string tempPassword, string newPassword);
 
     }
 }

@@ -1,1 +1,204 @@
-﻿
+﻿===================================Action Type===================================
+Start Date :   8/17/2021 8:08:57 PM
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+BeneficiaryPortal.Controllers.BeneficiaryController.ChangeLanguage (BeneficiaryPortal)
+
+
+===================================Action Type===================================
+Start Date :   9‏‏/1‏‏/1443 بعد الهجرة 8:09:00 م
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+BeneficiaryPortal.Controllers.BeneficiaryController.ChangeLanguage (BeneficiaryPortal)
+
+
+===================================Action Type===================================
+Start Date :   8/17/2021 8:09:03 PM
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+BeneficiaryPortal.Controllers.BeneficiaryController.ChangeLanguage (BeneficiaryPortal)
+
+
+===================================Action Type===================================
+Start Date :   9‏‏/1‏‏/1443 بعد الهجرة 8:09:15 م
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+BeneficiaryPortal.Controllers.BeneficiaryController.ChangeLanguage (BeneficiaryPortal)
+
+
+===================================Action Type===================================
+Start Date :   8/17/2021 8:09:30 PM
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+BeneficiaryPortal.Controllers.BeneficiaryController.ChangeLanguage (BeneficiaryPortal)
+
+
+===================================Action Type===================================
+Start Date :   9‏‏/1‏‏/1443 بعد الهجرة 8:14:30 م
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+BeneficiaryPortal.Controllers.BeneficiaryController.ChangeLanguage (BeneficiaryPortal)
+
+
+===================================Action Type===================================
+Start Date :   9‏‏/1‏‏/1443 بعد الهجرة 8:14:32 م
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+BeneficiaryPortal.Controllers.BeneficiaryController.ChangeLanguage (BeneficiaryPortal)
+
+
+===================================Action Type===================================
+Start Date :   8/17/2021 8:14:35 PM
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+BeneficiaryPortal.Controllers.BeneficiaryController.ChangeLanguage (BeneficiaryPortal)
+
+
+===================================Action Type===================================
+Start Date :   8/17/2021 8:14:54 PM
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+BeneficiaryPortal.Controllers.BeneficiaryController.ChangeLanguage (BeneficiaryPortal)
+
+
+===================================Action Type===================================
+Start Date :   9‏‏/1‏‏/1443 بعد الهجرة 8:15:03 م
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+BeneficiaryPortal.Controllers.BeneficiaryController.ChangeLanguage (BeneficiaryPortal)
+
+
+===================================Action Type===================================
+Start Date :   8/17/2021 8:15:07 PM
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+BeneficiaryPortal.Controllers.BeneficiaryController.ChangeLanguage (BeneficiaryPortal)
+
+
+===================================Action Type===================================
+Start Date :   9‏‏/1‏‏/1443 بعد الهجرة 8:16:39 م
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+BeneficiaryPortal.Controllers.BeneficiaryController.ChangeLanguage (BeneficiaryPortal)
+
+
+===================================Action Type===================================
+Start Date :   9‏‏/1‏‏/1443 بعد الهجرة 8:16:42 م
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+BeneficiaryPortal.Controllers.BeneficiaryController.ChangeLanguage (BeneficiaryPortal)
+
+
+===================================Action Type===================================
+Start Date :   9‏‏/1‏‏/1443 بعد الهجرة 8:16:44 م
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+BeneficiaryPortal.Controllers.BeneficiaryController.ChangeLanguage (BeneficiaryPortal)
+
+
+===================================Action Type===================================
+Start Date :   8/17/2021 8:16:45 PM
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+BeneficiaryPortal.Controllers.BeneficiaryController.ChangeLanguage (BeneficiaryPortal)
+
+
+===================================Action Type===================================
+Start Date :   8/17/2021 8:17:42 PM
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+BeneficiaryPortal.Controllers.BeneficiaryController.ChangeLanguage (BeneficiaryPortal)
+
+
+===================================Action Type===================================
+Start Date :   9‏‏/1‏‏/1443 بعد الهجرة 8:17:43 م
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+BeneficiaryPortal.Controllers.BeneficiaryController.ChangeLanguage (BeneficiaryPortal)
+
+
+===================================Action Type===================================
+Start Date :   8/17/2021 8:17:48 PM
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+BeneficiaryPortal.Controllers.BeneficiaryController.ChangeLanguage (BeneficiaryPortal)
+
+
+===================================Action Type===================================
+Start Date :   9‏‏/1‏‏/1443 بعد الهجرة 8:18:27 م
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+BeneficiaryPortal.Controllers.BeneficiaryController.ChangeLanguage (BeneficiaryPortal)
+
+
+===================================Action Type===================================
+Start Date :   8/17/2021 8:18:31 PM
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+BeneficiaryPortal.Controllers.BeneficiaryController.ChangeLanguage (BeneficiaryPortal)
+
+
+===================================Action Type===================================
+Start Date :   9‏‏/1‏‏/1443 بعد الهجرة 8:19:15 م
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+BeneficiaryPortal.Controllers.BeneficiaryController.ChangeLanguage (BeneficiaryPortal)
+
+
+===================================Action Type===================================
+Start Date :   8/17/2021 8:19:18 PM
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+BeneficiaryPortal.Controllers.BeneficiaryController.ChangeLanguage (BeneficiaryPortal)
+
+
+===================================Action Type===================================
+Start Date :   10‏‏/1‏‏/1443 بعد الهجرة 12:05:11 ص
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+BeneficiaryPortal.Controllers.BeneficiaryController.ChangeLanguage (BeneficiaryPortal)
+
+
+===================================Action Type===================================
+Start Date :   8/18/2021 12:05:17 AM
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+BeneficiaryPortal.Controllers.BeneficiaryController.ChangeLanguage (BeneficiaryPortal)
+
+
+===================================Action Type===================================
+Start Date :   10‏‏/1‏‏/1443 بعد الهجرة 12:07:50 ص
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+BeneficiaryPortal.Controllers.BeneficiaryController.ChangeLanguage (BeneficiaryPortal)
+
+
+===================================Action Type===================================
+Start Date :   8/18/2021 1:42:06 AM
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+MaintenanceManagementSystem.API.Controllers.SystemUserController.SendEmail (MaintenanceManagementSystem.API)
+
+
+===================================Action Type===================================
+Start Date :   8/18/2021 1:50:16 AM
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+MaintenanceManagementSystem.API.Controllers.SystemUserController.SendEmail (MaintenanceManagementSystem.API)
+
+
+===================================Action Type===================================
+Start Date :   8/18/2021 1:52:52 AM
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+MaintenanceManagementSystem.API.Controllers.SystemUserController.SendEmail (MaintenanceManagementSystem.API)
+
+
+===================================Action Type===================================
+Start Date :   8/18/2021 1:58:27 AM
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+MaintenanceManagementSystem.API.Controllers.SystemUserController.SendEmail (MaintenanceManagementSystem.API)
+
+
+===================================Action Type===================================
+Start Date :   8/18/2021 2:04:16 AM
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+MaintenanceManagementSystem.API.Controllers.SystemUserController.SendEmail (MaintenanceManagementSystem.API)
+
+
+===================================Action Type===================================
+Start Date :   8/18/2021 2:12:31 AM
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+MaintenanceManagementSystem.API.Controllers.SystemUserController.SendEmail (MaintenanceManagementSystem.API)
+
+
+===================================Action Type===================================
+Start Date :   8/18/2021 2:13:13 AM
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+MaintenanceManagementSystem.API.Controllers.SystemUserController.SendEmail (MaintenanceManagementSystem.API)
+
+
+===================================Action Type===================================
+Start Date :   8/18/2021 2:24:06 AM
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+MaintenanceManagementSystem.API.Controllers.SystemUserController.SendEmail (MaintenanceManagementSystem.API)
+
+
+===================================Action Type===================================
+Start Date :   8/18/2021 2:26:17 AM
+System.Collections.Generic.Dictionary`2[System.String,System.String]
+MaintenanceManagementSystem.API.Controllers.SystemUserController.SendEmail (MaintenanceManagementSystem.API)
+
+

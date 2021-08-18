@@ -1,4 +1,6 @@
-﻿using MaintenanceManagementSystem.Application.Interfaces;
+﻿using FluentEmail.Core;
+using FluentEmail.Smtp;
+using MaintenanceManagementSystem.Application.Interfaces;
 using MaintenanceManagementSystem.Database.Lookup;
 using MaintenanceManagementSystem.Database.Models;
 using MaintenanceManagementSystem.Entity.ModelsDto;
@@ -6,6 +8,7 @@ using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -159,5 +162,7 @@ namespace MaintenanceManagementSystem.BusinessLayer.Repositories
                 throw;
             }
         }
+        
+
     }
 }
