@@ -121,4 +121,5 @@ namespace MaintenanceManagementSystem.API.Controllers
             return Ok(_beneficiaryRepo.ListMaintenanceTypes());
         }
     }
+
 }
