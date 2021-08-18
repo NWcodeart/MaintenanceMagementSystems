@@ -22,23 +22,20 @@ namespace MaintenanceManagementSystem.BusinessLayer.Repositories
             _backOfficeEntry = backOfficeEntry;
         }
 
-        public bool AddComments(string comment)
+        public bool AddComments(string comment, int ticketId)
         {
             try
             {
                 using (_maintenanceSysContext)
                 {                    
-                    List<Ticket> ticketList = _maintenanceSysContext.Tickets.Where(t => t.StatusID == 1).ToList();  //1 => new
-                    if (ticketList != null)
+                    Ticket ticket = _maintenanceSysContext.Tickets.FirstOrDefault(t => t.StatusID == 1 && t.Id == ticketId);  //1 => new
+
+                    if (ticket != null)
                     {
-                        foreach(var ticket in ticketList)
-                        {
-                            ticket.BuildingManagerComment = comment;
-                            ticket.StatusID = 2; //2 => under review
-                            _maintenanceSysContext.SaveChanges();
-                           
-                        }
-                        return true;
+                           ticket.BuildingManagerComment = comment;
+                           ticket.StatusID = 2; //2 => under review
+                           _maintenanceSysContext.SaveChanges();
+                           return true;
                     }
                     else
                     {
@@ -142,6 +139,42 @@ namespace MaintenanceManagementSystem.BusinessLayer.Repositories
             }
         }
 
+
+        //--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+        public Ticket GetTicket(int ticketId)
+        {
+            try
+            {
+                using (_maintenanceSysContext)
+                {
+                    Ticket ticket = null;
+                    List<int> ticketsId = _maintenanceSysContext.Tickets.SelectMany(t => t.backOfficesTickets).Where(u => u.BackOfficeId == _backOfficeEntry.GetUserId()).Select(t => t.TicketId).ToList();
+
+                    foreach (var i in ticketsId)
+                    {
+                        if(i == ticketId)
+                        {
+                             ticket = _maintenanceSysContext.Tickets.Where(t => t.Id == i).FirstOrDefault();
+
+                        }
+                    }
+
+                    if (ticket != null)
+                    {
+                        return ticket;
+                    }
+                    else
+                    {
+                        return null;
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
 
         //--------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
