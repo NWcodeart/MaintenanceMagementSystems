@@ -29,22 +29,23 @@ namespace MaintenanceManagementSystem.BusinessLayer.Repositories
             _options = options;
         }
 
-        public async Task<User> AuthenticateUser(Login Login)
+        public User AuthenticateUser(Login Login)
         {
             try
             {
-                using (_maintenanceSysContext)
+                using (var db = new MaintenanceSysContext(_options))
                 {
-                    var user = await _maintenanceSysContext.Users.FirstOrDefaultAsync(l => l.Email == Login.Username);
+                    var user = _maintenanceSysContext.Users.FirstOrDefault(l => l.Email == Login.Username);
 
                     if (user != null && BCrypt.Net.BCrypt.Verify(Login.Password, user.Password))
                     {
                         return user;
                     }
-                    else
-                    {
+                    else { 
+                        
                         return null;
                     }
+                    
                 }
             }
             catch (Exception)
@@ -136,7 +137,7 @@ namespace MaintenanceManagementSystem.BusinessLayer.Repositories
             }
         }
 
-        public void Register(BeneficiaryRegistration user)
+        public void Register(RegistrationDto user)
         {
             try
             {

@@ -1,6 +1,4 @@
-﻿using FluentEmail.Core;
-using FluentEmail.Smtp;
-using MaintenanceManagementSystem.Application.Interfaces;
+﻿using MaintenanceManagementSystem.Application.Interfaces;
 using MaintenanceManagementSystem.Database.Lookup;
 using MaintenanceManagementSystem.Database.Models;
 using MaintenanceManagementSystem.Entity.ModelsDto;
@@ -8,7 +6,6 @@ using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -115,7 +112,9 @@ namespace MaintenanceManagementSystem.BusinessLayer.Repositories
                             FloorId = ticket.FloorId,
                             MaintenanceTypeID = ticket.MaintenanceTypeID,
                             Date = ticket.Date,
-                            Picture = ticket.Picture
+                            Picture = ticket.Picture,
+                            CreatedBy = _beneficiaryEntryRepo.GetUserId(),
+                            CreatedTime = DateTime.Now
                         };
                         _maintenanceSysContext.Add(newTicket);
                         _maintenanceSysContext.SaveChanges();
@@ -162,7 +161,18 @@ namespace MaintenanceManagementSystem.BusinessLayer.Repositories
                 throw;
             }
         }
-        
 
+        public List<MaintenanceType> ListMaintenanceTypes()
+        {
+            try
+            {
+                var maintenanceTypes = _maintenanceSysContext.MaintenanceTypes.ToList();
+                return maintenanceTypes;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
     }
 }

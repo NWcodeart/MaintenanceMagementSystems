@@ -1,6 +1,5 @@
 using MaintenanceMagementSystems.API.Filters;
 using MaintenanceManagementSystem.Application.Interfaces;
-using MaintenanceManagementSystem.Application.IRepositories;
 using MaintenanceManagementSystem.BusinessLayer.Repositories;
 using MaintenanceManagementSystem.Database.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -39,8 +38,7 @@ namespace MaintenanceMagementSystems.API
             services.AddScoped<IMaintenanceManager, MaintenanceManager>();
             services.AddScoped<IMaintenanceWorker, MaintenanceWorker>();
             services.AddScoped<IBackOfficeEntry, BackOfficeEntry>();
-            services.AddScoped<ISystemUser, SystemUser>();
-
+            services.AddScoped<ISystemAdmin, SystemAdmin>();
 
             services.AddHttpContextAccessor();
 

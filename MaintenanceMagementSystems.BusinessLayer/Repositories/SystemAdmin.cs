@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace MaintenanceManagementSystem.BusinessLayer.Repositories
 {
-    class SystemAdmin : ISystemAdmin
+    public class SystemAdmin : ISystemAdmin
     {
         private readonly MaintenanceSysContext _maintenanceSysContext;
 
@@ -275,6 +275,11 @@ namespace MaintenanceManagementSystem.BusinessLayer.Repositories
         public List<CancellationReason> GetCancellationReason()
         {
             return _maintenanceSysContext.CancelationReasons.ToList();
+        }
+
+        public List<User> GetUsers()
+        {
+            return _maintenanceSysContext.Users.ToList();
         }
     }
 }

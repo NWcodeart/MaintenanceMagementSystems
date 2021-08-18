@@ -11,6 +11,13 @@ namespace MaintenanceManagementSystem.Application.Interfaces
     public interface IBackOfficeEntry
     {
         /*
+         To register system admin only, nothing to do with the website
+         */
+        public void RegisterSystemAdmin(RegistrationDto user);
+
+        public bool CheckExistence(string email);
+
+        /*
          No registration page needed just login using their employees ID (Email)
          */
         public User AuthenticateUser(Login Login);
@@ -37,7 +44,7 @@ namespace MaintenanceManagementSystem.Application.Interfaces
 
         public string GetUserRole();
 
-        public string GetUserRoleFromDB(int userRoleID); //To be used to get role claim
+        public Task<string> GetUserRoleFromDB(int userRoleID); //To be used to get role claim
 
         public string GetUserEmail();
 

@@ -1,10 +1,106 @@
 ﻿=====================================Error Logging ===================================
 
-Start Date :   8/18/2021 1:39:26 AM
+Start Date :   8/17/2021 5:18:34 PM
 Error Message: 
-System.InvalidOperationException: Unable to resolve service for type 'MaintenanceManagementSystem.Application.IRepositories.ISystemUser' while attempting to activate 'MaintenanceManagementSystem.API.Controllers.SystemUserController'.
+System.AggregateException: One or more errors occurred. (Invalid column name 'RoleNameAr'.
+Invalid column name 'RoleNameEn'.
+Invalid column name 'RoleType'.)
+ ---> Microsoft.Data.SqlClient.SqlException (0x80131904): Invalid column name 'RoleNameAr'.
+Invalid column name 'RoleNameEn'.
+Invalid column name 'RoleType'.
+   at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__169_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.Tasks.Task.<>c.<.cctor>b__277_0(Object obj)
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(DbContext _, Boolean result, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleOrDefaultAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleOrDefaultAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
+   at MaintenanceManagementSystem.BusinessLayer.Repositories.BackOfficeEntry.GetUserRoleFromDB(Int32 userRoleID) in C:\Users\nwara\Source\Repos\NWcodeart\MaintenanceMagementSystems\MaintenanceMagementSystems.BusinessLayer\Repositories\BackOfficeEntry.cs:line 122
+ClientConnectionId:4ba549b4-1be8-4635-af65-cb1c55f596c1
+Error Number:207,State:1,Class:16
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at System.Threading.Tasks.Task`1.get_Result()
+   at MaintenanceManagementSystem.API.Controllers.BackOfficeEntryController.GenerateJSONWebToken(User User) in C:\Users\nwara\Source\Repos\NWcodeart\MaintenanceMagementSystems\MaintenanceMagementSystems.API\Controllers\BackOfficeEntryController.cs:line 61
+   at MaintenanceManagementSystem.API.Controllers.BackOfficeEntryController.Login(Login login) in C:\Users\nwara\Source\Repos\NWcodeart\MaintenanceMagementSystems\MaintenanceMagementSystems.API\Controllers\BackOfficeEntryController.cs:line 47
+   at lambda_method236(Closure , Object , Object[] )
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.SyncActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeNextActionFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextExceptionFilterAsync>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+
+End Date :   8/17/2021 5:18:34 PM
+
+
+=====================================Error Logging ===================================
+
+Start Date :   8/17/2021 5:23:52 PM
+Error Message: 
+System.AggregateException: One or more errors occurred. (Invalid column name 'RoleNameAr'.
+Invalid column name 'RoleNameEn'.
+Invalid column name 'RoleType'.)
+ ---> Microsoft.Data.SqlClient.SqlException (0x80131904): Invalid column name 'RoleNameAr'.
+Invalid column name 'RoleNameEn'.
+Invalid column name 'RoleType'.
+   at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__169_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.Tasks.Task.<>c.<.cctor>b__277_0(Object obj)
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(DbContext _, Boolean result, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleOrDefaultAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleOrDefaultAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
+   at MaintenanceManagementSystem.BusinessLayer.Repositories.BackOfficeEntry.GetUserRoleFromDB(Int32 userRoleID) in C:\Users\nwara\Source\Repos\NWcodeart\MaintenanceMagementSystems\MaintenanceMagementSystems.BusinessLayer\Repositories\BackOfficeEntry.cs:line 122
+ClientConnectionId:b9a6e274-a143-4155-9ecf-7ff4a0ed5841
+Error Number:207,State:1,Class:16
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at System.Threading.Tasks.Task`1.get_Result()
+   at MaintenanceManagementSystem.API.Controllers.BackOfficeEntryController.GenerateJSONWebToken(User User) in C:\Users\nwara\Source\Repos\NWcodeart\MaintenanceMagementSystems\MaintenanceMagementSystems.API\Controllers\BackOfficeEntryController.cs:line 61
+   at MaintenanceManagementSystem.API.Controllers.BackOfficeEntryController.Login(Login login) in C:\Users\nwara\Source\Repos\NWcodeart\MaintenanceMagementSystems\MaintenanceMagementSystems.API\Controllers\BackOfficeEntryController.cs:line 47
+   at lambda_method2(Closure , Object , Object[] )
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.SyncActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeNextActionFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextExceptionFilterAsync>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+
+End Date :   8/17/2021 5:23:52 PM
+
+
+=====================================Error Logging ===================================
+
+Start Date :   8/17/2021 6:34:17 PM
+Error Message: 
+System.InvalidOperationException: Unable to resolve service for type 'MaintenanceManagementSystem.Application.Interfaces.ISystemAdmin' while attempting to activate 'MaintenanceManagementSystem.API.Controllers.SystemAdminController'.
    at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.GetService(IServiceProvider sp, Type type, Type requiredBy, Boolean isDefaultParameterRequired)
-   at lambda_method3(Closure , IServiceProvider , Object[] )
+   at lambda_method252(Closure , IServiceProvider , Object[] )
    at Microsoft.AspNetCore.Mvc.Controllers.ControllerActivatorProvider.<>c__DisplayClass4_0.<CreateActivator>b__0(ControllerContext controllerContext)
    at Microsoft.AspNetCore.Mvc.Controllers.ControllerFactoryProvider.<>c__DisplayClass5_0.<CreateControllerFactory>g__CreateController|0(ControllerContext controllerContext)
    at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
@@ -12,6 +108,6 @@ System.InvalidOperationException: Unable to resolve service for type 'Maintenanc
 --- End of stack trace from previous location ---
    at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextExceptionFilterAsync>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
 
-End Date :   8/18/2021 1:39:26 AM
+End Date :   8/17/2021 6:34:17 PM
 
 

@@ -61,7 +61,7 @@ namespace MaintenanceManagementSystem.API.Controllers
             var claims = new List<Claim>
             {
                 new Claim(ClaimTypes.Email, User.Email),
-                new Claim(ClaimTypes.Role, roleString),
+                new Claim(ClaimTypes.Role, roleString.Result),
                 new Claim(ClaimTypes.Sid, User.Id.ToString()),
                 new Claim("BuildingID", User.buildingId.ToString()),
                 new Claim("FloorID", User.FloorId.ToString())
@@ -127,5 +127,20 @@ namespace MaintenanceManagementSystem.API.Controllers
             }
         }
 
+        [AllowAnonymous]
+        [HttpPost]
+        [Route("RegisterSystemAdmin")]
+        public IActionResult RegisterSystemAdmin(RegistrationDto user)
+        {
+            if (_backOfficeEntry.CheckExistence(user.Email))
+            {
+                return BadRequest("You are already registered");
+            }
+            else
+            {
+                _backOfficeEntry.RegisterSystemAdmin(user);
+                return Ok("You have been registered successfully");
+            }
+        }
     }
 }
