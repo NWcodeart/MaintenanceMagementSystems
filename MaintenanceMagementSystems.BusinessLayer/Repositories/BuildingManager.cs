@@ -15,11 +15,13 @@ namespace MaintenanceManagementSystem.BusinessLayer.Repositories
     public class BuildingManager : IBuildingManager
     {
         private MaintenanceSysContext _maintenanceSysContext;
-        private IBackOfficeEntry _backOfficeEntry ;
-        public BuildingManager(MaintenanceSysContext maintenanceSysContext, IBackOfficeEntry backOfficeEntry)
+        private IBackOfficeEntry _backOfficeEntry;
+        private readonly DbContextOptions<MaintenanceSysContext> _options;
+        public BuildingManager(MaintenanceSysContext maintenanceSysContext, IBackOfficeEntry backOfficeEntry, DbContextOptions<MaintenanceSysContext> options)
         {
             _maintenanceSysContext = maintenanceSysContext;
             _backOfficeEntry = backOfficeEntry;
+            _options = options;
         }
 
         public bool AddComments(string comment)
@@ -116,14 +118,14 @@ namespace MaintenanceManagementSystem.BusinessLayer.Repositories
         {
             try
             {
-                using (_maintenanceSysContext)
+                using (var db = new MaintenanceSysContext(_options))
                 {
                     List<Ticket> tickets = null;
-                    List<int> ticketsId = _maintenanceSysContext.Tickets.SelectMany(t => t.backOfficesTickets).Where(u => u.BackOfficeId == _backOfficeEntry.GetUserId()).Select(t => t.TicketId).ToList();
+                    List<int> ticketsId = db.Tickets.SelectMany(t => t.backOfficesTickets).Where(u => u.BackOfficeId == _backOfficeEntry.GetUserId()).Select(t => t.TicketId).ToList();
                   
                      foreach( var i in ticketsId)
                     {
-                        tickets = _maintenanceSysContext.Tickets.Where(t => t.Id == i).ToList();
+                        tickets = db.Tickets.Where(t => t.Id == i).ToList();
                     }
 
                     if (tickets != null)
