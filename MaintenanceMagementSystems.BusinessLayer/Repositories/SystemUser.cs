@@ -63,7 +63,7 @@ namespace MaintenanceManagementSystem.BusinessLayer.Repositories
             msg.Subject = "Your temporarily password";
             msg.Body = Convert.ToString(TempPassword);
 
-            user.Password = Convert.ToString(TempPassword);
+            user.TemporaryPassword = TempPassword;
             _maintenanceSysContext.SaveChanges();
 
 
@@ -87,17 +87,21 @@ namespace MaintenanceManagementSystem.BusinessLayer.Repositories
             }
         }
 
-        public bool ResetPassword(string tempPassword, string newPassword)
+        public bool ResetPassword(Guid tempPassword, string newPassword)
         {
             try
             {
                 using (_maintenanceSysContext)
                 {
-                    User user = _maintenanceSysContext.Users.FirstOrDefault(u => u.Password == tempPassword);
-                    user.Password = newPassword;
-                    _maintenanceSysContext.SaveChanges();
-
+                    User user = _maintenanceSysContext.Users.FirstOrDefault(u => u.TemporaryPassword == tempPassword);
+                    if(user != null)
+                    {
+                        user.Password = newPassword;
+                        _maintenanceSysContext.SaveChanges();
+                        return true;
+                    }
                     return false;
+                  
                 }
             }
             catch
