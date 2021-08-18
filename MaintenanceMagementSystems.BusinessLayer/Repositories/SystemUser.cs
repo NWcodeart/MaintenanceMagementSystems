@@ -97,6 +97,7 @@ namespace MaintenanceManagementSystem.BusinessLayer.Repositories
                     if(user != null)
                     {
                         user.Password = newPassword;
+                        user.TemporaryPassword = Guid.Empty;
                         _maintenanceSysContext.SaveChanges();
                         return true;
                     }
