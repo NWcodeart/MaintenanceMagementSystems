@@ -3,6 +3,7 @@ using MaintenanceManagementSystem.Database.Lookup;
 using MaintenanceManagementSystem.Database.Models;
 using MaintenanceManagementSystem.Entity.ModelsDto;
 using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,11 +16,15 @@ namespace MaintenanceManagementSystem.BusinessLayer.Repositories
     {
         private MaintenanceSysContext _maintenanceSysContext;
         private IBeneficiaryEntry _beneficiaryEntryRepo;
+        private readonly DbContextOptions<MaintenanceSysContext> _options;
 
-        public Beneficiary(MaintenanceSysContext maintenanceSysContext, IBeneficiaryEntry beneficiaryEntryRepo)
+        public Beneficiary(MaintenanceSysContext maintenanceSysContext, 
+            IBeneficiaryEntry beneficiaryEntryRepo,
+            DbContextOptions<MaintenanceSysContext> options)
         {
             _maintenanceSysContext = maintenanceSysContext;
             _beneficiaryEntryRepo = beneficiaryEntryRepo;
+            _options = options;
         }
 
         public bool CancelTicket(int requestID, int cancelationReasonID)
@@ -97,9 +102,9 @@ namespace MaintenanceManagementSystem.BusinessLayer.Repositories
         {
             try
             {
-                using (_maintenanceSysContext)
+                using (var db = new MaintenanceSysContext(_options))
                 {
-                    var tickets = _maintenanceSysContext.Tickets.Where(t => t.BeneficiaryID == _beneficiaryEntryRepo.GetUserId()).ToList();
+                    var tickets = db.Tickets.Where(t => t.BeneficiaryID == _beneficiaryEntryRepo.GetUserId()).ToList();
                     var isThereActiveTicket = tickets.Exists(t => t.StatusID < 5);
                     if (!isThereActiveTicket)
                     {
@@ -109,15 +114,15 @@ namespace MaintenanceManagementSystem.BusinessLayer.Repositories
                             StatusID = 1,
                             ApprovalState = 0,
                             Description = ticket.Description,
-                            FloorId = ticket.FloorId,
+                            FloorId = _beneficiaryEntryRepo.getUserFloor(),
                             MaintenanceTypeID = ticket.MaintenanceTypeID,
                             Date = ticket.Date,
                             Picture = ticket.Picture,
                             CreatedBy = _beneficiaryEntryRepo.GetUserId(),
-                            CreatedTime = DateTime.Now
+                            CreatedTime = DateTime.Now,
                         };
-                        _maintenanceSysContext.Add(newTicket);
-                        _maintenanceSysContext.SaveChanges();
+                        db.Add(newTicket);
+                        db.SaveChanges();
                         return true;
                     }
                     else
@@ -137,9 +142,9 @@ namespace MaintenanceManagementSystem.BusinessLayer.Repositories
         {
             try
             {
-                using (_maintenanceSysContext)
+                using (var db = new MaintenanceSysContext(_options))
                 {
-                    var tickets = _maintenanceSysContext.Tickets.Where(t => t.BeneficiaryID == _beneficiaryEntryRepo.GetUserId()).ToList();
+                    var tickets = db.Tickets.Include(t=>t.status).Include(t=>t.maintenanceType).Where(t => t.BeneficiaryID == _beneficiaryEntryRepo.GetUserId()).ToList();
                     return tickets;
                 }
             }

@@ -30,11 +30,6 @@ namespace MaintenanceManagementSystem.Application.Interfaces
          */
         public bool ForgetPassword(string email); //then a request will be sent to the system admin to rest the password for user
 
-        /*
-         The portal can be displayed in Arabic and English user can choose one of them
-         */
-        public void ChangeLanguage(); //To be reviewed
-
         public Task<string> GetUserRoleFromDB(int userRoleID); //To be used to get role claim
 
         /*
@@ -44,5 +39,7 @@ namespace MaintenanceManagementSystem.Application.Interfaces
         public List<Building> ListBuildings();
 
         public List<Floor> ListFloors(int buildingID);
+
+        public int getUserFloor(); //To be used to get floor claim
     }
 }
