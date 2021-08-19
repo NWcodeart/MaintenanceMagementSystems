@@ -142,19 +142,20 @@ namespace MaintenanceManagementSystem.BusinessLayer.Repositories
             
         }
 
-        public void RegisterNewEmployee(User newEmployee)
+        public void RegisterNewEmployee(BackOfficeRegistration newEmployee)
         {
             try
             {
                 using (_maintenanceSysContext)
                 {
                     var newUser = new User()
-                    {
-                        UserRoleId = newEmployee.UserRoleId, 
+                    {  
                         Name = newEmployee.Name,
                         Email = newEmployee.Email,
+                        UserRoleId = newEmployee.UserRoleId,
                         Phone = newEmployee.Phone,
-                        FloorId = newEmployee.FloorId,
+                        buildingId = newEmployee.BuildingNumber,
+                        FloorId = newEmployee.FloorNumber,
                         IsForgetPassword = true //true if user click on foreget pass or when admin who add the user
                     };
 
@@ -162,7 +163,7 @@ namespace MaintenanceManagementSystem.BusinessLayer.Repositories
 
                     if(newUser.UserRoleId == 3)
                     {
-                        newUser.maintenanceType = newEmployee.maintenanceType;
+                        newUser.MaintenanceTypeId = newEmployee.MaintenanceTypeId;
                     }
 
                     _maintenanceSysContext.Users.Add(newUser);
@@ -334,5 +335,24 @@ namespace MaintenanceManagementSystem.BusinessLayer.Repositories
                 throw;
             }
         }
+
+        public bool CheckExistence(string email)
+        {
+            try
+            {
+                var user = _maintenanceSysContext.Users.FirstOrDefault(u => u.Email == email);
+                if (user != null)
+                {
+                    return true;
+                }
+
+                return false;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
     }
 }

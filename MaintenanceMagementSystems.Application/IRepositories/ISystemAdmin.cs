@@ -10,7 +10,8 @@ namespace MaintenanceManagementSystem.Application.Interfaces
         /*
          System admin will register the employees and assign them their roles and privileges (Building Manager, Maintenance Manager and Maintenance Worker)
          */
-        public void RegisterNewEmployee(User newEmployee);
+        public void RegisterNewEmployee(BackOfficeRegistration newEmployee);
+        public bool CheckExistence(string email);
 
         //System admin can delete users accounts from the system.
         public void DeleteUser(int userID);

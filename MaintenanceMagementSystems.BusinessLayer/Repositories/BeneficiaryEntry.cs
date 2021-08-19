@@ -100,7 +100,7 @@ namespace MaintenanceManagementSystem.BusinessLayer.Repositories
         {
             try
             {
-                ClaimsPrincipal currentUser = _httpContextAccessor.HttpContext.User;
+                var currentUser = _httpContextAccessor.HttpContext.User.Identity as ClaimsIdentity;
                 var stringClaimValue = currentUser.FindFirst(ClaimTypes.Sid).Value;
                 var IdNumber = Convert.ToInt32(stringClaimValue);
                 return IdNumber;
@@ -115,7 +115,7 @@ namespace MaintenanceManagementSystem.BusinessLayer.Repositories
         {
             try
             {
-                ClaimsPrincipal currentUser = _httpContextAccessor.HttpContext.User;
+                var currentUser = _httpContextAccessor.HttpContext.User.Identity as ClaimsIdentity;
                 var stringClaimValue = currentUser.FindFirst(ClaimTypes.Role).Value;
                 return stringClaimValue;
 
@@ -201,7 +201,7 @@ namespace MaintenanceManagementSystem.BusinessLayer.Repositories
 
         public int getUserFloor()
         {
-            ClaimsPrincipal currentUser = _httpContextAccessor.HttpContext.User;
+            var currentUser = _httpContextAccessor.HttpContext.User.Identity as ClaimsIdentity;
             var stringClaimValue = currentUser.FindFirst("FloorID").Value;
             var floorID = Convert.ToInt32(stringClaimValue);
             return floorID;

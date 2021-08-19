@@ -134,13 +134,10 @@ namespace MaintenanceManagementSystem.BusinessLayer.Repositories
         {
             try
             {
-                using (_maintenanceSysContext)
-                {
-                    ClaimsPrincipal currentUser = _httpContextAccessor.HttpContext.User;
+                    var currentUser = _httpContextAccessor.HttpContext.User.Identity as ClaimsIdentity;
                     var stringClaimValue = currentUser.FindFirst(ClaimTypes.Sid).Value;
                     var IdNumber = Convert.ToInt32(stringClaimValue);
                     return IdNumber;
-                }
             }
             catch (Exception)
             {
@@ -152,12 +149,11 @@ namespace MaintenanceManagementSystem.BusinessLayer.Repositories
         {
             try
             {
-                using (_maintenanceSysContext)
-                {
-                    ClaimsPrincipal currentUser = _httpContextAccessor.HttpContext.User;
-                    var stringClaimValue = currentUser.FindFirst(ClaimTypes.Role).Value;
+
+                var currentUser = _httpContextAccessor.HttpContext.User.Identity as ClaimsIdentity;
+                var stringClaimValue = currentUser.FindFirst(ClaimTypes.Role).Value;
                     return stringClaimValue;
-                }
+                
             }
             catch (Exception)
             {
