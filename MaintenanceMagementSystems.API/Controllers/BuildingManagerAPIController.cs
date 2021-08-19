@@ -14,7 +14,7 @@ namespace MaintenanceManagementSystem.API.Controllers
     [ServiceFilter(typeof(AuthorizeFilter))]
     [ServiceFilter(typeof(ActionFilter))]
     [ServiceFilter(typeof(ExceptionFilter))]
-    [Authorize(Roles = "BuildingManager")]
+   // [Authorize(Roles = "BuildingManager")]
     [Route("api/[controller]")]
     [ApiController]
     public class BuildingManagerAPIController : ControllerBase
@@ -28,10 +28,10 @@ namespace MaintenanceManagementSystem.API.Controllers
 
         [HttpPost]
         [Route("[action]")]
-        [ActionName("AddComments/{comment}")]
-        public IActionResult AddComments( string comment)
+        [ActionName("AddComments")]
+        public IActionResult AddComments(Comment comment)
         {
-            _buildingManager.AddComments( comment);
+            _buildingManager.AddComments( comment.comment);
             return Ok();
         }
 
@@ -61,7 +61,7 @@ namespace MaintenanceManagementSystem.API.Controllers
         //--------------------------------------------------------------------------------------------
 
        
-  
+        [AllowAnonymous]
         [HttpGet]
         [Route("[action]")]
         [ActionName("ViewTickets")]
