@@ -117,12 +117,13 @@ namespace MaintenanceManagementSystem.BusinessLayer.Repositories
             {
                 using (var db = new MaintenanceSysContext(_options))
                 {
-                    List<Ticket> tickets = null;
+                    List<Ticket> tickets = new List<Ticket>();
                     List<int> ticketsId = db.Tickets.SelectMany(t => t.backOfficesTickets).Where(u => u.BackOfficeId == _backOfficeEntry.GetUserId()).Select(t => t.TicketId).ToList();
                   
                      foreach( var i in ticketsId)
                     {
-                        tickets = db.Tickets.Where(t => t.Id == i).ToList();
+                        var x = db.Tickets.Single(t => t.Id == i);
+                        tickets.Add(x);
                     }
 
                     if (tickets != null)
