@@ -144,7 +144,13 @@ namespace MaintenanceManagementSystem.BusinessLayer.Repositories
             {
                 using (var db = new MaintenanceSysContext(_options))
                 {
-                    var tickets = db.Tickets.Include(t=>t.status).Include(t=>t.maintenanceType).Where(t => t.BeneficiaryID == _beneficiaryEntryRepo.GetUserId()).ToList();
+                    var tickets = db.Tickets.Where(t => t.BeneficiaryID == _beneficiaryEntryRepo.GetUserId()).ToList();
+                    foreach(var ticket in tickets)
+                    {
+                        ticket.status = db.Statuses.FirstOrDefault(s => s.Id == ticket.StatusID);
+                        ticket.maintenanceType = db.MaintenanceTypes.FirstOrDefault(m => m.Id == ticket.MaintenanceTypeID);
+                    }
+                    db.SaveChanges();
                     return tickets;
                 }
             }
