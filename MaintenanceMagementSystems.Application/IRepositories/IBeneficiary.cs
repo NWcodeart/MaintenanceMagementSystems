@@ -14,7 +14,7 @@ namespace MaintenanceManagementSystem.Application.Interfaces
         /*
          beneficiary can only access tickets opened by him.
         */
-        public List<Ticket> ListAllTickets();
+        public List<TicketDto> ListAllTickets();
 
         /*
          he can submit a maintenance request ticket though the beneficiary portal.

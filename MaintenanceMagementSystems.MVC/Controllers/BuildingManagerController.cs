@@ -27,10 +27,10 @@ namespace MaintenanceManagementSystem.MVC.Controllers
             return View();
         }
         [HttpPost]
-        public async Task<ActionResult> PostComments(int ticketID, Comment comment)
+        public async Task<ActionResult> PostComments(Comment comment, int Id)
         {
             
-                _buildingManager.AddComments(comment.comment, ticketID);
+                _buildingManager.AddComments(comment.comment, Id);
                 return View();
         }
 
@@ -42,7 +42,7 @@ namespace MaintenanceManagementSystem.MVC.Controllers
             return View();
         }
         [HttpGet]
-        public async Task<ActionResult> GetTickets()
+        public ActionResult GetTickets()
         {
             var tickets = _buildingManager.ViewTickets();
             return Json(tickets, System.Web.Mvc.JsonRequestBehavior.AllowGet);

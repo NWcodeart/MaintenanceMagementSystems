@@ -2,6 +2,7 @@
 using MaintenanceManagementSystem.Application.Interfaces;
 using MaintenanceManagementSystem.Database.Lookup;
 using MaintenanceManagementSystem.Database.Models;
+using MaintenanceManagementSystem.Entity.LookupDto;
 using MaintenanceManagementSystem.Entity.ModelsDto;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -32,17 +33,15 @@ namespace MaintenanceManagementSystem.API.Controllers
         [AllowAnonymous]
         [HttpPost]
         [Route("AddBuilding")]
-        public IActionResult AddBuilding(Building building)
+        public IActionResult AddBuilding(BuildingAdd building)
         {
-            var AllBuilding = _maintenanceSysContext.Buildings;
-
             try
             {
                 if (ModelState.IsValid)
                 {
-                    if(building == null || !(AllBuilding.Any(x => x.Id == building.Id)))
+                    if(building == null )
                     {
-                        return BadRequest("Building undefiend");
+                        return BadRequest("Building NULL");
                     }
                     else
                     {
@@ -219,7 +218,7 @@ namespace MaintenanceManagementSystem.API.Controllers
         [Route("GetCountries")]
         public IActionResult GetCountries()
         {
-            var countries = _SystemAdminRepo.GetCountrys();
+            List<CountryDto> countries = _SystemAdminRepo.GetCountries();
             return Ok(countries);
         }
         [AllowAnonymous]
