@@ -35,7 +35,7 @@ namespace MaintenanceManagementSystem.BusinessLayer.Repositories
                 {
                     var user = _maintenanceSysContext.Users.FirstOrDefault(l => l.Email == Login.Username);
 
-                    if (user != null && BCrypt.Net.BCrypt.Verify(Login.Password, user.Password))
+                    if (!(user == null) && BCrypt.Net.BCrypt.Verify(Login.Password, user.Password))
                     {
                         return user;
                     }

@@ -138,20 +138,41 @@ namespace MaintenanceManagementSystem.BusinessLayer.Repositories
 
         }
 
-        public List<Ticket> ListAllTickets()
+        public List<TicketDto> ListAllTickets()
         {
             try
             {
+                List<TicketDto> Tickets = new List<TicketDto>();
                 using (var db = new MaintenanceSysContext(_options))
                 {
-                    var tickets = db.Tickets.Where(t => t.BeneficiaryID == _beneficiaryEntryRepo.GetUserId()).ToList();
-                    foreach(var ticket in tickets)
+                    Tickets = db.Tickets.Where(t => t.BeneficiaryID == _beneficiaryEntryRepo.GetUserId()).Select(x => new TicketDto 
                     {
-                        ticket.status = db.Statuses.FirstOrDefault(s => s.Id == ticket.StatusID);
-                        ticket.maintenanceType = db.MaintenanceTypes.FirstOrDefault(m => m.Id == ticket.MaintenanceTypeID);
-                    }
-                    db.SaveChanges();
-                    return tickets;
+                        Id = x.Id,
+                        BeneficiaryID = x.BeneficiaryID,
+                        StatusID = x.StatusID,
+                        StatusTypeAr = x.status.StatusTypeAr,
+                        StatusTypeEn = x.status.StatusTypeEn,
+                        Date = x.Date,
+                        Picture = x.Picture,
+                        MaintenanceTypeID = x.MaintenanceTypeID,
+                        MaintenanceTypeNameAr = x.maintenanceType.MaintenanceTypeNameAr,
+                        MaintenanceTypeNameEn = x.maintenanceType.MaintenanceTypeNameEn,
+                        Description = x.Description,
+                        BuildingManagerComment = x.BuildingManagerComment,
+                        FloorId = x.FloorId,
+                        IsCancelled = x.IsCancelled,
+                        CancellationReasonID = x.CancellationReasonID,
+                        ReasonTypeAr = x.cancelationReason.ReasonTypeAr,
+                        ReasonTypeEn = x.cancelationReason.ReasonTypeEn,
+                        RejectedBy = x.RejectedBy,
+                        RejectionReason = x.RejectionReason,
+                        CreatedBy = x.CreatedBy,
+                        CreatedTime = x.CreatedTime,
+                        UpdatedBy = x.UpdatedBy,
+                        UpdatedTime = x.UpdatedTime,
+                        IsDeleted =  x.IsDeleted
+                    }).ToList();
+                    return Tickets;
                 }
             }
             catch (Exception)
