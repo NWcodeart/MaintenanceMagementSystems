@@ -10,11 +10,8 @@ namespace MaintenanceManagementSystem.Entity.ModelsDto
     public class TicketRequest
     {
         [Required(ErrorMessage = "Please enter a description of the problem")]
-        [RegularExpression(@"^[[:alpha:]\s]+$", ErrorMessage = "Accepted characters are alphabets and spaces only")] //Alpha and spaces
+        [RegularExpression(@"^[a-zA-z\s]+$", ErrorMessage = "Accepted characters are alphabets and spaces only")] //Alpha and spaces
         public string Description { get; set; }
-
-        [Required(ErrorMessage = "Please enter the floor number")]
-        public int FloorId { get; set; }
 
         [Required(ErrorMessage = "Please choose a type of maintenance")]
         public int MaintenanceTypeID { get; set; }

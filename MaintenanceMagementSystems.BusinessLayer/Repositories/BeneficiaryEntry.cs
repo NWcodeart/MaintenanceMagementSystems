@@ -55,12 +55,6 @@ namespace MaintenanceManagementSystem.BusinessLayer.Repositories
 
         }
 
-        public void ChangeLanguage()
-        {
-            throw new NotImplementedException();
-        }
-
-
         public bool CheckExistence(string email)
         {
             try
@@ -106,13 +100,10 @@ namespace MaintenanceManagementSystem.BusinessLayer.Repositories
         {
             try
             {
-                using (_maintenanceSysContext)
-                {
-                    ClaimsPrincipal currentUser = _httpContextAccessor.HttpContext.User;
-                    var stringClaimValue = currentUser.FindFirst(ClaimTypes.Sid).Value;
-                    var IdNumber = Convert.ToInt32(stringClaimValue);
-                    return IdNumber;
-                }
+                ClaimsPrincipal currentUser = _httpContextAccessor.HttpContext.User;
+                var stringClaimValue = currentUser.FindFirst(ClaimTypes.Sid).Value;
+                var IdNumber = Convert.ToInt32(stringClaimValue);
+                return IdNumber;
             }
             catch (Exception)
             {
@@ -124,12 +115,10 @@ namespace MaintenanceManagementSystem.BusinessLayer.Repositories
         {
             try
             {
-                using (_maintenanceSysContext)
-                {
-                    ClaimsPrincipal currentUser = _httpContextAccessor.HttpContext.User;
-                    var stringClaimValue = currentUser.FindFirst(ClaimTypes.Role).Value;
-                    return stringClaimValue;
-                }
+                ClaimsPrincipal currentUser = _httpContextAccessor.HttpContext.User;
+                var stringClaimValue = currentUser.FindFirst(ClaimTypes.Role).Value;
+                return stringClaimValue;
+
             }
             catch (Exception)
             {
@@ -208,6 +197,14 @@ namespace MaintenanceManagementSystem.BusinessLayer.Repositories
             {
                 throw;
             }
+        }
+
+        public int getUserFloor()
+        {
+            ClaimsPrincipal currentUser = _httpContextAccessor.HttpContext.User;
+            var stringClaimValue = currentUser.FindFirst("FloorID").Value;
+            var floorID = Convert.ToInt32(stringClaimValue);
+            return floorID;
         }
     }
 }

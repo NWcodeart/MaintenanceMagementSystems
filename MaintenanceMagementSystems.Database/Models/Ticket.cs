@@ -51,13 +51,13 @@ namespace MaintenanceManagementSystem.Database.Models
         public MaintenanceType maintenanceType { get; set; }
 
         //Description section
-        [RegularExpression(@"^[[:alpha:]\s]+$", ErrorMessage = "Accepted characters are alphabets and spaces only")] //Alpha and spaces
+        [RegularExpression(@"^[a-zA-z\s]+$", ErrorMessage = "Accepted characters are alphabets and spaces only")] //Alpha and spaces
         [Required]
         public string Description { get; set; }
 
         //comment section
-        #nullable enable
-        [RegularExpression(@"^[[:alpha:]\s]+$", ErrorMessage = "Accepted characters are alphabets and spaces only")] //Alpha and spaces
+#nullable enable
+        [RegularExpression(@"^[a-zA-z\s]+$", ErrorMessage = "Accepted characters are alphabets and spaces only")] //Alpha and spaces
         public string? BuildingManagerComment { get; set; }
 
         //Ticket location floor section
@@ -84,7 +84,7 @@ namespace MaintenanceManagementSystem.Database.Models
 
         public User? UserRejected { get; set; }
 
-        [RegularExpression(@"^[[:alpha:]\s]+$", ErrorMessage = "Accepted characters are alphabets and spaces only")] //Alpha and spaces
+        [RegularExpression(@"^[a-zA-z\s]+$", ErrorMessage = "Accepted characters are alphabets and spaces only")] //Alpha and spaces
         [Display(Name = "Rejection Reason")]
         public string? RejectionReason { get; set; }
 
