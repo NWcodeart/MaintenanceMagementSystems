@@ -27,10 +27,10 @@ namespace MaintenanceManagementSystem.MVC.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult PostComments(Comment comment, int Id)
+        public async Task<ActionResult> PostComments(Comment comment)
         {
             
-                _buildingManager.AddComments(comment.comment, Id);
+                _buildingManager.AddComments(comment.comment);
                 return View();
         }
 
