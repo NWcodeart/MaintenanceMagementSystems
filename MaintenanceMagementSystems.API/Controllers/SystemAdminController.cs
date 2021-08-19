@@ -31,7 +31,8 @@ namespace MaintenanceManagementSystem.API.Controllers
         }
         [AllowAnonymous]
         [HttpPost]
-        public IActionResult AddBulding(Building building)
+        [Route("AddBuilding")]
+        public IActionResult AddBuilding(Building building)
         {
             var AllBuilding = _maintenanceSysContext.Buildings;
 

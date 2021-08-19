@@ -15,30 +15,29 @@ namespace MaintenanceManagementSystem.BusinessLayer.Repositories
     public class BuildingManager : IBuildingManager
     {
         private MaintenanceSysContext _maintenanceSysContext;
-        private IBackOfficeEntry _backOfficeEntry ;
-        public BuildingManager(MaintenanceSysContext maintenanceSysContext, IBackOfficeEntry backOfficeEntry)
+        private IBackOfficeEntry _backOfficeEntry;
+        private readonly DbContextOptions<MaintenanceSysContext> _options;
+        public BuildingManager(MaintenanceSysContext maintenanceSysContext, IBackOfficeEntry backOfficeEntry, DbContextOptions<MaintenanceSysContext> options)
         {
             _maintenanceSysContext = maintenanceSysContext;
             _backOfficeEntry = backOfficeEntry;
+            _options = options;
         }
 
-        public bool AddComments(string comment)
+        public bool AddComments(string comment, int ticketId)
         {
             try
             {
                 using (_maintenanceSysContext)
                 {                    
-                    List<Ticket> ticketList = _maintenanceSysContext.Tickets.Where(t => t.StatusID == 1).ToList();  //1 => new
-                    if (ticketList != null)
+                    Ticket ticket = _maintenanceSysContext.Tickets.FirstOrDefault(t => t.StatusID == 1 && t.Id == ticketId);  //1 => new
+
+                    if (ticket != null)
                     {
-                        foreach(var ticket in ticketList)
-                        {
-                            ticket.BuildingManagerComment = comment;
-                            ticket.StatusID = 2; //2 => under review
-                            _maintenanceSysContext.SaveChanges();
-                           
-                        }
-                        return true;
+                           ticket.BuildingManagerComment = comment;
+                           ticket.StatusID = 2; //2 => under review
+                           _maintenanceSysContext.SaveChanges();
+                           return true;
                     }
                     else
                     {
@@ -116,14 +115,15 @@ namespace MaintenanceManagementSystem.BusinessLayer.Repositories
         {
             try
             {
-                using (_maintenanceSysContext)
+                using (var db = new MaintenanceSysContext(_options))
                 {
-                    List<Ticket> tickets = null;
-                    List<int> ticketsId = _maintenanceSysContext.Tickets.SelectMany(t => t.backOfficesTickets).Where(u => u.BackOfficeId == _backOfficeEntry.GetUserId()).Select(t => t.TicketId).ToList();
+                    List<Ticket> tickets = new List<Ticket>();
+                    List<int> ticketsId = db.Tickets.SelectMany(t => t.backOfficesTickets).Where(u => u.BackOfficeId == _backOfficeEntry.GetUserId()).Select(t => t.TicketId).ToList();
                   
                      foreach( var i in ticketsId)
                     {
-                        tickets = _maintenanceSysContext.Tickets.Where(t => t.Id == i).ToList();
+                        var x = db.Tickets.Single(t => t.Id == i);
+                        tickets.Add(x);
                     }
 
                     if (tickets != null)
@@ -142,6 +142,42 @@ namespace MaintenanceManagementSystem.BusinessLayer.Repositories
             }
         }
 
+
+        //--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+        public Ticket GetTicket(int ticketId)
+        {
+            try
+            {
+                using (_maintenanceSysContext)
+                {
+                    Ticket ticket = null;
+                    List<int> ticketsId = _maintenanceSysContext.Tickets.SelectMany(t => t.backOfficesTickets).Where(u => u.BackOfficeId == _backOfficeEntry.GetUserId()).Select(t => t.TicketId).ToList();
+
+                    foreach (var i in ticketsId)
+                    {
+                        if(i == ticketId)
+                        {
+                             ticket = _maintenanceSysContext.Tickets.Where(t => t.Id == i).FirstOrDefault();
+
+                        }
+                    }
+
+                    if (ticket != null)
+                    {
+                        return ticket;
+                    }
+                    else
+                    {
+                        return null;
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
 
         //--------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
