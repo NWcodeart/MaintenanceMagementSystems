@@ -14,7 +14,7 @@ namespace MaintenanceManagementSystem.API.Controllers
     [ServiceFilter(typeof(AuthorizeFilter))]
     [ServiceFilter(typeof(ActionFilter))]
     [ServiceFilter(typeof(ExceptionFilter))]
-   // [Authorize(Roles = "BuildingManager")]
+    [Authorize(Roles = "BuildingManager")]
     [Route("api/[controller]")]
     [ApiController]
     public class BuildingManagerAPIController : ControllerBase

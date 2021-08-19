@@ -7,19 +7,21 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.Net.Http.Headers;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
+using System.Net.Http;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace MaintenanceManagementSystem.API.Controllers
 {
-    [ServiceFilter(typeof(AuthorizeFilter))]
-    [ServiceFilter(typeof(ActionFilter))]
-    [ServiceFilter(typeof(ExceptionFilter))]
+    //[ServiceFilter(typeof(AuthorizeFilter))]
+    //[ServiceFilter(typeof(ActionFilter))]
+    //[ServiceFilter(typeof(ExceptionFilter))]
     [Route("api/[controller]")]
     [ApiController]
     public class BackOfficeEntryController : ControllerBase

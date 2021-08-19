@@ -18,7 +18,7 @@ using System.Threading.Tasks;
 namespace MaintenanceManagementSystem.API.Controllers
 {
     [ServiceFilter(typeof(AuthorizeFilter))]
-    //[ServiceFilter(typeof(ActionFilter))]
+    [ServiceFilter(typeof(ActionFilter))]
     [ServiceFilter(typeof(ExceptionFilter))]
     [Route("api/[controller]")]
     [ApiController]
@@ -78,21 +78,24 @@ namespace MaintenanceManagementSystem.API.Controllers
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
             var roleString = _beneficiaryEntryRepo.GetUserRoleFromDB(User.UserRoleId);
 
-            var claims = new List<Claim>
-            {
-                new Claim(JwtRegisteredClaimNames.Email, User.Email),
-                new Claim(ClaimTypes.Role, roleString.Result),
-                new Claim(ClaimTypes.Sid, User.Id.ToString()),
-                new Claim("BuildingID", User.buildingId.ToString()),
-                new Claim("FloorID", User.FloorId.ToString())
-            };
+            List<Claim> claims = new List<Claim>();
+
+
+                claims.Add(new Claim(JwtRegisteredClaimNames.Email, User.Email));
+                claims.Add(new Claim(ClaimTypes.Role, roleString.Result));
+            claims.Add(new Claim(ClaimTypes.Sid, User.Id.ToString()));
+            claims.Add(new Claim("BuildingID", User.buildingId.ToString()));
+            claims.Add(new Claim("FloorID", User.FloorId.ToString()));
+
+            var identity = HttpContext.User.Identity as ClaimsIdentity;
 
             var token = new JwtSecurityToken(_config["Jwt:Issuer"],
               _config["Jwt:Issuer"],
               claims,
               expires: DateTime.Now.AddDays(1),
               signingCredentials: credentials);
-
+            identity.AddClaims(claims);
+            var claimPrincipal = new ClaimsPrincipal(identity);
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
 
@@ -101,6 +104,11 @@ namespace MaintenanceManagementSystem.API.Controllers
         [Route("GetRole")]
         public IActionResult GetRole()
         {
+          string Token =  Request.HttpContext.Session.GetString("Token");
+            var handler = new JwtSecurityTokenHandler();
+            var jsonToken = handler.ReadToken(Token);
+            var tokenS = jsonToken as JwtSecurityToken;
+            var jti = tokenS.Claims;
             return Ok(_beneficiaryEntryRepo.GetUserRole());
         }
 

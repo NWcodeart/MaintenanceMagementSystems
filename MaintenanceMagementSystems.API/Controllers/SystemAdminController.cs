@@ -173,14 +173,20 @@ namespace MaintenanceManagementSystem.API.Controllers
                 return BadRequest("Error Exception");
             }
         }
-
         [AllowAnonymous]
         [HttpPost]
         [Route("AddUser")]
-        public IActionResult AddUser(User user)
+        public IActionResult AddUser(BackOfficeRegistration user)
         {
-            _SystemAdminRepo.RegisterNewEmployee(user);
-            return Ok();
+            if (_SystemAdminRepo.CheckExistence(user.Email))
+            {
+                return BadRequest("You are already registered");
+            }
+            else
+            {
+                _SystemAdminRepo.RegisterNewEmployee(user);
+                return Ok("You have been registered successfully");
+            }
         }
         [AllowAnonymous]
         [HttpDelete]

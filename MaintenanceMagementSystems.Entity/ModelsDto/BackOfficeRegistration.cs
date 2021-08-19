@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MaintenanceManagementSystem.Entity.ModelsDto
 {
-    public class RegistrationDto
+    public class BackOfficeRegistration
     {
         [Required]
         [RegularExpression(@"^[a-zA-z\s]+$", ErrorMessage = "Accepted characters are alphabets and spaces only")] //Alpha and spaces
@@ -16,6 +16,9 @@ namespace MaintenanceManagementSystem.Entity.ModelsDto
         [Required]
         [RegularExpression(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$", ErrorMessage = "Please Enter valid Email")]
         public string Email { get; set; }
+
+        [Required]
+        public int UserRoleId { get; set; }
 
         [Required]
         [RegularExpression(@"^[0-9]*$", ErrorMessage = "Please Enter valid phone number")]
@@ -31,5 +34,8 @@ namespace MaintenanceManagementSystem.Entity.ModelsDto
 
         [Required]
         public int FloorNumber { get; set; }
+
+        #nullable enable
+        public int? MaintenanceTypeId { get; set; }
     }
 }
