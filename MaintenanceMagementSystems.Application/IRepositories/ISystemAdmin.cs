@@ -1,5 +1,6 @@
 ﻿using MaintenanceManagementSystem.Database.Lookup;
 using MaintenanceManagementSystem.Database.Models;
+using MaintenanceManagementSystem.Entity.LookupDto;
 using MaintenanceManagementSystem.Entity.ModelsDto;
 using System.Collections.Generic;
 
@@ -38,10 +39,10 @@ namespace MaintenanceManagementSystem.Application.Interfaces
         public void UpdateBuilding(Building UpdatedBuilding);
         public List<BuildingsTable> GetBuildings();
         public void DeleteBuilding(int id);
-        public void AddBuilding(Building buildingAdded);
+        public void AddBuilding(BuildingAdd buildingAdded);
 
         //ccountry
-        public List<Country> GetCountrys();
+        public List<CountryDto> GetCountries();
         public void DeleteCountry(int id);
         public void AddCountry(Country country);
 

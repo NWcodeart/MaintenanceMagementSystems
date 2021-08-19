@@ -72,7 +72,7 @@ namespace MaintenanceManagementSystem.API.Controllers
 
             return Ok("Request has been canceled successfully");
         }
-
+        [AllowAnonymous]
         [HttpGet]
         [Route("ListTickets")]
         public IActionResult ListTickets()

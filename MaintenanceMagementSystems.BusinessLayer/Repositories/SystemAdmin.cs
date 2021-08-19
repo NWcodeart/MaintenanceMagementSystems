@@ -1,6 +1,7 @@
 ﻿using MaintenanceManagementSystem.Application.Interfaces;
 using MaintenanceManagementSystem.Database.Lookup;
 using MaintenanceManagementSystem.Database.Models;
+using MaintenanceManagementSystem.Entity.LookupDto;
 using MaintenanceManagementSystem.Entity.ModelsDto;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -15,13 +16,15 @@ namespace MaintenanceManagementSystem.BusinessLayer.Repositories
     {
         private readonly MaintenanceSysContext _maintenanceSysContext;
 
-        public SystemAdmin(MaintenanceSysContext maintenanceSysContext)
+        private readonly DbContextOptions<MaintenanceSysContext> _options;
+        public SystemAdmin(MaintenanceSysContext maintenanceSysContext, DbContextOptions<MaintenanceSysContext> options)
         {
             _maintenanceSysContext = maintenanceSysContext;
+            _options = options;
         }
 
         //bulding section
-        public void AddBuilding(Building buildingAdded)
+        public void AddBuilding(BuildingAdd buildingAdded)
         {
             try
             {
@@ -29,7 +32,7 @@ namespace MaintenanceManagementSystem.BusinessLayer.Repositories
                 {
                     var newBuilding = new Building()
                     {
-                        Number = buildingAdded.Number,
+                        Number = buildingAdded.BuildingNumber,
                         IsOwned = buildingAdded.IsOwned,
                         CityId = buildingAdded.CityId,
                         Street = buildingAdded.Street,
@@ -283,10 +286,25 @@ namespace MaintenanceManagementSystem.BusinessLayer.Repositories
             return _maintenanceSysContext.Users.ToList();
         }
 
-        public List<Country> GetCountrys()
+        public List<CountryDto> GetCountries()
         {
-            var Countrys = _maintenanceSysContext.Countries.Include(c => c.Cities);
-              return Countrys.ToList();
+            List<CountryDto> Countries = new List<CountryDto>();
+            using (var db = new MaintenanceSysContext(_options))
+            {
+                Countries = db.Countries.Select(c => new CountryDto
+                {
+                    Id = c.Id,
+                    CountryNameAr = c.CountryNameAr,
+                    CountryNameEn = c.CountryNameEn,
+                    Cities = c.Cities.Select(x => new CityDto
+                    {
+                        Id = x.Id,
+                        CityNameAr = x.CityNameAr,
+                        CityNameEn = x.CityNameEn
+                    }).ToList()
+                }).ToList();
+            }
+            return Countries;
         }
 
         public void DeleteCountry(int id)
