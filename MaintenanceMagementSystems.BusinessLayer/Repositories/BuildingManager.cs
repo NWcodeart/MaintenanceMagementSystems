@@ -111,24 +111,52 @@ namespace MaintenanceManagementSystem.BusinessLayer.Repositories
 
         //--------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-        public List<Ticket> ViewTickets()
+        public List<TicketDto> ViewTickets()
         {
             try
             {
                 using (var db = new MaintenanceSysContext(_options))
                 {
-                    List<Ticket> tickets = new List<Ticket>();
+
+                    List<TicketDto> TicketsDto = new List<TicketDto>();
+                    //List<Ticket> tickets = new List<Ticket>();
                     List<int> ticketsId = db.Tickets.SelectMany(t => t.backOfficesTickets).Where(u => u.BackOfficeId == _backOfficeEntry.GetUserId()).Select(t => t.TicketId).ToList();
                   
                      foreach( var i in ticketsId)
                     {
-                        var x = db.Tickets.Single(t => t.Id == i);
-                        tickets.Add(x);
+                        TicketDto x = db.Tickets.Select(x => new TicketDto
+                        {
+                            Id = x.Id,
+                            BeneficiaryID = x.BeneficiaryID,
+                            StatusID = x.StatusID,
+                            StatusTypeAr = x.status.StatusTypeAr,
+                            StatusTypeEn = x.status.StatusTypeEn,
+                            Date = x.Date,
+                            Picture = x.Picture,
+                            MaintenanceTypeID = x.MaintenanceTypeID,
+                            MaintenanceTypeNameAr = x.maintenanceType.MaintenanceTypeNameAr,
+                            MaintenanceTypeNameEn = x.maintenanceType.MaintenanceTypeNameEn,
+                            Description = x.Description,
+                            BuildingManagerComment = x.BuildingManagerComment,
+                            FloorId = x.FloorId,
+                            IsCancelled = x.IsCancelled,
+                            CancellationReasonID = x.CancellationReasonID,
+                            ReasonTypeAr = x.cancelationReason.ReasonTypeAr,
+                            ReasonTypeEn = x.cancelationReason.ReasonTypeEn,
+                            RejectedBy = x.RejectedBy,
+                            RejectionReason = x.RejectionReason,
+                            CreatedBy = x.CreatedBy,
+                            CreatedTime = x.CreatedTime,
+                            UpdatedBy = x.UpdatedBy,
+                            UpdatedTime = x.UpdatedTime,
+                            IsDeleted = x.IsDeleted
+                        }).Single(t => t.Id == i);
+                        TicketsDto.Add(x);
                     }
 
-                    if (tickets != null)
+                    if (TicketsDto != null)
                     {
-                        return tickets;
+                        return TicketsDto;
                     }
                     else
                     {
