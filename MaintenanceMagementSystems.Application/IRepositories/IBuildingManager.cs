@@ -13,7 +13,7 @@ namespace MaintenanceManagementSystem.Application.Interfaces
 
         public Building ViewBuilding();
         public bool EditBuilding(int buildingID, BuildingDto Updatedbuilding);
-        public List<Ticket> ViewTickets();
+        public List<TicketDto> ViewTickets();
         public List<Ticket> ViewTicketsStatus();
         //public Ticket GetTicketFor(int requestID);
         public bool AddComments(string comment, int ticketId);

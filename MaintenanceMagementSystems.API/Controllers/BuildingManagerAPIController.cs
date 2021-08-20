@@ -61,7 +61,6 @@ namespace MaintenanceManagementSystem.API.Controllers
         //--------------------------------------------------------------------------------------------
 
        
-        [AllowAnonymous]
         [HttpGet]
         [Route("[action]")]
         [ActionName("ViewTickets")]
