@@ -28,7 +28,7 @@ namespace MaintenanceManagementSystem.API.Controllers
         }
 
 
-        [HttpPost]
+        [HttpGet]
         [Route("GetTicket/{id}")]
         public IActionResult GetTicket(int TicketId)
         {
@@ -38,11 +38,11 @@ namespace MaintenanceManagementSystem.API.Controllers
 
         //--------------------------------------------------------------------------------------------
 
-        [HttpPost]
+        [HttpGet]
         [Route("ViewTickets")]
         public IActionResult ViewTickets()
         {
-            List<Ticket> TicketList = _maintenanceManager.ViewTickets();
+            List<TicketDto> TicketList = _maintenanceManager.ViewTickets();
             return Ok(TicketList);
 
         }
@@ -93,12 +93,12 @@ namespace MaintenanceManagementSystem.API.Controllers
         }
         //--------------------------------------------------------------------------------------------
 
-        [HttpPost]
+        [HttpGet]
         [Route("ViewUnderReviewTickets")]
         public IActionResult ViewUnderReviewTickets()
         {
-            _maintenanceManager.ViewUnderReviewTickets();
-            return Ok();
+            List<TicketDto> TicketsList = _maintenanceManager.ViewUnderReviewTickets();
+            return Ok(TicketsList);
 
         }
         //--------------------------------------------------------------------------------------------
@@ -107,8 +107,8 @@ namespace MaintenanceManagementSystem.API.Controllers
         [Route("ViewMainteneceType")]
         public IActionResult ViewMainteneceType()
         {
-            _maintenanceManager.ViewMainteneceType();
-            return Ok();
+            List<MaintenanceType> MaintenanceTypeList = _maintenanceManager.ViewMainteneceType();
+            return Ok(MaintenanceTypeList);
 
         }
         //--------------------------------------------------------------------------------------------

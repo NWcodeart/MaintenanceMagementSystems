@@ -210,7 +210,7 @@ namespace MaintenanceManagementSystem.BusinessLayer.Repositories
         //--------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
-        public List<Ticket> ViewTicketsStatus()
+        public List<Status> ViewTicketsStatus()
         {
             try
             {
@@ -222,6 +222,7 @@ namespace MaintenanceManagementSystem.BusinessLayer.Repositories
                     foreach (var i in ticketsId)
                     {
                         ticketsStatus = _maintenanceSysContext.Tickets.Where(t => t.Id == i).Select(t =>t.status).ToList();
+                        return ticketsStatus;
                     }
                     return null;                   
                 }

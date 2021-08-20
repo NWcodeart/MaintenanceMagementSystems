@@ -49,8 +49,8 @@ namespace MaintenanceManagementSystem.Application.Interfaces
         public Ticket GetTicket(int TicketId);
         public User GetWorker(int WorkerId, int TicketId);
         public bool RespondToTicket(int TicketId, TicketRespond respond);
-        public List<Ticket> ViewTickets();
-        public List<Ticket> ViewUnderReviewTickets();
+        public List<TicketDto> ViewTickets();
+        public List<TicketDto> ViewUnderReviewTickets();
         public List<MaintenanceType> ViewMainteneceType();
         public bool DeleteMainteneceType(MaintenanceType DeletedType);
         public bool UpdateMainteneceType(MaintenanceType UpdatedType);
