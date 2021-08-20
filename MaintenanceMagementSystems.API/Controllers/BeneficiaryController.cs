@@ -124,12 +124,13 @@ namespace MaintenanceManagementSystem.API.Controllers
         [Route("GetUserInfo")]
         public IActionResult GetUserInfo()
         {
-            if (_beneficiaryRepo.GetUserInfo() == null)
+            UserInfoBeneficiary user = _beneficiaryRepo.GetUserInfo();
+            if (user == null || user.IsDeleted == true)
             {
-                return NotFound("No cancellation reasons available");
+                return NotFound("No Account available");
             }
 
-            return Ok(_beneficiaryRepo.GetUserInfo());
+            return Ok(user);
         }
     }
 }
