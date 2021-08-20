@@ -120,5 +120,16 @@ namespace MaintenanceManagementSystem.API.Controllers
 
             return Ok(_beneficiaryRepo.ListMaintenanceTypes());
         }
+        [HttpGet]
+        [Route("GetUserInfo")]
+        public IActionResult GetUserInfo()
+        {
+            if (_beneficiaryRepo.GetUserInfo() == null)
+            {
+                return NotFound("No cancellation reasons available");
+            }
+
+            return Ok(_beneficiaryRepo.GetUserInfo());
+        }
     }
 }
