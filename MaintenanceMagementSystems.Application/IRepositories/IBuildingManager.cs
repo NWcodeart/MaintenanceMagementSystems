@@ -1,4 +1,5 @@
-﻿using MaintenanceManagementSystem.Database.Models;
+﻿using MaintenanceManagementSystem.Database.Lookup;
+using MaintenanceManagementSystem.Database.Models;
 using MaintenanceManagementSystem.Entity.ModelsDto;
 using System;
 using System.Collections.Generic;
@@ -14,7 +15,7 @@ namespace MaintenanceManagementSystem.Application.Interfaces
         public Building ViewBuilding();
         public bool EditBuilding(int buildingID, BuildingDto Updatedbuilding);
         public List<TicketDto> ViewTickets();
-        public List<Ticket> ViewTicketsStatus();
+        public List<Status> ViewTicketsStatus();
         //public Ticket GetTicketFor(int requestID);
         public bool AddComments(string comment, int ticketId);
 
