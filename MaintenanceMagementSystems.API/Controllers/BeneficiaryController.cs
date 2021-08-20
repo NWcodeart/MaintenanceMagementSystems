@@ -49,25 +49,25 @@ namespace MaintenanceManagementSystem.API.Controllers
             
         }
 
-        [HttpPatch]
+        [HttpGet]
         [Route("ConfirmRequest/{requestID}")]
         public IActionResult ConfirmRequest(int requestID)
         {
             if (!(_beneficiaryRepo.ConfirmTicket(requestID)))
             {
-                return NotFound("Request with given ID is not found");
+                return NotFound("An incomplete request cannot be confirmed");
             }
 
             return Ok("Request has been confirmed successfully");
         }
 
         [HttpPatch]
-        [Route("CancelRequest/{requestID}/{cancelationReasonID}")]
-        public IActionResult CancelRequest(int requestID, int cancelationReasonID)
+        [Route("CancelRequest/{requestID}")]
+        public IActionResult CancelRequest(int requestID, [FromBody] int cancellationReason)
         {
-            if (!(_beneficiaryRepo.CancelTicket(requestID, cancelationReasonID)))
+            if (!(_beneficiaryRepo.CancelTicket(requestID, cancellationReason)))
             {
-                return NotFound("Request with given ID is not found or it's already sent to the maintenance manager");
+                return NotFound("The request is either under processing and can't be canceled or it's already canceled");
             }
 
             return Ok("Request has been canceled successfully");

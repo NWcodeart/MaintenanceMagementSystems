@@ -27,7 +27,7 @@ namespace MaintenanceManagementSystem.BusinessLayer.Repositories
             _options = options;
         }
 
-        public bool CancelTicket(int requestID, int cancelationReasonID)
+        public bool CancelTicket(int requestID, int cancellationReason)
         {
             try
             {
@@ -37,7 +37,7 @@ namespace MaintenanceManagementSystem.BusinessLayer.Repositories
                     if (request != null)
                     {
                         request.StatusID = 7;
-                        request.CancellationReasonID = cancelationReasonID;
+                        request.CancellationReasonID = cancellationReason;
                         _maintenanceSysContext.SaveChanges();
                         return true;
                     }
@@ -213,9 +213,9 @@ namespace MaintenanceManagementSystem.BusinessLayer.Repositories
 
             try
             {
-                using (_maintenanceSysContext)
+                using (var db = new MaintenanceSysContext(_options))
                 {
-                    User = _maintenanceSysContext.Users.Select(x => new UserInfoBeneficiary
+                    User = db.Users.Select(x => new UserInfoBeneficiary
                     {
                         Id = x.Id,
                         Name = x.Name,

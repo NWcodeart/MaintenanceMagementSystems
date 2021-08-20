@@ -31,7 +31,7 @@ namespace MaintenanceManagementSystem.Application.Interfaces
          manager after that it cannot be closed. also he should provide reason of 
          cancellation
          */
-        public bool CancelTicket(int requestID, int cancelationReasonID);
+        public bool CancelTicket(int requestID, int cancellationReasonId);
 
         /*
          for view purpose, so we can render the cancelation reasons as a drop-down list
