@@ -47,5 +47,8 @@ namespace MaintenanceManagementSystem.Application.Interfaces
          for view purpose, so we can render the maintenance types as a drop-down list
          */
         public List<MaintenanceType> ListMaintenanceTypes();
+
+        //User Accouent
+        public UserInfoBeneficiary GetUserInfo();
     }
 }

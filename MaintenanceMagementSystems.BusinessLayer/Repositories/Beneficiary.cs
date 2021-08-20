@@ -206,5 +206,38 @@ namespace MaintenanceManagementSystem.BusinessLayer.Repositories
                 throw;
             }
         }
+
+        public UserInfoBeneficiary GetUserInfo()
+        {
+            UserInfoBeneficiary User = new UserInfoBeneficiary();
+
+            try
+            {
+                using (_maintenanceSysContext)
+                {
+                    User = _maintenanceSysContext.Users.Select(x => new UserInfoBeneficiary
+                    {
+                        Id = x.Id,
+                        Name = x.Name,
+                        Phone = x.Phone,
+                        Email = x.Email,
+                        UserRoleId = x.userRole.Id,
+                        userRole = x.userRole.RoleNameAr,
+                        FloorId = x.FloorId,
+                        floorNumber = x.floor.Number,
+                        BuildingId = x.building.Id,
+                        buildingNumber = x.building.Number,
+                        IsDeleted = x.IsDeleted
+                    }).Single(x => x.Id == _beneficiaryEntryRepo.GetUserId());
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
+
+            return User;
+        }
     }
 }
