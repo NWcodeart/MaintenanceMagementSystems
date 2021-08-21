@@ -14,15 +14,12 @@ namespace MaintenanceManagementSystem.BusinessLayer.Repositories
 {
     public class Beneficiary : IBeneficiary
     {
-        private MaintenanceSysContext _maintenanceSysContext;
         private IBeneficiaryEntry _beneficiaryEntryRepo;
         private readonly DbContextOptions<MaintenanceSysContext> _options;
 
-        public Beneficiary(MaintenanceSysContext maintenanceSysContext, 
-            IBeneficiaryEntry beneficiaryEntryRepo,
+        public Beneficiary(IBeneficiaryEntry beneficiaryEntryRepo,
             DbContextOptions<MaintenanceSysContext> options)
         {
-            _maintenanceSysContext = maintenanceSysContext;
             _beneficiaryEntryRepo = beneficiaryEntryRepo;
             _options = options;
         }
@@ -31,14 +28,14 @@ namespace MaintenanceManagementSystem.BusinessLayer.Repositories
         {
             try
             {
-                using (_maintenanceSysContext)
+                using (var db = new MaintenanceSysContext(_options))
                 {
-                    var request = _maintenanceSysContext.Tickets.FirstOrDefault(t => t.BeneficiaryID == _beneficiaryEntryRepo.GetUserId() && t.Id == requestID && t.StatusID == 1); //He can cancel the maintenance request before it reaches the maintenance manager
+                    var request = db.Tickets.FirstOrDefault(t => t.BeneficiaryID == _beneficiaryEntryRepo.GetUserId() && t.Id == requestID && t.StatusID == 1); //He can cancel the maintenance request before it reaches the maintenance manager
                     if (request != null)
                     {
                         request.StatusID = 7;
                         request.CancellationReasonID = cancellationReason;
-                        _maintenanceSysContext.SaveChanges();
+                        db.SaveChanges();
                         return true;
                     }
 
@@ -56,13 +53,13 @@ namespace MaintenanceManagementSystem.BusinessLayer.Repositories
         {
             try
             {
-                using (_maintenanceSysContext)
+                using (var db = new MaintenanceSysContext(_options))
                 {
-                    var request = _maintenanceSysContext.Tickets.FirstOrDefault(t => t.BeneficiaryID == _beneficiaryEntryRepo.GetUserId() && t.Id == requestID && t.StatusID == 4); //Only the beneficiary can confirm that the maintenance has been completed
+                    var request = db.Tickets.FirstOrDefault(t => t.BeneficiaryID == _beneficiaryEntryRepo.GetUserId() && t.Id == requestID && t.StatusID == 4); //Only the beneficiary can confirm that the maintenance has been completed
                     if (request != null)
                     {
                         request.StatusID = 5;
-                        _maintenanceSysContext.SaveChanges();
+                        db.SaveChanges();
                         return true;
                     }
 
@@ -79,9 +76,9 @@ namespace MaintenanceManagementSystem.BusinessLayer.Repositories
         {
             try
             {
-                using (_maintenanceSysContext)
+                using (var db = new MaintenanceSysContext(_options))
                 {
-                    var request = _maintenanceSysContext.Tickets.FirstOrDefault(t => t.BeneficiaryID == _beneficiaryEntryRepo.GetUserId() && t.Id == requestID);
+                    var request = db.Tickets.FirstOrDefault(t => t.BeneficiaryID == _beneficiaryEntryRepo.GetUserId() && t.Id == requestID);
                     if(request != null)
                     {
                         return request;
@@ -185,8 +182,12 @@ namespace MaintenanceManagementSystem.BusinessLayer.Repositories
         {
             try
             {
-                var cancellationReasons = _maintenanceSysContext.CancelationReasons.ToList();
-                return cancellationReasons;
+                using(var db = new MaintenanceSysContext(_options))
+                {
+                    var cancellationReasons = db.CancelationReasons.ToList();
+                    return cancellationReasons;
+                }
+                
             }
             catch (Exception)
             {
@@ -198,8 +199,12 @@ namespace MaintenanceManagementSystem.BusinessLayer.Repositories
         {
             try
             {
-                var maintenanceTypes = _maintenanceSysContext.MaintenanceTypes.ToList();
-                return maintenanceTypes;
+                using(var db = new MaintenanceSysContext(_options))
+                {
+                    var maintenanceTypes = db.MaintenanceTypes.ToList();
+                    return maintenanceTypes;
+                }
+                
             }
             catch (Exception)
             {

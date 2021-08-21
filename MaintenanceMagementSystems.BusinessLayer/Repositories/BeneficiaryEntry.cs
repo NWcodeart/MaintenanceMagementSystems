@@ -16,15 +16,12 @@ namespace MaintenanceManagementSystem.BusinessLayer.Repositories
 {
     public class BeneficiaryEntry : IBeneficiaryEntry
     {
-        private readonly MaintenanceSysContext _maintenanceSysContext;
         private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly DbContextOptions<MaintenanceSysContext> _options;
 
-        public BeneficiaryEntry(MaintenanceSysContext maintenanceSysContext,
-            IHttpContextAccessor httpContextAccessor,
+        public BeneficiaryEntry(IHttpContextAccessor httpContextAccessor,
             DbContextOptions<MaintenanceSysContext> options)
         {
-            _maintenanceSysContext = maintenanceSysContext;
             _httpContextAccessor = httpContextAccessor;
             _options = options;
         }
@@ -35,7 +32,7 @@ namespace MaintenanceManagementSystem.BusinessLayer.Repositories
             {
                 using (var db = new MaintenanceSysContext(_options))
                 {
-                    var user = _maintenanceSysContext.Users.FirstOrDefault(l => l.Email == Login.Username);
+                    var user = db.Users.FirstOrDefault(l => l.Email == Login.Username);
 
                     if (user != null && BCrypt.Net.BCrypt.Verify(Login.Password, user.Password))
                     {
@@ -59,13 +56,17 @@ namespace MaintenanceManagementSystem.BusinessLayer.Repositories
         {
             try
             {
-                var user = _maintenanceSysContext.Users.FirstOrDefault(u => u.Email == email);
-                if (user != null)
+                using(var db = new MaintenanceSysContext(_options))
                 {
-                    return true;
-                }
+                    var user = db.Users.FirstOrDefault(u => u.Email == email);
+                    if (user != null)
+                    {
+                        return true;
+                    }
 
-                return false;
+                    return false;
+                }
+                
             }
             catch (Exception)
             {
@@ -77,13 +78,13 @@ namespace MaintenanceManagementSystem.BusinessLayer.Repositories
         {
             try
             {
-                using (_maintenanceSysContext)
+                using(var db = new MaintenanceSysContext(_options))
                 {
-                    User user = _maintenanceSysContext.Users.FirstOrDefault(u => u.Email == email);
+                    User user = db.Users.FirstOrDefault(u => u.Email == email);
                     if (user != null)
                     {
                         user.IsForgetPassword = true;
-                        _maintenanceSysContext.SaveChanges();
+                        db.SaveChanges();
                         return true;
                     }
 
@@ -130,7 +131,7 @@ namespace MaintenanceManagementSystem.BusinessLayer.Repositories
         {
             try
             {
-                using (_maintenanceSysContext)
+                using (var db = new MaintenanceSysContext(_options))
                 {
                     var newUser = new User()
                     {
@@ -144,8 +145,8 @@ namespace MaintenanceManagementSystem.BusinessLayer.Repositories
 
                     newUser.Password = BCrypt.Net.BCrypt.HashPassword(user.Password);
 
-                    _maintenanceSysContext.Users.Add(newUser);
-                    _maintenanceSysContext.SaveChanges();
+                    db.Users.Add(newUser);
+                    db.SaveChanges();
                 }
             }
             catch (Exception)
@@ -177,8 +178,12 @@ namespace MaintenanceManagementSystem.BusinessLayer.Repositories
         {
             try
             {
-                var buildings = _maintenanceSysContext.Buildings.ToList();
-                return buildings; 
+                using(var db = new MaintenanceSysContext(_options))
+                {
+                    var buildings = db.Buildings.ToList();
+                    return buildings;
+                }
+                 
             }
             catch (Exception)
             {
@@ -190,8 +195,12 @@ namespace MaintenanceManagementSystem.BusinessLayer.Repositories
         {
             try
             {
-                var floors = _maintenanceSysContext.Floors.Where(f => f.BuildingId == buildingID).ToList();
-                return floors;              
+                using(var db = new MaintenanceSysContext(_options))
+                {
+                    var floors = db.Floors.Where(f => f.BuildingId == buildingID).ToList();
+                    return floors;
+                }
+                             
             }
             catch (Exception)
             {
