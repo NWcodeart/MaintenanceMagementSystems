@@ -31,7 +31,7 @@ namespace MaintenanceManagementSystem.Application.Interfaces
          manager after that it cannot be closed. also he should provide reason of 
          cancellation
          */
-        public bool CancelTicket(int requestID, int cancelationReasonID);
+        public bool CancelTicket(int requestID, int cancellationReasonId);
 
         /*
          for view purpose, so we can render the cancelation reasons as a drop-down list
@@ -41,7 +41,7 @@ namespace MaintenanceManagementSystem.Application.Interfaces
         /*
          must sign of the repair order after the work has been made
          */
-        public Ticket GetTicket(int requestID);
+        public TicketDto GetTicket(int requestID);
 
         /*
          for view purpose, so we can render the maintenance types as a drop-down list
@@ -50,5 +50,6 @@ namespace MaintenanceManagementSystem.Application.Interfaces
 
         //User Accouent
         public UserInfoBeneficiary GetUserInfo();
+        public void UpdateUser(UserInfoBeneficiary UpdatedUser);
     }
 }
