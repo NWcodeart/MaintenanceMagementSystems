@@ -196,7 +196,7 @@ namespace MaintenanceManagementSystem.BusinessLayer.Repositories
 
         }
 
-        public void UpdateUser(User UpdatedUser)
+        public void UpdateUser(UserInfoBeneficiary UpdatedUser)
         {
             try
             {
@@ -205,8 +205,32 @@ namespace MaintenanceManagementSystem.BusinessLayer.Repositories
                     User UserToUpdate = _maintenanceSysContext.Users
                             .Where(b => b.Id == UpdatedUser.Id)
                             .FirstOrDefault();
+
                     if (UserToUpdate != null)
                     {
+                        if (UpdatedUser.Name != null)
+                        {
+                            UpdatedUser.Name = UpdatedUser.Name;
+                        }
+                        if (UpdatedUser.Phone != null)
+                        {
+                            UserToUpdate.Phone = UpdatedUser.Phone;
+                        }
+                        if (UpdatedUser.Email != null)
+                        {
+                            UserToUpdate.Email = UpdatedUser.Email;
+                        }
+                        if (UpdatedUser.UserRoleId != 0)
+                        {
+                            UserToUpdate.UserRoleId = UpdatedUser.UserRoleId;
+                        }
+                        if (UpdatedUser.BuildingId != 0)
+                        {
+                            if (UpdatedUser.FloorId != 0)
+                            {
+                                UserToUpdate.FloorId = UpdatedUser.FloorId;
+                            }
+                        }
                         _maintenanceSysContext.Entry(UserToUpdate).CurrentValues.SetValues(UpdatedUser);
                     }
                     _maintenanceSysContext.SaveChanges();

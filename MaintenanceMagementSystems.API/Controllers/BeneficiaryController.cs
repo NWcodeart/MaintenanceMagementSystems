@@ -132,5 +132,13 @@ namespace MaintenanceManagementSystem.API.Controllers
 
             return Ok(user);
         }
+
+        [HttpPost]
+        [Route("UpdateUser")]
+        public IActionResult UpdateUser(UserInfoBeneficiary user)
+        {
+            _beneficiaryRepo.UpdateUser(user);
+            return Ok();
+        }
     }
 }
