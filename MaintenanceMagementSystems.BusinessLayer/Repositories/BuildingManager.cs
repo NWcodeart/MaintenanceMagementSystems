@@ -24,17 +24,17 @@ namespace MaintenanceManagementSystem.BusinessLayer.Repositories
             _options = options;
         }
 
-        public bool AddComments(string comment, int ticketId)
+        public bool AddComments(Comment comment)
         {
             try
             {
                 using (_maintenanceSysContext)
                 {                    
-                    Ticket ticket = _maintenanceSysContext.Tickets.FirstOrDefault(t => t.StatusID == 1 && t.Id == ticketId);  //1 => new
+                    Ticket ticket = _maintenanceSysContext.Tickets.FirstOrDefault(t => t.StatusID == 1 && t.Id == comment.id);  //1 => new
 
                     if (ticket != null)
                     {
-                           ticket.BuildingManagerComment = comment;
+                           ticket.BuildingManagerComment = comment.comment;
                            ticket.StatusID = 2; //2 => under review
                            _maintenanceSysContext.SaveChanges();
                            return true;

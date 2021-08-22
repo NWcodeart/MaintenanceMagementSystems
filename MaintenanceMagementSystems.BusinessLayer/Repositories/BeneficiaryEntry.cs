@@ -180,10 +180,11 @@ namespace MaintenanceManagementSystem.BusinessLayer.Repositories
             {
                 using(var db = new MaintenanceSysContext(_options))
                 {
+
                     var buildings = db.Buildings.ToList();
                     return buildings;
-                }
-                 
+                 }
+
             }
             catch (Exception)
             {

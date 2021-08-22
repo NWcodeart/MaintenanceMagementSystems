@@ -40,7 +40,7 @@ namespace MaintenanceManagementSystem.API.Controllers
         //--------------------------------------------------------------------------------------------
         [HttpPost]
         [Route("[action]")]
-        [ActionName("SendEmail/{user}")]
+        [ActionName("SendEmail")]
         public IActionResult SendEmail(string email)
         {
             _systemUser.SendEmail(email);
@@ -49,7 +49,7 @@ namespace MaintenanceManagementSystem.API.Controllers
         //--------------------------------------------------------------------------------------------
         [HttpPost]
         [Route("[action]")]
-        [ActionName("ResetPassword/{tempPassword}/{newPassword}")]
+        [ActionName("ResetPassword")]
         public IActionResult ResetPassword(Guid tempPassword, string newPassword)
         {
             _systemUser.ResetPassword(tempPassword, newPassword);

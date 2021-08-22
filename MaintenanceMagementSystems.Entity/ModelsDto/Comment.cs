@@ -7,6 +7,7 @@ namespace MaintenanceManagementSystem.Entity.ModelsDto
 {
     public class Comment
     {
+        public int id { get; set; }
         public string comment { get; set; }
     }
 }
