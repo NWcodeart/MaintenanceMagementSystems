@@ -3,6 +3,7 @@ using MaintenanceManagementSystem.Database.Lookup;
 using MaintenanceManagementSystem.Database.ManyToMany;
 using MaintenanceManagementSystem.Database.Models;
 using MaintenanceManagementSystem.Entity.ModelsDto;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -159,13 +160,39 @@ namespace MaintenanceManagementSystem.BusinessLayer.Repositories
         //-------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
-        public List<Ticket> ViewTickets()
+        public List<TicketDto> ViewTickets()
         {
             try
             {
                 using (_maintenanceSysContext)
                 {
-                    List<Ticket> tickets = _maintenanceSysContext.Tickets.ToList();
+                    List<TicketDto> tickets = _maintenanceSysContext.Tickets.Select(x => new TicketDto
+                    {
+                        Id = x.Id,
+                        BeneficiaryID = x.BeneficiaryID,
+                        StatusID = x.StatusID,
+                        StatusTypeAr = x.status.StatusTypeAr,
+                        StatusTypeEn = x.status.StatusTypeEn,
+                        Date = x.Date,
+                        Picture = x.Picture,
+                        MaintenanceTypeID = x.MaintenanceTypeID,
+                        MaintenanceTypeNameAr = x.maintenanceType.MaintenanceTypeNameAr,
+                        MaintenanceTypeNameEn = x.maintenanceType.MaintenanceTypeNameEn,
+                        Description = x.Description,
+                        BuildingManagerComment = x.BuildingManagerComment,
+                        FloorId = x.FloorId,
+                        IsCancelled = x.IsCancelled,
+                        CancellationReasonID = x.CancellationReasonID,
+                        ReasonTypeAr = x.cancelationReason.ReasonTypeAr,
+                        ReasonTypeEn = x.cancelationReason.ReasonTypeEn,
+                        RejectedBy = x.RejectedBy,
+                        RejectionReason = x.RejectionReason,
+                        CreatedBy = x.CreatedBy,
+                        CreatedTime = x.CreatedTime,
+                        UpdatedBy = x.UpdatedBy,
+                        UpdatedTime = x.UpdatedTime,
+                        IsDeleted = x.IsDeleted
+                    }).ToList();
                     if (tickets != null)
                     {
                         return tickets;
@@ -182,17 +209,77 @@ namespace MaintenanceManagementSystem.BusinessLayer.Repositories
             }
         }
         //-------------------------------------------------------------------------------------------------------------------------------------------------------------
-        public List<Ticket> ViewUnderReviewTickets()
+        public List<TicketDto> ViewUnderReviewTickets()
         {
             try
             {
                 using (_maintenanceSysContext)
                 {
-                    List<Ticket> tickets = _maintenanceSysContext.Tickets
-                        .Where(t => t.StatusID == 2 || ((t.CreatedTime - DateTime.Now).TotalDays >= 2) && t.StatusID == 1).ToList(); //2 => under review -> has been passed to BM OR 1=> has not passed to BM and it has been created from more than 2 days
-                    if (tickets != null)
+                    List<TicketDto> UnderReviewTickets = _maintenanceSysContext.Tickets
+                        .Select(x => new TicketDto
+                        {
+                            Id = x.Id,
+                            BeneficiaryID = x.BeneficiaryID,
+                            StatusID = x.StatusID,
+                            StatusTypeAr = x.status.StatusTypeAr,
+                            StatusTypeEn = x.status.StatusTypeEn,
+                            Date = x.Date,
+                            Picture = x.Picture,
+                            MaintenanceTypeID = x.MaintenanceTypeID,
+                            MaintenanceTypeNameAr = x.maintenanceType.MaintenanceTypeNameAr,
+                            MaintenanceTypeNameEn = x.maintenanceType.MaintenanceTypeNameEn,
+                            Description = x.Description,
+                            BuildingManagerComment = x.BuildingManagerComment,
+                            FloorId = x.FloorId,
+                            IsCancelled = x.IsCancelled,
+                            CancellationReasonID = x.CancellationReasonID,
+                            ReasonTypeAr = x.cancelationReason.ReasonTypeAr,
+                            ReasonTypeEn = x.cancelationReason.ReasonTypeEn,
+                            RejectedBy = x.RejectedBy,
+                            RejectionReason = x.RejectionReason,
+                            CreatedBy = x.CreatedBy,
+                            CreatedTime = x.CreatedTime,
+                            UpdatedBy = x.UpdatedBy,
+                            UpdatedTime = x.UpdatedTime,
+                            IsDeleted = x.IsDeleted
+                        }).Where(t => t.StatusID == 2).ToList(); //2 => under review -> has been passed to BM OR 1=> has not passed to BM and it has been created from more than 2 days
+
+                    List<TicketDto> PassedTwoDaysTickets = _maintenanceSysContext.Tickets
+                        .Select(x => new TicketDto
+                        {
+                            Id = x.Id,
+                            BeneficiaryID = x.BeneficiaryID,
+                            StatusID = x.StatusID,
+                            StatusTypeAr = x.status.StatusTypeAr,
+                            StatusTypeEn = x.status.StatusTypeEn,
+                            Date = x.Date,
+                            Picture = x.Picture,
+                            MaintenanceTypeID = x.MaintenanceTypeID,
+                            MaintenanceTypeNameAr = x.maintenanceType.MaintenanceTypeNameAr,
+                            MaintenanceTypeNameEn = x.maintenanceType.MaintenanceTypeNameEn,
+                            Description = x.Description,
+                            BuildingManagerComment = x.BuildingManagerComment,
+                            FloorId = x.FloorId,
+                            IsCancelled = x.IsCancelled,
+                            CancellationReasonID = x.CancellationReasonID,
+                            ReasonTypeAr = x.cancelationReason.ReasonTypeAr,
+                            ReasonTypeEn = x.cancelationReason.ReasonTypeEn,
+                            RejectedBy = x.RejectedBy,
+                            RejectionReason = x.RejectionReason,
+                            CreatedBy = x.CreatedBy,
+                            CreatedTime = x.CreatedTime,
+                            UpdatedBy = x.UpdatedBy,
+                            UpdatedTime = x.UpdatedTime,
+                            IsDeleted = x.IsDeleted
+                        }).Where(t => (t.CreatedTime - DateTime.Now).TotalDays >= 2 && t.StatusID == 1).ToList();
+
+                    foreach(var i in UnderReviewTickets)
                     {
-                        return tickets;
+                        PassedTwoDaysTickets.Add(i);
+                    }
+                    if (PassedTwoDaysTickets != null )
+                    {
+                        return PassedTwoDaysTickets;
                     }
                     else
                     {
