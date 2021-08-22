@@ -244,5 +244,48 @@ namespace MaintenanceManagementSystem.BusinessLayer.Repositories
 
             return User;
         }
+
+        public void UpdateUser(UserInfoBeneficiary UpdatedUser)
+        {
+            try
+            {
+                using (var db = new MaintenanceSysContext(_options))
+                {
+                    User UserToUpdate = db.Users
+                            .Where(b => b.Id == UpdatedUser.Id)
+                            .FirstOrDefault();
+
+                    if (UserToUpdate != null)
+                    {
+                        if (UpdatedUser.Name != null)
+                        {
+                            UpdatedUser.Name = UpdatedUser.Name;
+                        }
+                        if (UpdatedUser.Phone != null)
+                        {
+                            UserToUpdate.Phone = UpdatedUser.Phone;
+                        }
+                        if (UpdatedUser.Email != null)
+                        {
+                            UserToUpdate.Email = UpdatedUser.Email;
+                        }
+                        if (UpdatedUser.BuildingId != 0)
+                        {
+                            if (UpdatedUser.FloorId != 0)
+                            {
+                                UserToUpdate.FloorId = UpdatedUser.FloorId;
+                            }
+                        }
+                        db.Entry(UserToUpdate).CurrentValues.SetValues(UpdatedUser);
+                    }
+                    db.SaveChanges();
+
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
     }
 }

@@ -199,7 +199,7 @@ namespace MaintenanceManagementSystem.API.Controllers
         [AllowAnonymous]
         [HttpPost]
         [Route("UpdateUser")]
-        public IActionResult UpdateUser(User user)
+        public IActionResult UpdateUser(UserInfoBeneficiary user)
         {
             _SystemAdminRepo.UpdateUser(user);
             return Ok();

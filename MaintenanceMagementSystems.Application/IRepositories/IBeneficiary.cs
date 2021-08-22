@@ -50,5 +50,6 @@ namespace MaintenanceManagementSystem.Application.Interfaces
 
         //User Accouent
         public UserInfoBeneficiary GetUserInfo();
+        public void UpdateUser(UserInfoBeneficiary UpdatedUser);
     }
 }
