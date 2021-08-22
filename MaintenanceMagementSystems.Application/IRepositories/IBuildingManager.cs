@@ -17,7 +17,7 @@ namespace MaintenanceManagementSystem.Application.Interfaces
         public List<TicketDto> ViewTickets();
         public List<Status> ViewTicketsStatus();
         //public Ticket GetTicketFor(int requestID);
-        public bool AddComments(string comment, int ticketId);
+        public bool AddComments(Comment comment);
 
         public Ticket GetTicket(int ticketId);
     }
