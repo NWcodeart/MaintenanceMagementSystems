@@ -252,8 +252,7 @@ namespace MaintenanceManagementSystem.BusinessLayer.Repositories
                 using (var db = new MaintenanceSysContext(_options))
                 {
                     User UserToUpdate = db.Users
-                            .Where(b => b.Id == UpdatedUser.Id)
-                            .FirstOrDefault();
+                            .Single(b => b.Id == UpdatedUser.Id);
 
                     if (UserToUpdate != null)
                     {
